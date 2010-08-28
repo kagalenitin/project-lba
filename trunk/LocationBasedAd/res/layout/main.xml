@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:id="@+id/widget87"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+>
+	<TextView android:id="@+id/lblTitle" android:layout_width="200px"
+		android:layout_height="wrap_content" android:text="Please enter your login"
+		android:layout_x="64px" android:layout_y="51px">
+	</TextView>
+	<TextView android:id="@+id/lblLogin" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="Login:"
+		android:layout_x="43px" android:layout_y="101px">
+	</TextView>
+	<EditText android:id="@+id/username" android:layout_width="150px"
+		android:layout_height="wrap_content" android:layout_x="150px"
+		android:layout_y="83px">
+	</EditText>
+	<TextView android:id="@+id/lblPassword" android:layout_width="100px"
+		android:layout_height="22px" android:text="Password:"
+		android:layout_x="42px" android:layout_y="160px">
+	</TextView>
+	<EditText android:id="@+id/password" android:layout_width="150px"
+		android:layout_height="wrap_content" android:password="true"
+		android:layout_x="149px" android:layout_y="148px">
+	</EditText>
+	<Button android:id="@+id/login_button" android:layout_width="100px"
+		android:layout_height="wrap_content" android:text="Login"
+		android:layout_x="48px" android:layout_y="231px">
+	</Button>
+	<Button android:id="@+id/cancel_button" android:layout_width="100px"
+		android:layout_height="wrap_content" android:text="Cancel"
+		android:layout_x="168px" android:layout_y="230px">
+	</Button>
+	<TextView android:id="@+id/result" android:layout_width="150px"
+		android:layout_height="18px" android:layout_x="76px" android:layout_y="300px">
+	</TextView>
+</AbsoluteLayout>
