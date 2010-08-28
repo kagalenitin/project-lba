@@ -58,17 +58,7 @@ public class LBALogin extends Activity {
 		});
 		btnCancel.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
-
-				// startActivity(new Intent(LoginExample.this, Item.class));
-
-				// Intent myIntent = new Intent();
-				// myIntent.setClassName("com.lba.login",
-				// "com.lba.login.Item");
-				// myIntent.putExtra("com.android.samples.SpecialValue",
-				// "Hello, Joe!"); // key/value pair, where key needs current
-				// package prefix.
-				// startActivity(myIntent);
+			public void onClick(View v) {				
 
 				System.out.println("Started.....");
 				Intent intent = new Intent(LBALogin.this, Item.class);
