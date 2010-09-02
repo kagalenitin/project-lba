@@ -14,5 +14,6 @@
 		<activity android:name="WelcomeUser"></activity>
 		<activity android:name="Channel"></activity>
 		<activity android:name="Advertisement"></activity>
+		<activity android:name="Registration"></activity>
 	</application>
 </manifest> 

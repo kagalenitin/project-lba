@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-	android:id="@+id/widget147"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	>
-	<TextView android:id="@+id/user" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_x="0px"
-		android:layout_y="-1px">
-	</TextView>
-	<Button android:id="@+id/channel" android:layout_width="120px"
-		android:layout_height="wrap_content" android:text="Show Channel"
-		android:layout_x="87px" android:layout_y="50px">
-	</Button>
-</AbsoluteLayout>
+<TableLayout
+	android:id="@+id/widget28"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="200px"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<TableRow>
+		<TextView android:id="@+id/user" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_x="0px"
+			android:layout_y="-1px">
+		</TextView>
+	</TableRow>
+	<TableRow>
+		<Button android:id="@+id/channel" android:layout_width="120px"
+			android:layout_height="wrap_content" android:text="Show Channel"
+			android:layout_x="87px" android:layout_y="50px">
+		</Button>
+	</TableRow>
+		
+</TableLayout>
+

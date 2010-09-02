@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.lba.login;
 
 import android.app.Activity;
