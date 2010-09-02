@@ -30,7 +30,7 @@ public class LBALogin extends Activity {
 		etPassword = (EditText) findViewById(R.id.password);
 		btnLogin = (Button) findViewById(R.id.login_button);
 		btnCancel = (Button) findViewById(R.id.cancel_button);
-		lblResult = (TextView) findViewById(R.id.result);
+		//lblResult = (TextView) findViewById(R.id.result);
 
 		// Set Click Listener
 		btnLogin.setOnClickListener(new OnClickListener() {
@@ -42,7 +42,7 @@ public class LBALogin extends Activity {
 				String password = etPassword.getText().toString();
 
 				if (username.equals("payal") && password.equals("payal")) {
-					lblResult.setText("Login successful.");
+					//lblResult.setText("Login successful.");
 					System.out.println("Started.....");
 					Intent intent = new Intent(LBALogin.this, WelcomeUser.class);
 					Bundle b = new Bundle();
@@ -51,8 +51,14 @@ public class LBALogin extends Activity {
 					intent.putExtras(b);
 					startActivity(intent);
 				} else {
-					lblResult
-							.setText("Login failed. Username and/or password doesn't match.");
+					//lblResult
+					//		.setText("Login failed. Username and/or password doesn't match.");
+					Intent intent = new Intent(LBALogin.this, Registration.class);
+					Bundle b = new Bundle();
+					b.putString("uname", etUsername.getText().toString());
+					System.out.println(Log.VERBOSE);
+					intent.putExtras(b);
+					startActivity(intent);
 				}
 			}
 		});
