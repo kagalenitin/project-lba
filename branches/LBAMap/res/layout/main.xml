@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="fill_parent"
+android:layout_width="fill_parent"
+android:background="#000044">
+		<TableRow>
+			<TextView android:id="@+id/textName"
+			android:text="Latitude:"
+			android:layout_gravity="center_vertical|center_horizontal|center"
+			android:textColor="#ffffff" />
+			<EditText android:id="@+id/latitude"
+			android:width="240px" />
+		</TableRow>
+		<TableRow>
+			<TextView android:id="@+id/textName"
+			android:text="Longitude:"
+			android:textColor="#ffffff" 
+			android:layout_gravity="center_vertical|center_horizontal|center" />
+			<EditText android:id="@+id/longitude"/>
+		</TableRow>
+		<TableRow>
+			<Button android:id="@+id/map_button"
+			android:text="Get Map" />
+		</TableRow>
+</TableLayout>
