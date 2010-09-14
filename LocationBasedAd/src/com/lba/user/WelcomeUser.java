@@ -1,4 +1,4 @@
-package com.lba.login;
+package com.lba.user;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.lba.R;
+import com.lba.channel.Channel;
 
 /**
  * @author payal
