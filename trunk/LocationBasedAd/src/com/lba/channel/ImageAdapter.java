@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.lba.login;
+package com.lba.channel;
 
 import android.content.Context;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.lba.R;
 
 /**
  * @author payal
@@ -39,7 +41,7 @@ public class ImageAdapter extends BaseAdapter {
 		if (convertView == null) { // if it's not recycled, initialize some
 			// attributes
 			imageView = new ImageView(mContext);
-			imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+			imageView.setLayoutParams(new GridView.LayoutParams(80, 80));
 			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			imageView.setPadding(8, 8, 8, 8);
 		} else {

@@ -1,4 +1,4 @@
-package com.lba.login;
+package com.lba.user;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.lba.R;
+import com.lba.item.Item;
 
 public class LBALogin extends Activity {
 
@@ -21,6 +24,7 @@ public class LBALogin extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		this.setTitle("Location Based Advertisement");
 		setContentView(R.layout.main);
@@ -32,6 +36,7 @@ public class LBALogin extends Activity {
 		btnCancel = (Button) findViewById(R.id.cancel_button);
 		//lblResult = (TextView) findViewById(R.id.result);
 
+
 		// Set Click Listener
 		btnLogin.setOnClickListener(new OnClickListener() {
 
@@ -42,8 +47,7 @@ public class LBALogin extends Activity {
 				String password = etPassword.getText().toString();
 
 				if (username.equals("payal") && password.equals("payal")) {
-					//lblResult.setText("Login successful.");
-					System.out.println("Started.....");
+			
 					Intent intent = new Intent(LBALogin.this, WelcomeUser.class);
 					Bundle b = new Bundle();
 					b.putString("uname", etUsername.getText().toString());
@@ -51,8 +55,8 @@ public class LBALogin extends Activity {
 					intent.putExtras(b);
 					startActivity(intent);
 				} else {
-					//lblResult
-					//		.setText("Login failed. Username and/or password doesn't match.");
+					lblResult
+							.setText("Login failed. Username and/or password doesn't match.");
 					Intent intent = new Intent(LBALogin.this, Registration.class);
 					Bundle b = new Bundle();
 					b.putString("uname", etUsername.getText().toString());
@@ -66,15 +70,12 @@ public class LBALogin extends Activity {
 			@Override
 			public void onClick(View v) {				
 
-				System.out.println("Started.....");
 				Intent intent = new Intent(LBALogin.this, Item.class);
 				Bundle b = new Bundle();
 				b.putString("uname", etUsername.getText().toString());
 				System.out.println(Log.VERBOSE);
 				intent.putExtras(b);
 				startActivity(intent);
-
-				// Close the application
 				// finish();
 			}
 		});
