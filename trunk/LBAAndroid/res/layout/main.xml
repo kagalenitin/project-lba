@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="fill_parent"
+android:layout_width="fill_parent">
+		<TableRow>
+			<TextView android:id="@+id/textName"
+			android:text="Username:"
+			android:layout_gravity="center_vertical|center_horizontal|center"
+			android:textColor="#ffffff" />
+			<EditText android:id="@+id/username"
+			android:width="240px"
+			style="?button"/>
+			 />
+		</TableRow>
+		<TableRow>
+			<TextView android:id="@+id/textPasswd"
+			android:text="Password:"
+			android:textColor="#ffffff" 
+			android:layout_gravity="center_vertical|center_horizontal|center" />
+			<EditText android:id="@+id/password"
+			android:password="true"
+			style="?button" />
+		</TableRow>
+			<Button android:id="@+id/signin_button"
+			android:text="Sign In" 
+			android:layout_width="fill_parent"
+			style="?button"/>
+			<Button android:id="@+id/signup_button"
+			android:text="Sign Up"
+			android:layout_width="fill_parent"
+			android:textColorHighlight="#FFFFFF"
+			style="?button"/>
+
+	<ImageView android:id="@+id/ImageView01" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"></ImageView>
+</TableLayout>

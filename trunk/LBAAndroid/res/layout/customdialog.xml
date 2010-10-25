@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout01"
+	android:layout_height="fill_parent"
+    android:orientation="vertical"
+	android:gravity="center" android:layout_width="300dip">
+	<TextView android:id="@+id/dialogTitle" android:layout_height="fill_parent"
+		android:textColor="#fff" android:textStyle="bold"
+		android:layout_width="fill_parent" android:text="Location Based Advertisement" android:gravity="center"></TextView>
+	<TextView android:id="@+id/dialogMessage" android:layout_height="wrap_content"
+		android:textColor="#fff" android:layout_width="wrap_content"
+		android:layout_margin="7dip"
+		android:gravity="center"></TextView>
+	<Button android:layout_width="150dip" 
+		android:layout_height="fill_parent" android:text="Continue" android:id="@+id/OkButton" style="?button"></Button>
+</LinearLayout>
