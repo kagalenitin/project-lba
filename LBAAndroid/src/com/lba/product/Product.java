@@ -56,7 +56,7 @@ public class Product extends Activity { // implements OnClickListener{
 		ProductResourceClient itemConnect = new ProductResourceClient();
 		try {
 			DomRepresentation representation = itemConnect
-					.retrieveProductbyChannel(channelId);
+			.retrieveProductbyChannel(channelId);
 			if (representation != null) {
 				products = itemConnect.getProductsFromXml(representation);
 			} else {
@@ -83,13 +83,12 @@ public class Product extends Activity { // implements OnClickListener{
 		if (b != null) {
 			String channelId = b.getString("channelId");
 			if (channelId != null) {
-				if (!(channelId.equalsIgnoreCase("") || channelId
-						.equalsIgnoreCase(null))) {
+				if (!(channelId.equalsIgnoreCase(""))) {
 					products = getProductsByChannel(channelId);
+				} else {
+					lblChannelCode.setText("Product List:");
+					products = getProducts();
 				}
-			} else {
-				lblChannelCode.setText("Product List:");
-				products = getProducts();
 			}
 		}
 		adapter = new ProductAdapter(this, products);

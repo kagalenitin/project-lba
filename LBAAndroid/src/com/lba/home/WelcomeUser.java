@@ -68,10 +68,10 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 					b.putString("channelCode", uname);
 				} else if (position == 3) {
 					intent = new Intent(WelcomeUser.this, Product.class);
-					b.putString("channelCode", uname);
+					b.putString("channelId", "");
 				} else if (position == 6) {
 					intent = new Intent(WelcomeUser.this, Advertisement.class);
-					b.putString("adCode", uname);
+					b.putString("productId", "");
 				} else if (position == 8) {
 					intent = new Intent(WelcomeUser.this, GPSMap.class);
 					b.putString("adCode", uname);
@@ -115,7 +115,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			Toast.makeText(this, "Advertisements", Toast.LENGTH_LONG).show();
 			intent = new Intent(WelcomeUser.this, Advertisement.class);
 			b = new Bundle();
-			b.putString("productId", "default");
+			b.putString("productId", "");
 			intent.putExtras(b);
 			startActivity(intent);
 			break;

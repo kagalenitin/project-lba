@@ -34,24 +34,24 @@ public class Advertisement extends Activity {
 
 		this.setTitle("Location Based Advertisement");
 		lblAdCode = (TextView) findViewById(R.id.AdCode);
+		itemListView = (ListView) findViewById(R.id.list);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
-
-		itemListView = (ListView) findViewById(R.id.list);
-		adapter = new LazyAdapter(this, mStrings);
-		itemListView.setAdapter(adapter);
-
+		String productId = null;
 		if (b != null) {
-			String productId = b.getString("productId");
+			productId = b.getString("productId");
 			if (productId != null) {
-				if (!(productId.equalsIgnoreCase("default"))) {
+				if (!(productId.equalsIgnoreCase(""))) {
 					lblAdCode.setText("List of Advertisements: " + productId);
+					adapter = new LazyAdapter(this, mStrings,productId);
 				} else {
-					// / load ad with given product ID
+					adapter = new LazyAdapter(this, mStrings);
 				}
 			}
 		}
+		
+		itemListView.setAdapter(adapter);
 
 		itemListView.setClickable(true);
 		itemListView.setOnItemClickListener(new OnItemClickListener() {
@@ -66,9 +66,7 @@ public class Advertisement extends Activity {
 				startActivity(intent);
 			}
 		});
-
 		itemListView.setAdapter(adapter);
-
 	}
 
 	@Override

@@ -22,6 +22,66 @@ public class AdvertisementBean {
 	public String contractID;
 	public String fileLocation;
 	public String fileSize;
+	public String adsize;
+	public String productname;
+	public String productdescription;
+	public String productprice;
+
+	/**
+	 * @return the adsize
+	 */
+	public String getAdsize() {
+		return adsize;
+	}
+
+	/**
+	 * @param adsize the adsize to set
+	 */
+	public void setAdsize(String adsize) {
+		this.adsize = adsize;
+	}
+
+	/**
+	 * @return the productname
+	 */
+	public String getProductname() {
+		return productname;
+	}
+
+	/**
+	 * @param productname the productname to set
+	 */
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+	/**
+	 * @return the productdescription
+	 */
+	public String getProductdescription() {
+		return productdescription;
+	}
+
+	/**
+	 * @param productdescription the productdescription to set
+	 */
+	public void setProductdescription(String productdescription) {
+		this.productdescription = productdescription;
+	}
+
+	/**
+	 * @return the productprice
+	 */
+	public String getProductprice() {
+		return productprice;
+	}
+
+	/**
+	 * @param productprice the productprice to set
+	 */
+	public void setProductprice(String productprice) {
+		this.productprice = productprice;
+	}
 
 	/**
 	 * @return the fileSize
