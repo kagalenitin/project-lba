@@ -30,8 +30,15 @@ public class LazyAdapter extends BaseAdapter {
 	public ImageLoader imageLoader;
 	static ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
 
-	// static ArrayList<ProductBean> products = new ArrayList<ProductBean>();
-
+	public LazyAdapter(Activity a, String[] d, String productId) {
+		activity = a;
+		data = d;
+		inflater = (LayoutInflater) activity
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		imageLoader = new ImageLoader(activity.getApplicationContext());
+		advertisements = getAdsByProduct(productId);
+	}
+	
 	public LazyAdapter(Activity a, String[] d) {
 		activity = a;
 		data = d;
@@ -72,22 +79,23 @@ public class LazyAdapter extends BaseAdapter {
 		return advertisements;
 	}
 
-	// public static ArrayList<ProductBean> getProducts() {
-	//
-	// ProductResourceClient itemConnect = new ProductResourceClient();
-	// try {
-	// DomRepresentation representation = itemConnect.retrieveProducts();
-	// if (representation != null) {
-	// products = itemConnect.getProductsFromXml(representation);
-	// } else {
-	// products = new ArrayList<ProductBean>();
-	// }
-	//
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// return products;
-	// }
+	public static ArrayList<AdvertisementBean> getAdsByProduct(String productId) {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+					.retrieveAdsbyProduct(productId);
+			if (representation != null) {
+				advertisements = advertisementResource.getAdvertisementsFromXml(representation);
+			} else {
+				advertisements = new ArrayList<AdvertisementBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisements;
+	}
 
 	public static class ViewHolder {
 		public TextView text;
@@ -103,7 +111,6 @@ public class LazyAdapter extends BaseAdapter {
 			vi = inflater.inflate(R.layout.advertisement, null);
 			holder = new ViewHolder();
 			holder.desc = (TextView) vi.findViewById(R.id.text01);
-			;
 			holder.text = (TextView) vi.findViewById(R.id.text);
 			holder.image = (ImageView) vi.findViewById(R.id.image);
 			vi.setTag(holder);
@@ -122,8 +129,6 @@ public class LazyAdapter extends BaseAdapter {
 			holder.image.setTag(data[position]);
 			holder.desc.setText(res);
 		}
-
-		// holder.desc.setText("this is a long description of an item and it can be multiple line also in the screen so it should show the results of item details.");
 
 		imageLoader.DisplayImage(data[position], activity, holder.image);
 		return vi;

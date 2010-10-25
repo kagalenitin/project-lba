@@ -23,6 +23,8 @@ public class AdvertisementResourceClient {
 
 	public ClientResource advertisementsResource;
 	public ClientResource advertisementResource;
+	public ClientResource advertisementbyProductResource;
+
 	// String ipaddress = "10.185.3.16:8182";
 	String ipaddress = "192.168.1.72:8182";
 	String serviceAddress = "http://" + ipaddress
@@ -94,6 +96,20 @@ public class AdvertisementResourceClient {
 		}
 		return null;
 	}
+	
+	public DomRepresentation retrieveAdsbyProduct(String productId) {
+		advertisementbyProductResource = new ClientResource(serviceAddress
+				+ "/products/" + productId);
+		try {
+			return get(advertisementbyProductResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 	public static void main(String args[]) {
 		AdvertisementResourceClient client = new AdvertisementResourceClient();
