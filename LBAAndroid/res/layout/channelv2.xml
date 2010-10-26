@@ -8,7 +8,7 @@
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
 	<TextView android:id="@+id/ChannelCode" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" />
+		android:layout_height="wrap_content" android:textColor="#ffffff"/>
 
 	<Button android:id="@+id/Subscribe"
 			android:text="Subscribe" 

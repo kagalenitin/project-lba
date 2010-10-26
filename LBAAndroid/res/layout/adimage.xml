@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <TextView android:id="@+id/ItemCode" android:layout_width="fill_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content" android:textColor="#ffffff"/>
 	 <View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
 	 <ImageView android:id="@+id/AdImage" android:layout_width="wrap_content" 

@@ -91,7 +91,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 		setContentView(R.layout.searchproduct);
 		this.setTitle("Location Based Advertisement - Search");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
-
+		elProductName = (EditText) findViewById(R.id.productName);
 		productListView = (ListView) findViewById(R.id.ListView01);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
@@ -100,6 +100,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 			uname = b.getString("uname");
 			productName = b.getString("productName");
 			if (productName != null) {
+				elProductName.setText(productName);
 				if (!(productName.equalsIgnoreCase(""))) {
 					products = getProductsByName(productName);
 					// products = getProducts();
@@ -110,7 +111,6 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 		}
 		adapter = new ProductAdapter(this, products);
 		productListView.setAdapter(adapter);
-		elProductName = (EditText) findViewById(R.id.productName);
 		btnSearch = (Button) findViewById(R.id.searchbutton);
 
 		// Set Click Listener

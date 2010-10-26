@@ -3,10 +3,9 @@
 	    android:icon="@drawable/largetiles48"
 	     android:title="Channels" />
 	<item android:id="@+id/text"
-	    android:icon="@drawable/topview"
+	    android:icon="@drawable/topview48"
 	    android:title="Products" />
     <item android:id="@+id/icontext"
         android:title="Advertisements"
-        android:icon="@drawable/home_icon" />
-<!--        android:icon="@drawable/largetiles48" />-->
+        android:icon="@drawable/largetiles48" />
 </menu>
