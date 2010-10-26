@@ -45,6 +45,7 @@ android:layout_height="wrap_content"
 android:text="First Name"
 android:layout_x="13px"
 android:layout_y="13px"
+android:textColor="#ffffff"
 >
 </TextView>
 <TextView
@@ -54,6 +55,7 @@ android:layout_height="wrap_content"
 android:text="Last Name"
 android:layout_x="13px"
 android:layout_y="63px"
+android:textColor="#ffffff"
 >
 </TextView>
 <EditText
@@ -74,6 +76,7 @@ android:layout_height="wrap_content"
 android:text="User Name"
 android:layout_x="13px"
 android:layout_y="113px"
+android:textColor="#ffffff"
 >
 </TextView>
 <EditText
@@ -92,6 +95,7 @@ android:id="@+id/widget40"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Password"
+android:textColor="#ffffff"
 android:layout_x="13px"
 android:layout_y="166px">
 </TextView>
@@ -113,6 +117,7 @@ android:layout_height="wrap_content"
 android:text="Email ID"
 android:layout_x="13px"
 android:layout_y="221px"
+android:textColor="#ffffff"
 >
 </TextView>
 <EditText
@@ -131,6 +136,7 @@ android:id="@+id/widget44"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Address"
+android:textColor="#ffffff"
 android:layout_x="13px"
 android:layout_y="324px">
 </TextView>
@@ -163,6 +169,7 @@ android:layout_height="wrap_content"
 android:text="Phone"
 android:layout_x="13px"
 android:layout_y="272px"
+android:textColor="#ffffff"
 >
 </TextView>
 </AbsoluteLayout>

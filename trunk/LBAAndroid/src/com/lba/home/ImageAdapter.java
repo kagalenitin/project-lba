@@ -58,15 +58,6 @@ public class ImageAdapter extends BaseAdapter {
 			// attributes
 			vi = inflater.inflate(R.layout.welcome, null);
 			holder = new ViewHolder();
-			//
-			// if(convertView==null){
-			// LayoutInflater li = getLayoutInflater();
-			// v = li.inflate(R.layout.icon, null);
-			// TextView tv = (TextView)v.findViewById(R.id.icon_text);
-			// tv.setText("Profile "+position);
-			// ImageView iv = (ImageView)v.findViewById(R.id.icon_image);
-			// iv.setImageResource(R.drawable.icon);
-
 			imageView = new ImageView(mContext);
 			imageView.setLayoutParams(new GridView.LayoutParams(80, 80));
 			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -74,52 +65,26 @@ public class ImageAdapter extends BaseAdapter {
 
 			holder.text = (TextView) vi.findViewById(R.id.icon_text);
 			holder.image = (ImageView) vi.findViewById(R.id.icon_image);
-			// holder.image.setLayoutParams(new GridView.LayoutParams(80, 80));
-			// holder.image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-			// holder.image.setPadding(1, 1, 1, 1);
 
 			vi.setTag(holder);
 
 		} else {
 			holder = (ViewHolder) vi.getTag();
-			// imageView = (ImageView) convertView;
 		}
-
-		// imageView.setImageResource(mThumbIds[position]);
-
 		holder.text.setText(mTextIds[position]);
 		holder.image.setImageResource(mThumbIds[position]);
 		return vi;
 	}
 
-	// create a new ImageView for each item referenced by the Adapter
-	/*
-	 * public View getView(int position, View convertView, ViewGroup parent) {
-	 * ImageView imageView; if (convertView == null) { // if it's not recycled,
-	 * initialize some // attributes imageView = new ImageView(mContext);
-	 * imageView.setLayoutParams(new GridView.LayoutParams(80, 80));
-	 * imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-	 * imageView.setPadding(8, 8, 8, 8); } else { imageView = (ImageView)
-	 * convertView; }
-	 * 
-	 * imageView.setImageResource(mThumbIds[position]); return imageView; }
-	 */
 	// references to our images
-	/*
-	 * private Integer[] mThumbIds = {
-	 * 
-	 * R.drawable.largetiles48, R.drawable.bluelocationpin, R.drawable.user,
-	 * R.drawable.topview, R.drawable.search,
-	 * R.drawable.preferencesdesktopnotification, R.drawable.image,
-	 * R.drawable.settingsicon, R.drawable.directions_icon, };
-	 */
 
 	private Integer[] mThumbIds = {
 
-	R.drawable.largetiles48, R.drawable.bluelocationpin, R.drawable.user,
-			R.drawable.topview, R.drawable.searchiconsmall,
-			R.drawable.preferencesdesktopnotification, R.drawable.largetiles48,
-			R.drawable.settingsicon, R.drawable.im_directions_icon_86x82 };
+	R.drawable.largetiles48, R.drawable.bluelocationpin48, R.drawable.user48,
+			R.drawable.topview48, R.drawable.searchiconsmall48,
+			R.drawable.preferencesdesktopnotification48,
+			R.drawable.largetiles48, R.drawable.settingsicon48,
+			R.drawable.im_directions_icon_48 };
 
 	private String[] mTextIds = {
 
