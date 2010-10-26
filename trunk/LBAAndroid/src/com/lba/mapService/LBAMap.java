@@ -14,6 +14,9 @@ import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -28,6 +31,8 @@ import com.google.android.maps.MapView.LayoutParams;
 import com.google.android.maps.Overlay;
 import com.lba.R;
 import com.lba.beans.AdMerchantAdBean;
+import com.lba.home.WelcomeUser;
+import com.lba.search.SearchProduct;
 import com.lba.service.AdvertisementResourceClient;
 
 /**
@@ -40,7 +45,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 	MapView mapView;
 	MapController mc;
 	GeoPoint p;
-
+	String uname;
 	private String adName = "";
 	private String longitude = "";
 	private String latitude = "";
@@ -83,6 +88,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 		b = intent.getExtras();
 		if (b != null) {
 			adName = b.getString("adName");
+			uname = b.getString("uname");
 			if (adName != null || adName != "") {
 				advertisements = getAdsByMerchant(adName);
 			} else {
@@ -215,5 +221,35 @@ public class LBAMap extends MapActivity implements LocationListener {
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.commonmenu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.home:
+			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(LBAMap.this, WelcomeUser.class);
+			Bundle b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		case R.id.search:
+			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			intent = new Intent(LBAMap.this, SearchProduct.class);
+			b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		}
+		return true;
 	}
 }
