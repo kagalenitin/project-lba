@@ -42,7 +42,6 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 		this.setTitle("Location Based Advertisement - Home");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
-
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(new ImageAdapter(this, this));
 
@@ -58,29 +57,41 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				Toast.makeText(WelcomeUser.this, "" + position,
-						Toast.LENGTH_SHORT).show();
 				Intent intent = null;
 				Bundle b = new Bundle();
 				if (position == 0) {
+					Toast.makeText(WelcomeUser.this, "Channel",
+							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Channelv2.class);
 					b.putString("uname", uname);
 				} else if (position == 2) {
+					Toast.makeText(WelcomeUser.this, "Profile",
+							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Profile.class);
 					b.putString("uname", uname);
 				} else if (position == 1) {
+					Toast.makeText(WelcomeUser.this, "LocateAd",
+							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, LBALocation.class);
 					b.putString("uname", uname);
 				} else if (position == 3) {
+					Toast.makeText(WelcomeUser.this, "Product",
+							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Product.class);
 					b.putString("channelId", "");
 				} else if (position == 4) {
+					Toast.makeText(WelcomeUser.this, "Search",
+							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, SearchProduct.class);
 					b.putString("productId", "");
 				} else if (position == 6) {
+					Toast.makeText(WelcomeUser.this, "Advertisement",
+							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Advertisement.class);
 					b.putString("productId", "");
 				} else if (position == 8) {
+					Toast.makeText(WelcomeUser.this, "Direction",
+							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, GPSMap.class);
 					b.putString("adCode", uname);
 				} else {

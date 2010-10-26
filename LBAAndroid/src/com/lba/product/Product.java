@@ -11,16 +11,22 @@ import org.restlet.ext.xml.DomRepresentation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lba.R;
 import com.lba.advertisement.Advertisement;
 import com.lba.beans.ProductBean;
+import com.lba.home.WelcomeUser;
+import com.lba.search.SearchProduct;
 import com.lba.service.ProductResourceClient;
 
 /**
@@ -32,7 +38,7 @@ public class Product extends Activity { // implements OnClickListener{
 	private ListView productListView;
 	private TextView lblChannelCode;
 	static ArrayList<ProductBean> products = new ArrayList<ProductBean>();
-
+	String uname;
 	ProductAdapter adapter;
 
 	public static ArrayList<ProductBean> getProducts() {
@@ -85,12 +91,13 @@ public class Product extends Activity { // implements OnClickListener{
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
+			uname = b.getString("uname");
 			String channelId = b.getString("channelId");
 			if (channelId != null) {
 				if (!(channelId.equalsIgnoreCase(""))) {
 					products = getProductsByChannel(channelId);
 				} else {
-					lblChannelCode.setText("Product List:");
+					// lblChannelCode.setText("Product List:");
 					products = getProducts();
 				}
 			}
@@ -107,11 +114,42 @@ public class Product extends Activity { // implements OnClickListener{
 				// Load Ad
 				Intent intent = new Intent(Product.this, Advertisement.class);
 				Bundle b = new Bundle();
+				b.putString("uname", uname);
 				b.putString("productId", String.valueOf(((ProductBean) products
 						.get(position)).getCount()));
 				intent.putExtras(b);
 				startActivity(intent);
 			}
 		});
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.commonmenu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.home:
+			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(Product.this, WelcomeUser.class);
+			Bundle b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		case R.id.search:
+			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			intent = new Intent(Product.this, SearchProduct.class);
+			b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		}
+		return true;
 	}
 }

@@ -7,9 +7,12 @@ import org.restlet.ext.xml.DomRepresentation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import com.lba.R;
 import com.lba.beans.MobileUserBean;
 import com.lba.home.WelcomeUser;
+import com.lba.search.SearchProduct;
 import com.lba.service.MobileUserResourceClient;
 
 public class Profile extends Activity {
@@ -47,8 +51,6 @@ public class Profile extends Activity {
 		b = intent.getExtras();
 		if (b != null) {
 			uname = b.getString("uname");
-			Toast.makeText(Profile.this, "Profile::" + uname, Toast.LENGTH_LONG)
-					.show();
 		}
 
 		// load user profile
@@ -135,5 +137,35 @@ public class Profile extends Activity {
 				}
 			}
 		});
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.commonmenu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.home:
+			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(Profile.this, WelcomeUser.class);
+			Bundle b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		case R.id.search:
+			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			intent = new Intent(Profile.this, SearchProduct.class);
+			b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		}
+		return true;
 	}
 }
