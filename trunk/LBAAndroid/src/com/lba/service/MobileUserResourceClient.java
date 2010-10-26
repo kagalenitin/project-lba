@@ -118,92 +118,98 @@ public class MobileUserResourceClient {
 			throws IOException {
 
 		MobileUserBean mobileuser = new MobileUserBean();
+		try {
 
-		Document doc = representation.getDocument();
-		doc.getDocumentElement().normalize();
-		System.out.println("Root element "
-				+ doc.getDocumentElement().getNodeName());
-		NodeList nodeLst = doc.getElementsByTagName("mobileuser");
-		System.out.println("Information of User");
+			Document doc = representation.getDocument();
+			doc.getDocumentElement().normalize();
+			System.out.println("Root element "
+					+ doc.getDocumentElement().getNodeName());
+			NodeList nodeLst = doc.getElementsByTagName("mobileuser");
+			System.out.println("Information of User");
 
-		for (int s = 0; s < nodeLst.getLength(); s++) {
+			for (int s = 0; s < nodeLst.getLength(); s++) {
 
-			Node fstNode = nodeLst.item(s);
+				Node fstNode = nodeLst.item(s);
 
-			if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
+				if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
 
-				Element fstElmnt = (Element) fstNode;
+					Element fstElmnt = (Element) fstNode;
 
-				NodeList usernameElmntLst = fstElmnt
-						.getElementsByTagName("username");
-				Element userNameElmnt = (Element) usernameElmntLst.item(0);
-				NodeList username = userNameElmnt.getChildNodes();
-				System.out.println("Username : "
-						+ ((Node) username.item(0)).getNodeValue());
+					NodeList usernameElmntLst = fstElmnt
+							.getElementsByTagName("username");
+					Element userNameElmnt = (Element) usernameElmntLst.item(0);
+					NodeList username = userNameElmnt.getChildNodes();
+					System.out.println("Username : "
+							+ ((Node) username.item(0)).getNodeValue());
 
-				mobileuser.setUsername(((Node) username.item(0)).getNodeValue()
-						.toString());
+					mobileuser.setUsername(((Node) username.item(0))
+							.getNodeValue().toString());
 
-				NodeList passwordElmntLst = fstElmnt
-						.getElementsByTagName("password");
-				Element passwordElmnt = (Element) passwordElmntLst.item(0);
-				NodeList password = passwordElmnt.getChildNodes();
-				System.out.println("password : "
-						+ ((Node) password.item(0)).getNodeValue());
+					NodeList passwordElmntLst = fstElmnt
+							.getElementsByTagName("password");
+					Element passwordElmnt = (Element) passwordElmntLst.item(0);
+					NodeList password = passwordElmnt.getChildNodes();
+					System.out.println("password : "
+							+ ((Node) password.item(0)).getNodeValue());
 
-				mobileuser.setLastName(((Node) password.item(0)).getNodeValue()
-						.toString());
+					mobileuser.setLastName(((Node) password.item(0))
+							.getNodeValue().toString());
 
-				NodeList firstNameElmntLst = fstElmnt
-						.getElementsByTagName("firstName");
-				Element firstNameElmnt = (Element) firstNameElmntLst.item(0);
-				NodeList firstName = firstNameElmnt.getChildNodes();
-				System.out.println("f Name : "
-						+ ((Node) firstName.item(0)).getNodeValue());
+					NodeList firstNameElmntLst = fstElmnt
+							.getElementsByTagName("firstName");
+					Element firstNameElmnt = (Element) firstNameElmntLst
+							.item(0);
+					NodeList firstName = firstNameElmnt.getChildNodes();
+					System.out.println("f Name : "
+							+ ((Node) firstName.item(0)).getNodeValue());
 
-				mobileuser.setFirstName(((Node) firstName.item(0))
-						.getNodeValue().toString());
+					mobileuser.setFirstName(((Node) firstName.item(0))
+							.getNodeValue().toString());
 
-				NodeList lastNameElmntLst = fstElmnt
-						.getElementsByTagName("lastName");
-				Element lastNameElmnt = (Element) lastNameElmntLst.item(0);
-				NodeList lastName = lastNameElmnt.getChildNodes();
-				System.out.println("l Name : "
-						+ ((Node) lastName.item(0)).getNodeValue());
+					NodeList lastNameElmntLst = fstElmnt
+							.getElementsByTagName("lastName");
+					Element lastNameElmnt = (Element) lastNameElmntLst.item(0);
+					NodeList lastName = lastNameElmnt.getChildNodes();
+					System.out.println("l Name : "
+							+ ((Node) lastName.item(0)).getNodeValue());
 
-				mobileuser.setLastName(((Node) lastName.item(0)).getNodeValue()
-						.toString());
+					mobileuser.setLastName(((Node) lastName.item(0))
+							.getNodeValue().toString());
 
-				NodeList addressElmntLst = fstElmnt
-						.getElementsByTagName("address");
-				Element addressElmnt = (Element) addressElmntLst.item(0);
-				NodeList address = addressElmnt.getChildNodes();
-				System.out.println("Address : "
-						+ ((Node) address.item(0)).getNodeValue());
+					NodeList addressElmntLst = fstElmnt
+							.getElementsByTagName("address");
+					Element addressElmnt = (Element) addressElmntLst.item(0);
+					NodeList address = addressElmnt.getChildNodes();
+					System.out.println("Address : "
+							+ ((Node) address.item(0)).getNodeValue());
 
-				mobileuser.setAddress(((Node) address.item(0)).getNodeValue()
-						.toString());
+					mobileuser.setAddress(((Node) address.item(0))
+							.getNodeValue().toString());
 
-				NodeList phoneElmntLst = fstElmnt.getElementsByTagName("phone");
-				Element phoneElmnt = (Element) phoneElmntLst.item(0);
-				NodeList phone = phoneElmnt.getChildNodes();
-				System.out.println("Phone : "
-						+ ((Node) phone.item(0)).getNodeValue());
+					NodeList phoneElmntLst = fstElmnt
+							.getElementsByTagName("phone");
+					Element phoneElmnt = (Element) phoneElmntLst.item(0);
+					NodeList phone = phoneElmnt.getChildNodes();
+					System.out.println("Phone : "
+							+ ((Node) phone.item(0)).getNodeValue());
 
-				mobileuser.setPhone(((Node) phone.item(0)).getNodeValue()
-						.toString());
+					mobileuser.setPhone(((Node) phone.item(0)).getNodeValue()
+							.toString());
 
-				NodeList emailElmntLst = fstElmnt.getElementsByTagName("email");
-				Element emailElmnt = (Element) emailElmntLst.item(0);
-				NodeList email = emailElmnt.getChildNodes();
-				System.out.println("Email : "
-						+ ((Node) email.item(0)).getNodeValue());
+					NodeList emailElmntLst = fstElmnt
+							.getElementsByTagName("email");
+					Element emailElmnt = (Element) emailElmntLst.item(0);
+					NodeList email = emailElmnt.getChildNodes();
+					System.out.println("Email : "
+							+ ((Node) email.item(0)).getNodeValue());
 
-				mobileuser.setEmail(((Node) email.item(0)).getNodeValue()
-						.toString());
+					mobileuser.setEmail(((Node) email.item(0)).getNodeValue()
+							.toString());
 
+				}
 			}
-
+		} catch (Exception e) {
+			System.out.println("Service not available");
 		}
 		return mobileuser;
 
@@ -259,7 +265,7 @@ public class MobileUserResourceClient {
 			System.out.println("Error  status: " + e.getStatus());
 			System.out.println("Error message: " + e.getMessage());
 			// Consume the response's entity which releases the connection
-			clientResource.getResponseEntity().exhaust();
+			// clientResource.getResponseEntity().exhaust();
 		}
 		return null;
 	}

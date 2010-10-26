@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -57,8 +58,12 @@ public class Channelv2 extends Activity { // implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		this.setTitle("Location Based Advertisement");
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.channelv2);
+		this.setTitle("Location Based Advertisement - Channel");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+
+		
 		lblChannelCode = (TextView) findViewById(R.id.ChannelCode);
 		channelListView = (ListView) findViewById(R.id.ListView01);
 		Intent intent = getIntent();

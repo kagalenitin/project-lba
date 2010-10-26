@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +29,11 @@ public class Registration extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setTitle("Location Based Advertisement Registration");
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.registration);
+		this.setTitle("Location Based Advertisement - Registration");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+
 		btnCancel = (Button) findViewById(R.id.btnCancel);
 		btnCancel.setOnClickListener(new OnClickListener() {
 

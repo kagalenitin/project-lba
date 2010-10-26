@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.lba.product;
+package com.lba.search;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,8 +13,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,11 +30,14 @@ import com.lba.service.ProductResourceClient;
  * @author payal
  * 
  */
-public class Product extends Activity { // implements OnClickListener{
+public class SearchProduct extends Activity { // implements OnClickListener{
 
 	private ListView productListView;
 	private TextView lblChannelCode;
+	private Button btnSearch;
+	private EditText elProductName;
 	static ArrayList<ProductBean> products = new ArrayList<ProductBean>();
+	String productName;
 
 	ProductAdapter adapter;
 
@@ -52,12 +58,12 @@ public class Product extends Activity { // implements OnClickListener{
 		return products;
 	}
 
-	public static ArrayList<ProductBean> getProductsByChannel(String channelId) {
+	public static ArrayList<ProductBean> getProductsByName(String productId) {
 
 		ProductResourceClient itemConnect = new ProductResourceClient();
 		try {
 			DomRepresentation representation = itemConnect
-					.retrieveProductbyChannel(channelId);
+					.retrieveProductbyName(productId);
 			if (representation != null) {
 				products = itemConnect.getProductsFromXml(representation);
 			} else {
@@ -75,28 +81,49 @@ public class Product extends Activity { // implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
-		setContentView(R.layout.product);
-		this.setTitle("Location Based Advertisement - Product");
+		setContentView(R.layout.searchproduct);
+		this.setTitle("Location Based Advertisement - Search");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
-		lblChannelCode = (TextView) findViewById(R.id.ChannelCode);
+
 		productListView = (ListView) findViewById(R.id.ListView01);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
-			String channelId = b.getString("channelId");
-			if (channelId != null) {
-				if (!(channelId.equalsIgnoreCase(""))) {
-					products = getProductsByChannel(channelId);
+			productName = b.getString("productName");
+			if (productName != null) {
+				if (!(productName.equalsIgnoreCase(""))) {
+					products = getProductsByName(productName);
+					// products = getProducts();
 				} else {
-					lblChannelCode.setText("Product List:");
 					products = getProducts();
 				}
 			}
 		}
 		adapter = new ProductAdapter(this, products);
 		productListView.setAdapter(adapter);
+		elProductName = (EditText) findViewById(R.id.productName);
+		btnSearch = (Button) findViewById(R.id.searchbutton);
+
+		// Set Click Listener
+		btnSearch.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(SearchProduct.this,
+						SearchProduct.class);
+				Bundle b = new Bundle();
+				String prodName = elProductName.getText().toString();
+				if (prodName != null)
+					b.putString("productName", elProductName.getText()
+							.toString());
+				else
+					b.putString("productName", "");
+				intent.putExtras(b);
+				startActivity(intent);
+			}
+		});
 
 		// Set Click Listener
 		productListView.setClickable(true);
@@ -105,7 +132,8 @@ public class Product extends Activity { // implements OnClickListener{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// Load Ad
-				Intent intent = new Intent(Product.this, Advertisement.class);
+				Intent intent = new Intent(SearchProduct.this,
+						Advertisement.class);
 				Bundle b = new Bundle();
 				b.putString("productId", String.valueOf(((ProductBean) products
 						.get(position)).getCount()));

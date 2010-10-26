@@ -38,7 +38,7 @@ public class LazyAdapter extends BaseAdapter {
 		imageLoader = new ImageLoader(activity.getApplicationContext());
 		advertisements = getAdsByProduct(productId);
 	}
-	
+
 	public LazyAdapter(Activity a, String[] d) {
 		activity = a;
 		data = d;
@@ -84,9 +84,10 @@ public class LazyAdapter extends BaseAdapter {
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
 		try {
 			DomRepresentation representation = advertisementResource
-					.retrieveAdsbyProduct(productId);
+					.retrieveAdvertisementsByProduct(productId);
 			if (representation != null) {
-				advertisements = advertisementResource.getAdvertisementsFromXml(representation);
+				advertisements = advertisementResource
+						.getAdvertisementsFromXml(representation);
 			} else {
 				advertisements = new ArrayList<AdvertisementBean>();
 			}

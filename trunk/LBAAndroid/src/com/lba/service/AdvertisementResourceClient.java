@@ -13,6 +13,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.lba.beans.AdMerchantAdBean;
 import com.lba.beans.AdvertisementBean;
 
 /**
@@ -24,6 +25,7 @@ public class AdvertisementResourceClient {
 	public ClientResource advertisementsResource;
 	public ClientResource advertisementResource;
 	public ClientResource advertisementbyProductResource;
+	public ClientResource advertisementsByMerchantResource;
 
 	// String ipaddress = "10.185.3.16:8182";
 	String ipaddress = "192.168.1.72:8182";
@@ -96,8 +98,8 @@ public class AdvertisementResourceClient {
 		}
 		return null;
 	}
-	
-	public DomRepresentation retrieveAdsbyProduct(String productId) {
+
+	public DomRepresentation retrieveAdvertisementsByProduct(String productId) {
 		advertisementbyProductResource = new ClientResource(serviceAddress
 				+ "/products/" + productId);
 		try {
@@ -110,6 +112,18 @@ public class AdvertisementResourceClient {
 		return null;
 	}
 
+	public DomRepresentation retrieveAdvertisementsByMerchant(String adName) {
+		try {
+			advertisementsByMerchantResource = new ClientResource(
+					serviceAddress + "/merchant/" + adName);
+			return get(advertisementsByMerchantResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static void main(String args[]) {
 		AdvertisementResourceClient client = new AdvertisementResourceClient();
@@ -128,8 +142,7 @@ public class AdvertisementResourceClient {
 		 * advertisement.setAdName("NewTestedName2");
 		 * 
 		 * try { client.updateAdvertisement(1,advertisement); } catch
-		 * (IOException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
+		 * (IOException e) { e.printStackTrace(); }
 		 */
 		/*
 		 * client.retrieveAdvertisement("1");
@@ -138,7 +151,7 @@ public class AdvertisementResourceClient {
 		 * representation = client.retrieveAdvertisements(); try { products =
 		 * client.getAdvertisementsFromXml(representation);
 		 * System.out.println(products.size()); } catch (IOException e) { //
-		 * TODO Auto-generated catch block e.printStackTrace(); }
+		 * e.printStackTrace(); }
 		 * 
 		 * for (int i = 0; i < products.size(); i++) {
 		 * System.out.println(products.get(i).getAdId()); }
@@ -252,6 +265,120 @@ public class AdvertisementResourceClient {
 
 				advertisement.setAdDesc(((Node) adDesc.item(0)).getNodeValue()
 						.toString());
+				advertisements.add(advertisement);
+			}
+
+		}
+		return advertisements;
+
+	}
+
+	public ArrayList<AdMerchantAdBean> getAdvertisementsByMerchantFromXml(
+			DomRepresentation representation) throws IOException {
+
+		ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
+		Document doc = representation.getDocument();
+		doc.getDocumentElement().normalize();
+		System.out.println("Root element "
+				+ doc.getDocumentElement().getNodeName());
+		NodeList nodeLst = doc.getElementsByTagName("advertisement");
+		System.out.println("Information of all AdvertisementsByMerchant");
+
+		for (int s = 0; s < nodeLst.getLength(); s++) {
+
+			Node fstNode = nodeLst.item(s);
+			AdMerchantAdBean advertisement = new AdMerchantAdBean();
+
+			if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
+
+				Element fstElmnt = (Element) fstNode;
+
+				NodeList adIdElmntLst = fstElmnt.getElementsByTagName("adId");
+				Element adIdElmnt = (Element) adIdElmntLst.item(0);
+				NodeList adId = adIdElmnt.getChildNodes();
+				System.out.println("Id : "
+						+ ((Node) adId.item(0)).getNodeValue());
+
+				advertisement.setAdID(((Node) adId.item(0)).getNodeValue()
+						.toString());
+
+				NodeList adNameElmntLst = fstElmnt
+						.getElementsByTagName("adName");
+				Element adNmElmnt = (Element) adNameElmntLst.item(0);
+				NodeList adName = adNmElmnt.getChildNodes();
+				System.out.println("Name : "
+						+ ((Node) adName.item(0)).getNodeValue());
+
+				advertisement.setAdName(((Node) adName.item(0)).getNodeValue()
+						.toString());
+
+				NodeList adDescElmntLst = fstElmnt
+						.getElementsByTagName("adDesc");
+				Element adDescElmnt = (Element) adDescElmntLst.item(0);
+				NodeList adDesc = adDescElmnt.getChildNodes();
+				System.out.println("Description : "
+						+ ((Node) adDesc.item(0)).getNodeValue());
+
+				advertisement.setAdDesc(((Node) adDesc.item(0)).getNodeValue()
+						.toString());
+
+				NodeList longitudeElmntLst = fstElmnt
+						.getElementsByTagName("longitude");
+				Element longitudeElmnt = (Element) longitudeElmntLst.item(0);
+				NodeList longitude = longitudeElmnt.getChildNodes();
+				System.out.println("longitude : "
+						+ ((Node) longitude.item(0)).getNodeValue());
+
+				advertisement.setLongitude(((Node) longitude.item(0))
+						.getNodeValue().toString());
+
+				NodeList latitudeElmntLst = fstElmnt
+						.getElementsByTagName("latitude");
+				Element latitudeElmnt = (Element) latitudeElmntLst.item(0);
+				NodeList latitude = latitudeElmnt.getChildNodes();
+				System.out.println("latitude : "
+						+ ((Node) latitude.item(0)).getNodeValue());
+
+				advertisement.setLatitude(((Node) latitude.item(0))
+						.getNodeValue().toString());
+
+				NodeList addressElmntLst = fstElmnt
+						.getElementsByTagName("address");
+				Element addressElmnt = (Element) addressElmntLst.item(0);
+				NodeList address = addressElmnt.getChildNodes();
+				System.out.println("address : "
+						+ ((Node) address.item(0)).getNodeValue());
+
+				advertisement.setAddress(((Node) address.item(0))
+						.getNodeValue().toString());
+
+				NodeList cityElmntLst = fstElmnt.getElementsByTagName("city");
+				Element cityElmnt = (Element) cityElmntLst.item(0);
+				NodeList city = cityElmnt.getChildNodes();
+				System.out.println("city : "
+						+ ((Node) city.item(0)).getNodeValue());
+
+				advertisement.setCity(((Node) city.item(0)).getNodeValue()
+						.toString());
+
+				NodeList stateElmntLst = fstElmnt.getElementsByTagName("state");
+				Element stateElmnt = (Element) stateElmntLst.item(0);
+				NodeList state = stateElmnt.getChildNodes();
+				System.out.println("state : "
+						+ ((Node) state.item(0)).getNodeValue());
+
+				advertisement.setState(((Node) state.item(0)).getNodeValue()
+						.toString());
+
+				NodeList zipElmntLst = fstElmnt.getElementsByTagName("zip");
+				Element zipElmnt = (Element) zipElmntLst.item(0);
+				NodeList zip = zipElmnt.getChildNodes();
+				System.out.println("zip : "
+						+ ((Node) zip.item(0)).getNodeValue());
+
+				advertisement.setZip(((Node) zip.item(0)).getNodeValue()
+						.toString());
+
 				advertisements.add(advertisement);
 			}
 

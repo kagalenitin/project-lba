@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,9 +29,11 @@ public class AdDetail extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.adimage);
+		this.setTitle("Location Based Advertisement - Ad Detail");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
-		this.setTitle("Location Based Advertisement");
 		lblAdId = (TextView) findViewById(R.id.ItemCode);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();

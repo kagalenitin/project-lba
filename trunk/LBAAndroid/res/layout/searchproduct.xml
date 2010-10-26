@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="fill_parent"
+android:layout_width="fill_parent"
+android:background="#000044">
+		<TableRow>
+			<TextView android:id="@+id/txtAdName"
+			android:text="Search Product:"
+			android:layout_gravity="center_vertical|center_horizontal|center"
+			android:textColor="#ffffff" />
+			<EditText android:id="@+id/productName"
+			android:width="200px" style="?button"/>
+		</TableRow>
+			<Button android:id="@+id/searchbutton"
+			android:text="Search" android:layout_width="fill_parent" android:layout_gravity="center" style="?button"/>
+		<View android:layout_width="fill_parent" android:layout_height="1sp"
+		style="?listDivider" />
+
+		<ListView android:id="@+id/ListView01" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:clickable="true" />
+</TableLayout>
