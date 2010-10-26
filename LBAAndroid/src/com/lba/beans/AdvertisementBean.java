@@ -35,7 +35,8 @@ public class AdvertisementBean {
 	}
 
 	/**
-	 * @param adsize the adsize to set
+	 * @param adsize
+	 *            the adsize to set
 	 */
 	public void setAdsize(String adsize) {
 		this.adsize = adsize;
@@ -49,7 +50,8 @@ public class AdvertisementBean {
 	}
 
 	/**
-	 * @param productname the productname to set
+	 * @param productname
+	 *            the productname to set
 	 */
 	public void setProductname(String productname) {
 		this.productname = productname;
@@ -63,7 +65,8 @@ public class AdvertisementBean {
 	}
 
 	/**
-	 * @param productdescription the productdescription to set
+	 * @param productdescription
+	 *            the productdescription to set
 	 */
 	public void setProductdescription(String productdescription) {
 		this.productdescription = productdescription;
@@ -77,7 +80,8 @@ public class AdvertisementBean {
 	}
 
 	/**
-	 * @param productprice the productprice to set
+	 * @param productprice
+	 *            the productprice to set
 	 */
 	public void setProductprice(String productprice) {
 		this.productprice = productprice;

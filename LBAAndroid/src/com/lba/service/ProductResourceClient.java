@@ -24,6 +24,7 @@ public class ProductResourceClient {
 	public ClientResource productsResource;
 	public ClientResource productResource;
 	public ClientResource productByChannelResource;
+	public ClientResource productByNameResource;
 
 	// String ipaddress = "10.185.3.16:8182";
 	String ipaddress = "192.168.1.72:8182";
@@ -91,10 +92,8 @@ public class ProductResourceClient {
 		try {
 			return get(productsResource);
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -105,6 +104,19 @@ public class ProductResourceClient {
 				+ "/channels/" + channelId);
 		try {
 			return get(productByChannelResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public DomRepresentation retrieveProductbyName(String productName) {
+		productByNameResource = new ClientResource(serviceAddress
+				+ "/productname/" + productName);
+		try {
+			return get(productByNameResource);
 		} catch (ResourceException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

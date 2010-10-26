@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,8 +37,11 @@ public class Profile extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setTitle("Location Based Advertisement Registration");
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.profile);
+		this.setTitle("Location Based Advertisement - Profile");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
@@ -56,11 +60,19 @@ public class Profile extends Activity {
 		txtPhone = (EditText) findViewById(R.id.txtphone);
 		txtEmail = (EditText) findViewById(R.id.txtemail);
 
-		DomRepresentation representation = mobileUserClient
-				.retrieveMobileUser(uname);
 		try {
+			DomRepresentation representation = mobileUserClient
+					.retrieveMobileUser(uname);
+			if (representation == null) {
+				Toast.makeText(Profile.this,
+						"" + "Service temporary not available",
+						Toast.LENGTH_SHORT).show();
+			}
 			mobileUser = mobileUserClient.getMobileUserFromXml(representation);
 		} catch (IOException e1) {
+			Toast.makeText(Profile.this,
+					"" + "Service temporary not available", Toast.LENGTH_SHORT)
+					.show();
 			e1.printStackTrace();
 		}
 

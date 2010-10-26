@@ -1,6 +1,10 @@
 package com.lba.mapService;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.restlet.ext.xml.DomRepresentation;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +16,7 @@ import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -22,6 +27,8 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.MapView.LayoutParams;
 import com.google.android.maps.Overlay;
 import com.lba.R;
+import com.lba.beans.AdMerchantAdBean;
+import com.lba.service.AdvertisementResourceClient;
 
 /**
  * @author payalpatel
@@ -34,20 +41,54 @@ public class LBAMap extends MapActivity implements LocationListener {
 	MapController mc;
 	GeoPoint p;
 
-	private String latitude = "";
+	private String adName = "";
 	private String longitude = "";
+	private String latitude = "";
+	// ArrayList latitudes = new ArrayList();
+	// ArrayList longitudes = new ArrayList();
+
+	ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
+
+	public ArrayList<AdMerchantAdBean> getAdsByMerchant(String adName) {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+					.retrieveAdvertisementsByMerchant(adName);
+			if (representation != null) {
+				advertisements = advertisementResource
+						.getAdvertisementsByMerchantFromXml(representation);
+			} else {
+				advertisements = new ArrayList<AdMerchantAdBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisements;
+	}
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.map);
+		this.setTitle("Location Based Advertisement - Map");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
+		advertisements = new ArrayList<AdMerchantAdBean>();
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
-			// latitude = b.getString("latitude");
+			adName = b.getString("adName");
+			if (adName != null || adName != "") {
+				advertisements = getAdsByMerchant(adName);
+			} else {
+				Toast.makeText(LBAMap.this, "" + "Service not available",
+						Toast.LENGTH_SHORT).show();
+			}
 			latitude = "37.422006";
 			longitude = "-122.084095";
 			// longitude = b.getString("longitude");
@@ -71,19 +112,23 @@ public class LBAMap extends MapActivity implements LocationListener {
 		mc = mapView.getController();
 		// String coordinates[] = {"1.352566007", "103.78921587"};
 		// String coordinates[] = {"35.37789235", "-122.465325"};
-		String coordinates[] = { latitude, longitude };
-		double lat = Double.parseDouble(coordinates[0]);
-		double lng = Double.parseDouble(coordinates[1]);
 
-		p = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
+		for (int i = 0; i < 3; i++) {
 
-		mc.animateTo(p);
-		mc.setZoom(5);
+			String coordinates[] = { latitude + 50, longitude + 30 };
+			double lat = Double.parseDouble(coordinates[0]);
+			double lng = Double.parseDouble(coordinates[1]);
 
+			p = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
+
+			mc.animateTo(p);
+			mc.setZoom(15);
+
+		}
 		// ---Add a location marker---
 		MapOverlay mapOverlay = new MapOverlay();
 		List<Overlay> listOfOverlays = mapView.getOverlays();
-		listOfOverlays.clear();
+		// listOfOverlays.clear();
 		listOfOverlays.add(mapOverlay);
 		mapView.invalidate();
 
@@ -95,6 +140,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 	}
 
 	class MapOverlay extends com.google.android.maps.Overlay {
+
 		@Override
 		public boolean draw(Canvas canvas, MapView mapView, boolean shadow,
 				long when) {
@@ -109,20 +155,19 @@ public class LBAMap extends MapActivity implements LocationListener {
 					R.drawable.map_marker);
 			canvas.drawBitmap(bmp, screenPts.x, screenPts.y - 50, null);
 
-			Bitmap bmp1 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.jcpenney);
-			canvas.drawBitmap(bmp1, screenPts.x + 100, screenPts.y - 50 + 100,
-					null);
-
-			Bitmap bmp2 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.starbuckslogo_small);
-			canvas.drawBitmap(bmp2, screenPts.x + 50, screenPts.y - 50 + 50,
-					null);
-
-			Bitmap bmp3 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.food_l2_43);
-			canvas.drawBitmap(bmp3, screenPts.x + 20, screenPts.y - 50 + 20,
-					null);
+			/*
+			 * Bitmap bmp1 = BitmapFactory.decodeResource(getResources(),
+			 * R.drawable.jcpenney); canvas.drawBitmap(bmp1, screenPts.x + 100,
+			 * screenPts.y - 50 + 100, null);
+			 * 
+			 * Bitmap bmp2 = BitmapFactory.decodeResource(getResources(),
+			 * R.drawable.starbuckslogo_small); canvas.drawBitmap(bmp2,
+			 * screenPts.x + 50, screenPts.y - 50 + 50, null);
+			 * 
+			 * Bitmap bmp3 = BitmapFactory.decodeResource(getResources(),
+			 * R.drawable.food_l2_43); canvas.drawBitmap(bmp3, screenPts.x + 20,
+			 * screenPts.y - 50 + 20, null);
+			 */
 			return true;
 		}
 
@@ -159,7 +204,6 @@ public class LBAMap extends MapActivity implements LocationListener {
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -170,7 +214,6 @@ public class LBAMap extends MapActivity implements LocationListener {
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
 
 	}
 }

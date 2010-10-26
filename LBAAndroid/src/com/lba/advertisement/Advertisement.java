@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -30,9 +31,10 @@ public class Advertisement extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.advertisementmain);
-
-		this.setTitle("Location Based Advertisement");
+		this.setTitle("Location Based Advertisement - Ads");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 		lblAdCode = (TextView) findViewById(R.id.AdCode);
 		itemListView = (ListView) findViewById(R.id.list);
 		Intent intent = getIntent();
@@ -44,13 +46,13 @@ public class Advertisement extends Activity {
 			if (productId != null) {
 				if (!(productId.equalsIgnoreCase(""))) {
 					lblAdCode.setText("List of Advertisements: " + productId);
-					adapter = new LazyAdapter(this, mStrings,productId);
+					adapter = new LazyAdapter(this, mStrings, productId);
 				} else {
 					adapter = new LazyAdapter(this, mStrings);
 				}
 			}
 		}
-		
+
 		itemListView.setAdapter(adapter);
 
 		itemListView.setClickable(true);

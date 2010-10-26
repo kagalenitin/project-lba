@@ -1,4 +1,4 @@
-package com.lba.product;
+package com.lba.search;
 
 import java.util.ArrayList;
 

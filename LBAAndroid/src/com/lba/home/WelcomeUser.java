@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -17,8 +18,9 @@ import com.lba.R;
 import com.lba.advertisement.Advertisement;
 import com.lba.channel.Channelv2;
 import com.lba.location.GPSMap;
-import com.lba.mapService.LBAMap;
+import com.lba.mapService.LBALocation;
 import com.lba.product.Product;
+import com.lba.search.SearchProduct;
 import com.lba.user.Profile;
 
 /**
@@ -35,8 +37,11 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.welcome);
-		this.setTitle("Location Based Advertisement");
+		this.setTitle("Location Based Advertisement - Home");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+
 
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(new ImageAdapter(this, this));
@@ -64,11 +69,14 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 					intent = new Intent(WelcomeUser.this, Profile.class);
 					b.putString("uname", uname);
 				} else if (position == 1) {
-					intent = new Intent(WelcomeUser.this, LBAMap.class);
-					b.putString("channelCode", uname);
+					intent = new Intent(WelcomeUser.this, LBALocation.class);
+					b.putString("uname", uname);
 				} else if (position == 3) {
 					intent = new Intent(WelcomeUser.this, Product.class);
 					b.putString("channelId", "");
+				} else if (position == 4) {
+					intent = new Intent(WelcomeUser.this, SearchProduct.class);
+					b.putString("productId", "");
 				} else if (position == 6) {
 					intent = new Intent(WelcomeUser.this, Advertisement.class);
 					b.putString("productId", "");
