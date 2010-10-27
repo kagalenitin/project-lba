@@ -29,6 +29,8 @@
 
 	<activity android:name=".user.Profile"></activity>
 <activity android:name=".search.SearchProduct"></activity>
+<activity android:name=".subscription.ChannelSubscription"></activity>
+<activity android:name=".subscription.ViewChannelSubscription"></activity>
 </application>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

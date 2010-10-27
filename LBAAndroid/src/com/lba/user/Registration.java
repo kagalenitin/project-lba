@@ -3,6 +3,7 @@ package com.lba.user;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -66,23 +67,32 @@ public class Registration extends Activity {
 					String phone = txtPhone.getText().toString();
 					String email = txtEmail.getText().toString();
 					String password = txtpassword.getText().toString();
+					System.out.println(Log.VERBOSE + "Uanme" + username);
+					if (!(username.equals("") || firstName.equals("")
+							|| lastName.equals("") || address.equals("")
+							|| phone.equals("") || email.equals("") || password
+							.equals(""))) {
+						MobileUserResourceClient mobileUserClient = new MobileUserResourceClient();
+						MobileUserBean mobileUser = new MobileUserBean();
+						mobileUser.setAddress(address);
+						mobileUser.setUsername(username);
+						mobileUser.setFirstName(firstName);
+						mobileUser.setLastName(lastName);
+						mobileUser.setPhone(phone);
+						mobileUser.setEmail(email);
+						mobileUser.setPassword(password);
+						mobileUserClient.createMobileUser(mobileUser);
 
-					MobileUserResourceClient mobileUserClient = new MobileUserResourceClient();
-					MobileUserBean mobileUser = new MobileUserBean();
-					mobileUser.setAddress(address);
-					mobileUser.setUsername(username);
-					mobileUser.setFirstName(firstName);
-					mobileUser.setLastName(lastName);
-					mobileUser.setPhone(phone);
-					mobileUser.setEmail(email);
-					mobileUser.setPassword(password);
-					mobileUserClient.createMobileUser(mobileUser);
+						Toast.makeText(Registration.this, R.string.regpositive,
+								Toast.LENGTH_LONG).show();
+						Intent intent = new Intent(Registration.this,
+								LBALogin.class);
+						startActivity(intent);
 
-					Toast.makeText(Registration.this, R.string.regpositive,
-							Toast.LENGTH_LONG).show();
-					Intent intent = new Intent(Registration.this,
-							LBALogin.class);
-					startActivity(intent);
+					} else {
+						Toast.makeText(Registration.this, R.string.regnegative,
+								Toast.LENGTH_LONG).show();
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					Toast.makeText(Registration.this, R.string.regnegative,
