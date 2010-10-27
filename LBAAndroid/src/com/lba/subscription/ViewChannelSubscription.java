@@ -114,6 +114,10 @@ public class ViewChannelSubscription extends Activity { // implements
 		channelListView.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice, lv_items));
 
+		for (int i = 0; i < channels.size(); i++) {
+			channelListView.setItemChecked(i, true);
+		}
+
 		// Set Click Listener
 		channelListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		channelListView.setClickable(true);
