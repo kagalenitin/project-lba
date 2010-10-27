@@ -28,20 +28,24 @@ public class UserSubscriptionResourceClient {
 	// String ipaddress = "10.185.3.16:8182";
 	String ipaddress = "192.168.1.72:8182";
 	String serviceAddress = "http://" + ipaddress + "/LBAResource/subscription";
-	
+
 	ChannelSubscriptionBean userSubscription = new ChannelSubscriptionBean();
 
 	public UserSubscriptionResourceClient(String username) {
-		UserSubscriptionsResource = new ClientResource(serviceAddress + "/" + username);
+		UserSubscriptionsResource = new ClientResource(serviceAddress + "/"
+				+ username);
 		UserSubscriptionResource = null;
 
 	}
 
-	public void createSubscription(ChannelSubscriptionBean channelSubscriptionBean) {
+	public void createSubscription(
+			ChannelSubscriptionBean channelSubscriptionBean) {
 
 		// Create a new subscription
 		try {
-			UserSubscriptionResource = new ClientResource(serviceAddress + "/" + channelSubscriptionBean.getUserId() + "/"+ channelSubscriptionBean.getChanneld());
+			UserSubscriptionResource = new ClientResource(serviceAddress + "/"
+					+ channelSubscriptionBean.getUserId() + "/"
+					+ channelSubscriptionBean.getChanneld());
 			Representation r = UserSubscriptionResource
 					.post(getRepresentation(channelSubscriptionBean));
 			UserSubscriptionsResource = new ClientResource(r.getLocationRef());
@@ -52,18 +56,22 @@ public class UserSubscriptionResourceClient {
 		}
 		// Consume the response's entity which releases the connection
 
-		//	UserSubscriptionsResource.getResponseEntity().exhaust();
+		// UserSubscriptionsResource.getResponseEntity().exhaust();
 	}
 
-	public void deleteSubscriptionByUser(ChannelSubscriptionBean channelSubscriptionBean) {
-		UserSubscriptionResource = new ClientResource(serviceAddress + "/" + channelSubscriptionBean.getUserId()+ "/"+ channelSubscriptionBean.getChanneld());
+	public void deleteSubscriptionByUser(
+			ChannelSubscriptionBean channelSubscriptionBean) {
+		UserSubscriptionResource = new ClientResource(serviceAddress + "/"
+				+ channelSubscriptionBean.getUserId() + "/"
+				+ channelSubscriptionBean.getChanneld());
 		UserSubscriptionResource.delete();
 
 	}
 
 	public DomRepresentation retrieveSubscrptionByUser(String username) {
 		try {
-			UserSubscriptionsResource = new ClientResource(serviceAddress + "/" + username );
+			UserSubscriptionsResource = new ClientResource(serviceAddress + "/"
+					+ username);
 			return get(UserSubscriptionsResource);
 		} catch (ResourceException e) {
 			e.printStackTrace();
@@ -143,8 +151,8 @@ public class UserSubscriptionResourceClient {
 	public static DomRepresentation get(ClientResource clientResource)
 			throws IOException, ResourceException {
 		try {
-		//	clientResource.get().write(System.out);
-			//System.out.println();
+			// clientResource.get().write(System.out);
+			// System.out.println();
 
 			DomRepresentation representation = new DomRepresentation(
 					clientResource.get());
@@ -199,7 +207,8 @@ public class UserSubscriptionResourceClient {
 	 * 
 	 * @return The Representation of the item.
 	 */
-	public static Representation getRepresentation(ChannelSubscriptionBean channelSubscriptionBean) {
+	public static Representation getRepresentation(
+			ChannelSubscriptionBean channelSubscriptionBean) {
 		// Gathering informations into a Web form.
 		Form form = new Form();
 		form.add("username", channelSubscriptionBean.getUserId());

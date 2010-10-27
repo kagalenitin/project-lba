@@ -47,7 +47,7 @@ public class ChannelSubscription extends Activity { // implements
 		ChannelResourceClient channelResource = new ChannelResourceClient();
 		try {
 			DomRepresentation representation = channelResource
-			.retrieveChannels();
+					.retrieveChannels();
 			if (representation != null) {
 				channels = channelResource.getChannelsFromXml(representation);
 			} else {
@@ -59,21 +59,24 @@ public class ChannelSubscription extends Activity { // implements
 		}
 		return channels;
 	}
-	
-	public void subscribeChannel(String channelId, String username){
-		UserSubscriptionResourceClient userSubscriptionResourceClient = new UserSubscriptionResourceClient(username);
+
+	public void subscribeChannel(String channelId, String username) {
+		UserSubscriptionResourceClient userSubscriptionResourceClient = new UserSubscriptionResourceClient(
+				username);
 		ChannelSubscriptionBean userSubscription = new ChannelSubscriptionBean();
 		userSubscription.setChanneld(channelId);
 		userSubscription.setUserId(username);
 		userSubscriptionResourceClient.createSubscription(userSubscription);
 	}
 
-	public void unsubscribeChannel(String channelId, String username){
-		UserSubscriptionResourceClient userSubscriptionResourceClient = new UserSubscriptionResourceClient(username);
+	public void unsubscribeChannel(String channelId, String username) {
+		UserSubscriptionResourceClient userSubscriptionResourceClient = new UserSubscriptionResourceClient(
+				username);
 		ChannelSubscriptionBean userSubscription = new ChannelSubscriptionBean();
 		userSubscription.setChanneld(channelId);
 		userSubscription.setUserId(username);
-		userSubscriptionResourceClient.deleteSubscriptionByUser(userSubscription);
+		userSubscriptionResourceClient
+				.deleteSubscriptionByUser(userSubscription);
 	}
 
 	/** Called when the activity is first created. */
@@ -83,7 +86,7 @@ public class ChannelSubscription extends Activity { // implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.channelsubscription);
-		this.setTitle("Location Based Advertisement - Channel");
+		this.setTitle("Location Based Advertisement - MyChannel");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
 		channelListView = (ListView) findViewById(R.id.ListView01);
@@ -96,13 +99,12 @@ public class ChannelSubscription extends Activity { // implements
 			}
 		}
 		channels = getChannels();
-	    String lv_items[] = new String[channels.size()];
-		for (int i = 0; i < channels.size(); i++) {	
+		String lv_items[] = new String[channels.size()];
+		for (int i = 0; i < channels.size(); i++) {
 			lv_items[i] = new String(channels.get(i).getChannelname());
 		}
 		channelListView.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice, lv_items));
-	
 
 		// Set Click Listener
 		channelListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -111,19 +113,24 @@ public class ChannelSubscription extends Activity { // implements
 
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
+
 				boolean pos = channelListView.isItemChecked(position);
 				System.out.println(Log.VERBOSE + "output " + pos);
-				if(pos==true){
-					String channelId = ((ChannelBean) channels.get(position)).getChannelid().toString();
+				if (pos == true) {
+					String channelId = ((ChannelBean) channels.get(position))
+							.getChannelid().toString();
 					subscribeChannel(channelId, uname);
-					Toast.makeText(ChannelSubscription.this, "You're subscribed to "+ channels.get(position).getChannelname() + "" ,
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(
+							ChannelSubscription.this,
+							"You're subscribed to "
+									+ channels.get(position).getChannelname()
+									+ "", Toast.LENGTH_SHORT).show();
 				} else {
-					String channelId = ((ChannelBean) channels.get(position)).getChannelid().toString();
+					String channelId = ((ChannelBean) channels.get(position))
+							.getChannelid().toString();
 					unsubscribeChannel(channelId, uname);
-					Toast.makeText(ChannelSubscription.this, "Channel Unsubscribed ",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(ChannelSubscription.this,
+							"Channel Unsubscribed ", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

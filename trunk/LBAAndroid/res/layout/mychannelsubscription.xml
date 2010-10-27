@@ -7,9 +7,6 @@
 		android:layout_height="wrap_content" android:text="List of Channels"></TextView>
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
-	
-	<View android:layout_width="fill_parent" android:layout_height="1sp"
-		style="?listDivider" />
 
 	<ListView android:id="@+id/ListView01" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:choiceMode="multipleChoice" />	
