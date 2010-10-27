@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="hello">LBA Login</string>
-	<string name="app_name">LBA2</string>
+	<string name="app_name">LBA</string>
 	<string name="regneg">regneg</string>
 	<string name="regpos">regpos</string>
 	<string name="regpositive">Account created successfully! Please login.

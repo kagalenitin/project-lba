@@ -21,6 +21,8 @@ import com.lba.location.GPSMap;
 import com.lba.mapService.LBALocation;
 import com.lba.product.Product;
 import com.lba.search.SearchProduct;
+import com.lba.subscription.ChannelSubscription;
+import com.lba.subscription.ViewChannelSubscription;
 import com.lba.user.Profile;
 
 /**
@@ -79,21 +81,36 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Product.class);
 					b.putString("channelId", "");
+					b.putString("uname", uname);
 				} else if (position == 4) {
 					Toast.makeText(WelcomeUser.this, "Search",
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, SearchProduct.class);
+					b.putString("uname", uname);
 					b.putString("productId", "");
+				} else if (position == 5) {
+					Toast.makeText(WelcomeUser.this, "My Subscription",
+							Toast.LENGTH_SHORT).show();
+					intent = new Intent(WelcomeUser.this,
+							ViewChannelSubscription.class);
+					b.putString("uname", uname);
 				} else if (position == 6) {
 					Toast.makeText(WelcomeUser.this, "Advertisement",
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Advertisement.class);
+					b.putString("uname", uname);
 					b.putString("productId", "");
+				} else if (position == 7) {
+					Toast.makeText(WelcomeUser.this, "Settings",
+							Toast.LENGTH_SHORT).show();
+					intent = new Intent(WelcomeUser.this,
+							ChannelSubscription.class);
+					b.putString("uname", uname);
 				} else if (position == 8) {
 					Toast.makeText(WelcomeUser.this, "Direction",
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, GPSMap.class);
-					b.putString("adCode", uname);
+					b.putString("uname", uname);
 				} else {
 					intent = new Intent(WelcomeUser.this, Channelv2.class);
 					b.putString("uname", uname);

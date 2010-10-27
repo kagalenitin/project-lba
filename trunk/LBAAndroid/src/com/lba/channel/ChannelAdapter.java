@@ -24,14 +24,11 @@ public class ChannelAdapter extends BaseAdapter {
 	private ArrayList<ChannelBean> data;
 	private static LayoutInflater inflater = null;
 
-	// public ImageLoader imageLoader;
-
 	public ChannelAdapter(Activity a, ArrayList<ChannelBean> channels) {
 		activity = a;
 		data = channels;
 		inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		// imageLoader=new ImageLoader(activity.getApplicationContext());
 	}
 
 	public int getCount() {
@@ -48,7 +45,6 @@ public class ChannelAdapter extends BaseAdapter {
 
 	public static class ViewHolder {
 		public TextView text;
-		// public ImageView image;
 		public TextView desc;
 		public CheckBox check;
 
@@ -65,23 +61,17 @@ public class ChannelAdapter extends BaseAdapter {
 			holder.desc = (TextView) vi.findViewById(R.id.channelDesc);
 			// holder.check = (CheckBox) vi.findViewById(R.id.ChannelSub);
 
-			// holder.image=(ImageView)vi.findViewById(R.id.image);
 			vi.setTag(holder);
 		} else
 			holder = (ViewHolder) vi.getTag();
 
 		if (getCount() == 0) {
 			holder.text.setText("Channel " + position);
-			// holder.image.setTag(data[position]);
 			holder.desc
 					.setText("this is a long description of a Channel and it can be multiple line also in the screen so it should show the details of the channels.");
-			// imageLoader.DisplayImage(data[position], activity, holder.image);
 		} else {
 			holder.text.setText(data.get(position).getChannelname());
-			// holder.image.setTag(data[position]);
 			holder.desc.setText(data.get(position).getChanneldescription());
-			// imageLoader.DisplayImage(data[position], activity, holder.image);
-
 		}
 		return vi;
 	}
