@@ -70,7 +70,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 		ProductResourceClient itemConnect = new ProductResourceClient();
 		try {
 			DomRepresentation representation = itemConnect
-					.retrieveProductbyName(productId);
+			.retrieveProductbyName(productId);
 			if (representation != null) {
 				products = itemConnect.getProductsFromXml(representation);
 			} else {
@@ -118,19 +118,11 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(SearchProduct.this,
-						SearchProduct.class);
-				Bundle b = new Bundle();
+
 				String prodName = elProductName.getText().toString();
-				if (prodName != null) {
-					b.putString("productName", elProductName.getText()
-							.toString());
-					b.putString("uname", uname);
-				} else {
-					b.putString("productName", "");
-				}
-				intent.putExtras(b);
-				startActivity(intent);
+				products = getProductsByName(prodName);
+				adapter = new ProductAdapter(SearchProduct.this, products);
+				productListView.setAdapter(adapter);
 			}
 		});
 
@@ -146,21 +138,10 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 
-				Intent intent = new Intent(SearchProduct.this,
-						SearchProduct.class);
-				Bundle b = new Bundle();
 				String prodName = elProductName.getText().toString();
-				if (prodName != null) {
-					b.putString("uname", uname);
-					b.putString("productName", elProductName.getText()
-							.toString());
-				} else {
-					b.putString("uname", uname);
-					b.putString("productName", "");
-				}
-				intent.putExtras(b);
-				startActivity(intent);
-
+				products = getProductsByName(prodName);
+				adapter = new ProductAdapter(SearchProduct.this, products);
+				productListView.setAdapter(adapter);
 			}
 		});
 
