@@ -63,6 +63,9 @@ public class ImageAdapter extends BaseAdapter {
 			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			imageView.setPadding(8, 8, 8, 8);
 
+			final int w = (int) (36 * vi.getResources().getDisplayMetrics().density + 0.5f);
+			imageView.setLayoutParams(new GridView.LayoutParams(w, w));
+
 			holder.text = (TextView) vi.findViewById(R.id.icon_text);
 			holder.image = (ImageView) vi.findViewById(R.id.icon_image);
 

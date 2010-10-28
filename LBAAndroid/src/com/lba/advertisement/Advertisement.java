@@ -98,7 +98,7 @@ public class Advertisement extends Activity {
 	private String[] mStrings = {
 			"http://www.whofish.org/DevImages/imgActive/original_47944.jpg",
 			"http://1.bp.blogspot.com/_ur37apRbjR4/TBfIT6WIjfI/AAAAAAAAACo/nDa9ziaTh0M/S272/s4.jpg",
-			// "http://s2.hubimg.com/u/2179145_f260.jpg"
+			"http://s2.hubimg.com/u/2179145_f260.jpg",
 			"http://www.bordercity.com/menu/kfc_coupons.gif" };
 
 	@Override
