@@ -154,11 +154,11 @@ public class GPSMap extends MapActivity implements LocationListener {
 			mapView.getProjection().toPixels(p, myScreenCoords);
 
 			paint.setStrokeWidth(1);
-			paint.setARGB(255, 255, 255, 255);
+			paint.setARGB(255, 139, 35, 35);
 			paint.setStyle(Paint.Style.STROKE);
 
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-					R.drawable.marker);
+					R.drawable.blackblank);
 
 			canvas.drawBitmap(bmp, myScreenCoords.x, myScreenCoords.y, paint);
 			canvas.drawText("I am here...", myScreenCoords.x, myScreenCoords.y,

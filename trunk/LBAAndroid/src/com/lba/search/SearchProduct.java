@@ -70,7 +70,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 		ProductResourceClient itemConnect = new ProductResourceClient();
 		try {
 			DomRepresentation representation = itemConnect
-			.retrieveProductbyName(productId);
+					.retrieveProductbyName(productId);
 			if (representation != null) {
 				products = itemConnect.getProductsFromXml(representation);
 			} else {
