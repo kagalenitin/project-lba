@@ -7,5 +7,5 @@
 	    android:title="Products" />
     <item android:id="@+id/icontext"
         android:title="Advertisements"
-        android:icon="@drawable/largetiles48" />
+        android:icon="@drawable/button_add_to_cart" />
 </menu>

@@ -101,7 +101,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 					b.putString("uname", uname);
 					b.putString("productId", "");
 				} else if (position == 7) {
-					Toast.makeText(WelcomeUser.this, "Settings",
+					Toast.makeText(WelcomeUser.this, "Subscribe Channel",
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this,
 							ChannelSubscription.class);
