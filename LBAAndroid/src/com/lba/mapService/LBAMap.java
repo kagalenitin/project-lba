@@ -116,8 +116,8 @@ public class LBAMap extends MapActivity implements LocationListener {
 
 		zoomLayout.addView(zoomView, new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-		mapView.setStreetView(true);
-		//mapView.setSatellite(true);
+
+		mapView.setSatellite(false);
 		mapView.displayZoomControls(true);
 		mc = mapView.getController();
 
@@ -200,12 +200,12 @@ public class LBAMap extends MapActivity implements LocationListener {
 						p.getLatitudeE6() / 1E6 + "," + p.getLongitudeE6()
 								/ 1E6, Toast.LENGTH_SHORT).show();
 			}
-			
-			if(advertisements.size()==0){
-				Toast.makeText(
-						getBaseContext(),
-						"No ads Available for your search", Toast.LENGTH_SHORT).show();
-			
+
+			if (advertisements.size() == 0) {
+				Toast.makeText(getBaseContext(),
+						"No ads Available for your search", Toast.LENGTH_SHORT)
+						.show();
+
 			}
 			return false;
 		}

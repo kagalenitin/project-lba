@@ -49,13 +49,12 @@ public class AdDetail extends Activity {
 		if (b != null) {
 			uname = b.getString("uname");
 			String adImagePath = b.getString("AdId");
-			lblAdId.setText("Description for Ad:" + adImagePath);
+			lblAdId.setText("Advertisement Details:");
 			ImageView imgView = (ImageView) findViewById(R.id.AdImage);
 			Drawable drawable = LoadImageFromWebOperations(adImagePath);
 			if (imgView != null)
 				imgView.setImageDrawable(drawable);
 		}
-
 	}
 
 	private Drawable LoadImageFromWebOperations(String url) {
