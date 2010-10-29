@@ -16,10 +16,14 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ZoomControls;
 
 import com.google.android.maps.GeoPoint;
@@ -28,6 +32,8 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.lba.R;
+import com.lba.home.WelcomeUser;
+import com.lba.search.SearchProduct;
 
 /**
  * @author payal
@@ -42,12 +48,20 @@ public class GPSMap extends MapActivity implements LocationListener {
 	MapController mc = null;
 	Drawable defaultMarker = null;
 	GeoPoint p = null;
+	String uname = "";
 	double latitude = 18.9599990845, longitude = 72.819999694;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.location);
+
+		Intent intent = getIntent();
+		Bundle b = new Bundle();
+		b = intent.getExtras();
+		if (b != null) {
+			uname = b.getString("uname");
+		}
 
 		// Creating TextBox displying Lat, Long
 		txted = (EditText) findViewById(R.id.id1);
@@ -165,5 +179,35 @@ public class GPSMap extends MapActivity implements LocationListener {
 					paint);
 			return true;
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.commonmenu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.home:
+			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(GPSMap.this, WelcomeUser.class);
+			Bundle b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		case R.id.search:
+			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			intent = new Intent(GPSMap.this, SearchProduct.class);
+			b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		}
+		return true;
 	}
 }

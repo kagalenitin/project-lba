@@ -97,9 +97,11 @@ public class Advertisement extends Activity {
 
 	private String[] mStrings = {
 			"http://www.whofish.org/DevImages/imgActive/original_47944.jpg",
-			"http://1.bp.blogspot.com/_ur37apRbjR4/TBfIT6WIjfI/AAAAAAAAACo/nDa9ziaTh0M/S272/s4.jpg",
-			"http://s2.hubimg.com/u/2179145_f260.jpg",
-			"http://www.bordercity.com/menu/kfc_coupons.gif" };
+			"http://i28.tinypic.com/2n1g9oo.jpg",
+			"http://smartcanucks.ca/wp-content/uploads/2010/03/shoecompany1.jpg",
+			"http://www.way2offer.com/images/offers/Chennai/449/offerpamphlet_small/Offers-On-fastrack-Watches.jpg",
+			"http://www.upto75.com/images/uploadimages/sales_offer_mainpic_20100623133409Fastrack.png",
+			"http://www.everyday.com.my/photo/2010/04/Samsung-2010-Monte-Mobile-Phone-Promotion.jpg" };
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
