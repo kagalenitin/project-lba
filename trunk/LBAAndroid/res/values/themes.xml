@@ -8,7 +8,7 @@
 
 	<style name="Theme.White">
 		<item name="pageBackground">@style/page_background_wh</item>
-		<item name="pagePaddingLayout">@style/page_padding_layout_wh</item>		
+		<item name="pagePaddingLayout">@style/page_padding_layout_wh</item>
 		<item name="textTitle">@style/text_title_wh</item>
 		<item name="textTitleHidden">@style/text_title_hidden_wh</item>
 		<item name="textSubheader">@style/text_subheader_wh</item>
@@ -23,10 +23,10 @@
 		<item name="listDivider">@style/list_divider_wh</item>
 		<item name="pageMargin">@dimen/page_margin_wh</item>
 	</style>
-	
+
 	<style name="Theme.Blue">
 		<item name="pageBackground">@style/page_background_bl</item>
-		<item name="pagePaddingLayout">@style/page_padding_layout_bl</item>		
+		<item name="pagePaddingLayout">@style/page_padding_layout_bl</item>
 		<item name="textTitle">@style/text_title_bl</item>
 		<item name="textTitleHidden">@style/text_title_hidden_bl</item>
 		<item name="textSubheader">@style/text_subheader_bl</item>

@@ -3,8 +3,11 @@
  */
 package com.lba.advertisement;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+
+import org.restlet.ext.xml.DomRepresentation;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,14 +16,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lba.R;
+import com.lba.beans.AdvertisementBean;
 import com.lba.home.WelcomeUser;
+import com.lba.mapService.LBAMapAdId;
 import com.lba.search.SearchProduct;
+import com.lba.service.AdvertisementResourceClient;
 
 /**
  * @author payalpatel
@@ -30,6 +38,28 @@ public class AdDetail extends Activity {
 
 	private TextView lblAdId;
 	String uname;
+	String adId;
+	private String adPath = "http://192.168.1.72:8080";
+	static AdvertisementBean advertisement = null;
+
+	public static AdvertisementBean getAdsByID(String adId) {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+					.retrieveAdvertisement(adId);
+			if (representation != null) {
+				advertisement = advertisementResource
+						.getAdvertisementFromXml(representation);
+			} else {
+				advertisement = new AdvertisementBean();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisement;
+	}
 
 	/** Called when the activity is first created. */
 	@Override
@@ -49,11 +79,34 @@ public class AdDetail extends Activity {
 		if (b != null) {
 			uname = b.getString("uname");
 			String adImagePath = b.getString("AdId");
+			adId = b.getString("adId");
 			lblAdId.setText("Advertisement Details:");
 			ImageView imgView = (ImageView) findViewById(R.id.AdImage);
+			if (adImagePath.equals("") || adImagePath.equals(null)) {
+				advertisement = getAdsByID(adId);
+				adImagePath = adPath + advertisement.getFileLocation();
+				if (advertisement != null) {
+					Drawable drawable = LoadImageFromWebOperations(adImagePath);
+				}
+			} else {
+				Drawable drawable = LoadImageFromWebOperations(adImagePath);
+			}
 			Drawable drawable = LoadImageFromWebOperations(adImagePath);
-			if (imgView != null)
+			if (imgView != null) {
 				imgView.setImageDrawable(drawable);
+			}
+			imgView.setClickable(true);
+			imgView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(AdDetail.this, LBAMapAdId.class);
+					Bundle b = new Bundle();
+					b.putString("uname", uname);
+					b.putString("adId", adId);
+					intent.putExtras(b);
+					startActivity(intent);
+				}
+			});
 		}
 	}
 

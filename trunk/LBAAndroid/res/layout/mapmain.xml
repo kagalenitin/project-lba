@@ -10,4 +10,9 @@
 	</TableRow>
 	<Button android:id="@+id/map_button" android:text="Search Map"
 		style="?button" android:layout_gravity="center" />
+	<View android:layout_width="fill_parent" android:layout_height="1sp"
+		style="?listDivider" />
+
+	<ListView android:id="@+id/ListView01" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:clickable="true" />
 </TableLayout>

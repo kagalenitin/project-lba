@@ -13,6 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import android.util.Log;
+
 import com.lba.beans.AdMerchantAdBean;
 import com.lba.beans.AdvertisementBean;
 
@@ -26,13 +28,15 @@ public class AdvertisementResourceClient {
 	public ClientResource advertisementResource;
 	public ClientResource advertisementbyProductResource;
 	public ClientResource advertisementsByMerchantResource;
+	public ClientResource advertisementsByMerchantIdResource;
 
-	String ipaddress = "10.185.3.171:8182";
-	// String ipaddress = "192.168.1.72:8182";
+	String ipaddress = "192.168.1.72:8182";
+
 	String serviceAddress = "http://" + ipaddress
 			+ "/LBAResource/advertisements";
 
 	public AdvertisementResourceClient() {
+		System.out.println(Log.VERBOSE + "ADDRESS: " + ipaddress);
 		advertisementsResource = new ClientResource(serviceAddress);
 		advertisementResource = null;
 	}
@@ -60,7 +64,7 @@ public class AdvertisementResourceClient {
 
 	public void updateAdvertisement(int adId, AdvertisementBean newAdvertisement)
 			throws IOException {
-		advertisementResource = new ClientResource(serviceAddress + adId);
+		advertisementResource = new ClientResource(serviceAddress + "/" + adId);
 		AdvertisementBean advertisement = new AdvertisementBean();
 		DomRepresentation representation = retrieveAdvertisement(String
 				.valueOf(adId));
@@ -78,7 +82,8 @@ public class AdvertisementResourceClient {
 
 	public DomRepresentation retrieveAdvertisement(String adId) {
 		try {
-			advertisementResource = new ClientResource(serviceAddress + adId);
+			advertisementResource = new ClientResource(serviceAddress + "/"
+					+ adId);
 			return get(advertisementResource);
 		} catch (ResourceException e) {
 			e.printStackTrace();
@@ -125,40 +130,17 @@ public class AdvertisementResourceClient {
 		return null;
 	}
 
-	public static void main(String args[]) {
-		AdvertisementResourceClient client = new AdvertisementResourceClient();
-		// yyyy-mm-dd
-		AdvertisementBean advertisement = new AdvertisementBean();
-		advertisement.setAdName("Jeccypenny");
-		advertisement.setAdDesc("Men's Jeans");
-		advertisement.setContractID("1");
-		advertisement.setAdStartDate("2010-10-20");
-		advertisement.setAdEndDate("2010-11-20");
-		client.createAdvertisement(advertisement);
-
-		// client.deleteProduct(68);
-
-		/*
-		 * advertisement.setAdName("NewTestedName2");
-		 * 
-		 * try { client.updateAdvertisement(1,advertisement); } catch
-		 * (IOException e) { e.printStackTrace(); }
-		 */
-		/*
-		 * client.retrieveAdvertisement("1");
-		 * 
-		 * ArrayList<AdvertisementBean> products = null; DomRepresentation
-		 * representation = client.retrieveAdvertisements(); try { products =
-		 * client.getAdvertisementsFromXml(representation);
-		 * System.out.println(products.size()); } catch (IOException e) { //
-		 * e.printStackTrace(); }
-		 * 
-		 * for (int i = 0; i < products.size(); i++) {
-		 * System.out.println(products.get(i).getAdId()); }
-		 * 
-		 * // client.retrieveProducts();
-		 */
-
+	public DomRepresentation retrieveAdvertisementsByMerchantId(String adId) {
+		try {
+			advertisementsByMerchantIdResource = new ClientResource(
+					serviceAddress + "/merchantId/" + adId);
+			return get(advertisementsByMerchantIdResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public AdvertisementBean getAdvertisementFromXml(
@@ -209,6 +191,17 @@ public class AdvertisementResourceClient {
 
 				advertisement.setAdDesc(((Node) adDesc.item(0)).getNodeValue()
 						.toString());
+
+				NodeList adLocationElmntLst = fstElmnt
+						.getElementsByTagName("adPath");
+				Element adLocationNmElmnt = (Element) adLocationElmntLst
+						.item(0);
+				NodeList adLocation = adLocationNmElmnt.getChildNodes();
+				System.out.println("Location : "
+						+ ((Node) adLocation.item(0)).getNodeValue());
+
+				advertisement.setFileLocation(((Node) adLocation.item(0))
+						.getNodeValue().toString());
 
 			}
 
@@ -265,6 +258,18 @@ public class AdvertisementResourceClient {
 
 				advertisement.setAdDesc(((Node) adDesc.item(0)).getNodeValue()
 						.toString());
+
+				NodeList adLocationElmntLst = fstElmnt
+						.getElementsByTagName("adPath");
+				Element adLocationNmElmnt = (Element) adLocationElmntLst
+						.item(0);
+				NodeList adLocation = adLocationNmElmnt.getChildNodes();
+				System.out.println("Location : "
+						+ ((Node) adLocation.item(0)).getNodeValue());
+
+				advertisement.setFileLocation(((Node) adLocation.item(0))
+						.getNodeValue().toString());
+
 				advertisements.add(advertisement);
 			}
 

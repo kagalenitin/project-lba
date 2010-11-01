@@ -143,6 +143,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			Toast.makeText(this, "Products", Toast.LENGTH_LONG).show();
 			intent = new Intent(WelcomeUser.this, Product.class);
 			b = new Bundle();
+			b.putString("uname", uname);
 			b.putString("channelId", "");
 			intent.putExtras(b);
 			startActivity(intent);
@@ -151,6 +152,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			Toast.makeText(this, "Advertisements", Toast.LENGTH_LONG).show();
 			intent = new Intent(WelcomeUser.this, Advertisement.class);
 			b = new Bundle();
+			b.putString("uname", uname);
 			b.putString("productId", "");
 			intent.putExtras(b);
 			startActivity(intent);

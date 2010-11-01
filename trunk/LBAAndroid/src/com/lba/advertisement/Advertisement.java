@@ -3,6 +3,11 @@
  */
 package com.lba.advertisement;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.restlet.ext.xml.DomRepresentation;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lba.R;
+import com.lba.beans.AdvertisementBean;
 import com.lba.home.WelcomeUser;
 import com.lba.search.SearchProduct;
+import com.lba.service.AdvertisementResourceClient;
 
 /**
  * @author payal
@@ -32,6 +39,11 @@ public class Advertisement extends Activity {
 	private TextView lblAdCode;
 	LazyAdapter adapter;
 	String uname;
+
+	static ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
+	private String adPath = "http://192.168.1.72:8080";
+
+	String adLocation = "";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -54,10 +66,12 @@ public class Advertisement extends Activity {
 			if (productId != null) {
 				if (!(productId.equalsIgnoreCase(""))) {
 					lblAdCode.setText("List of Advertisements: " + productId);
-					adapter = new LazyAdapter(this, mStrings, productId);
+					advertisements = getAdsByProduct(productId);
+					adapter = new LazyAdapter(this, advertisements);
 				} else {
+					advertisements = getAdvertisements();
 					lblAdCode.setText("List of Advertisements " + productId);
-					adapter = new LazyAdapter(this, mStrings);
+					adapter = new LazyAdapter(this, advertisements);
 				}
 			}
 		}
@@ -72,7 +86,11 @@ public class Advertisement extends Activity {
 				// Load Ad
 				Intent intent = new Intent(Advertisement.this, AdDetail.class);
 				Bundle b = new Bundle();
-				b.putString("AdId", mStrings[position]);
+				adLocation = adPath
+						+ advertisements.get(position).getFileLocation();
+				b.putString("uname", uname);
+				b.putString("AdId", adLocation);
+				b.putString("adId", advertisements.get(position).getAdId());
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -95,13 +113,18 @@ public class Advertisement extends Activity {
 		}
 	};
 
-	private String[] mStrings = {
-			"http://www.whofish.org/DevImages/imgActive/original_47944.jpg",
-			"http://i28.tinypic.com/2n1g9oo.jpg",
-			"http://smartcanucks.ca/wp-content/uploads/2010/03/shoecompany1.jpg",
-			"http://www.way2offer.com/images/offers/Chennai/449/offerpamphlet_small/Offers-On-fastrack-Watches.jpg",
-			"http://www.upto75.com/images/uploadimages/sales_offer_mainpic_20100623133409Fastrack.png",
-			"http://www.everyday.com.my/photo/2010/04/Samsung-2010-Monte-Mobile-Phone-Promotion.jpg" };
+	// private String[] mStrings = {
+	// // "http://www.whofish.org/DevImages/imgActive/original_47944.jpg",
+	// // "http://i28.tinypic.com/2n1g9oo.jpg",
+	// // "http://smartcanucks.ca/wp-content/uploads/2010/03/shoecompany1.jpg",
+	// //
+	// "http://www.way2offer.com/images/offers/Chennai/449/offerpamphlet_small/Offers-On-fastrack-Watches.jpg",
+	// //
+	// "http://www.upto75.com/images/uploadimages/sales_offer_mainpic_20100623133409Fastrack.png",
+	// "http://192.168.1.72:8080/AdvertiserLBA/images/userUploadedImages/logo417.jpg"
+	// };
+	// //"http://www.everyday.com.my/photo/2010/04/Samsung-2010-Monte-Mobile-Phone-Promotion.jpg"
+	// };
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,6 +154,44 @@ public class Advertisement extends Activity {
 			break;
 		}
 		return true;
+	}
+
+	public static ArrayList<AdvertisementBean> getAdvertisements() {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+					.retrieveAdvertisements();
+			if (representation != null) {
+				advertisements = advertisementResource
+						.getAdvertisementsFromXml(representation);
+			} else {
+				advertisements = new ArrayList<AdvertisementBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisements;
+	}
+
+	public static ArrayList<AdvertisementBean> getAdsByProduct(String productId) {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+					.retrieveAdvertisementsByProduct(productId);
+			if (representation != null) {
+				advertisements = advertisementResource
+						.getAdvertisementsFromXml(representation);
+			} else {
+				advertisements = new ArrayList<AdvertisementBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisements;
 	}
 
 }

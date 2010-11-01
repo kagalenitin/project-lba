@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="/Users/payalpatel/Downloads/restlet-jee-2.0.1/lib/org.restlet.ext.xml.jar"/>
-	<classpathentry kind="lib" path="/Users/payalpatel/Downloads/restlet-jee-2.0.1/lib/org.restlet.ext.servlet.jar"/>
-	<classpathentry kind="lib" path="/Users/payalpatel/Downloads/restlet-jee-2.0.1/lib/org.restlet.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="gen" />
+	<classpathentry kind="src" path="src" />
+	<classpathentry kind="con"
+		path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK" />
+	<classpathentry kind="lib"
+		path="/Users/payalpatel/Downloads/restlet-jee-2.0.1/lib/org.restlet.ext.xml.jar" />
+	<classpathentry kind="lib"
+		path="/Users/payalpatel/Downloads/restlet-jee-2.0.1/lib/org.restlet.ext.servlet.jar" />
+	<classpathentry kind="lib"
+		path="/Users/payalpatel/Downloads/restlet-jee-2.0.1/lib/org.restlet.jar" />
+	<classpathentry kind="output" path="bin" />
 </classpath>

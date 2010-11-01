@@ -1,21 +1,34 @@
 package com.lba.mapService;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.restlet.ext.xml.DomRepresentation;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lba.R;
+import com.lba.advertisement.AdDetail;
+import com.lba.beans.AdMerchantAdBean;
 import com.lba.home.WelcomeUser;
 import com.lba.search.SearchProduct;
+import com.lba.service.AdvertisementResourceClient;
 
 /**
  * @author payalpatel
@@ -28,6 +41,31 @@ public class LBALocation extends Activity {
 	// private EditText etLongitude;
 	private Button btnMap;
 	String uname;
+	AdAdapter adapter;
+	private ListView adListView;
+	private String adPath = "http://192.168.1.72:8080";
+	String adLocation = "";
+
+	ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
+
+	public ArrayList<AdMerchantAdBean> getAdsByMerchant(String adName) {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+					.retrieveAdvertisementsByMerchant(adName);
+			if (representation != null) {
+				advertisements = advertisementResource
+						.getAdvertisementsByMerchantFromXml(representation);
+			} else {
+				advertisements = new ArrayList<AdMerchantAdBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisements;
+	}
 
 	/** Called when the activity is first created. */
 	@Override
@@ -42,6 +80,7 @@ public class LBALocation extends Activity {
 		elAdname = (EditText) findViewById(R.id.adName);
 		// etLongitude = (EditText) findViewById(R.id.longitude);
 		btnMap = (Button) findViewById(R.id.map_button);
+		adListView = (ListView) findViewById(R.id.ListView01);
 
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
@@ -60,6 +99,44 @@ public class LBALocation extends Activity {
 				b.putString("uname", uname);
 				b.putString("adName", elAdname.getText().toString());
 				// b.putString("longitude", etLongitude.getText().toString());
+				intent.putExtras(b);
+				startActivity(intent);
+			}
+		});
+
+		elAdname.addTextChangedListener(new TextWatcher() {
+
+			public void afterTextChanged(Editable s) {
+
+				String adName = elAdname.getText().toString();
+				advertisements = getAdsByMerchant(adName);
+				adapter = new AdAdapter(LBALocation.this, advertisements);
+				adListView.setAdapter(adapter);
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+			}
+		});
+
+		// Set Click Listener
+		adListView.setClickable(true);
+		adListView.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// Load Ad
+				Intent intent = new Intent(LBALocation.this, AdDetail.class);
+				Bundle b = new Bundle();
+				String adLocation = "";
+				b.putString("uname", uname);
+				b.putString("AdId", adLocation);
+				b.putString("adId", advertisements.get(position).getAdID());
 				intent.putExtras(b);
 				startActivity(intent);
 			}

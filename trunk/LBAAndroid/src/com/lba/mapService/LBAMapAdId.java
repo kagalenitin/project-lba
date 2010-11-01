@@ -43,7 +43,7 @@ import com.lba.service.AdvertisementResourceClient;
  * 
  */
 
-public class LBAMap extends MapActivity implements LocationListener {
+public class LBAMapAdId extends MapActivity implements LocationListener {
 
 	MapView mapView;
 	MapController mc;
@@ -52,20 +52,18 @@ public class LBAMap extends MapActivity implements LocationListener {
 	ArrayList<Integer> draw = new ArrayList<Integer>();
 
 	String uname;
-	private String adName = "";
+	private String adId = "";
 	private String longitude = "";
 	private String latitude = "";
-	// ArrayList latitudes = new ArrayList();
-	// ArrayList longitudes = new ArrayList();
 
 	ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
 
-	public ArrayList<AdMerchantAdBean> getAdsByMerchant(String adName) {
+	public ArrayList<AdMerchantAdBean> getAdsByMerchant(String adId) {
 
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
 		try {
 			DomRepresentation representation = advertisementResource
-					.retrieveAdvertisementsByMerchant(adName);
+					.retrieveAdvertisementsByMerchantId(adId);
 			if (representation != null) {
 				advertisements = advertisementResource
 						.getAdvertisementsByMerchantFromXml(representation);
@@ -93,13 +91,12 @@ public class LBAMap extends MapActivity implements LocationListener {
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
-			adName = b.getString("adName");
-			this.setTitle("LBA: Search Ad - " + adName);
+			adId = b.getString("adId");
 			uname = b.getString("uname");
-			if (adName != null || adName != "") {
-				advertisements = getAdsByMerchant(adName);
+			if (adId != null || adId != "") {
+				advertisements = getAdsByMerchant(adId);
 			} else {
-				Toast.makeText(LBAMap.this, "" + "Service not available",
+				Toast.makeText(LBAMapAdId.this, "" + "Service not available",
 						Toast.LENGTH_SHORT).show();
 			}
 
@@ -126,6 +123,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 				this);
 
 		for (int i = 0; i < advertisements.size(); i++) {
+			this.setTitle("LBA:" + advertisements.get(i).getAdName());
 			latitude = advertisements.get(i).getLatitude();
 			longitude = advertisements.get(i).getLongitude();
 			String coordinates[] = { latitude + 50, longitude + 30 };
@@ -138,7 +136,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 		}
 		if (advertisements.size() == 0) {
 			Toast.makeText(getBaseContext(),
-					"No ads Available for your search", Toast.LENGTH_SHORT)
+					"No Location information available!", Toast.LENGTH_SHORT)
 					.show();
 
 		}
@@ -201,8 +199,8 @@ public class LBAMap extends MapActivity implements LocationListener {
 
 			if (advertisements.size() == 0) {
 				Toast.makeText(getBaseContext(),
-						"No ads Available for your search", Toast.LENGTH_SHORT)
-						.show();
+						"No Location information available!",
+						Toast.LENGTH_SHORT).show();
 
 			}
 			return false;
@@ -264,7 +262,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 		switch (item.getItemId()) {
 		case R.id.home:
 			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
-			Intent intent = new Intent(LBAMap.this, WelcomeUser.class);
+			Intent intent = new Intent(LBAMapAdId.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);
@@ -272,7 +270,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 			break;
 		case R.id.search:
 			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
-			intent = new Intent(LBAMap.this, SearchProduct.class);
+			intent = new Intent(LBAMapAdId.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);
