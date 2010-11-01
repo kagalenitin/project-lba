@@ -23,10 +23,7 @@ public class ChannelResourceClient {
 
 	public ClientResource channelsResource;
 	public ClientResource channelResource;
-	// String ipaddress = "10.185.3.16:8182";
-	// String ipaddress = "192.168.1.72:8182";
-	String ipaddress = "10.185.3.171:8182";
-
+	String ipaddress = "192.168.1.72:8182";
 	String serviceAddress = "http://" + ipaddress + "/LBAResource/channels";
 
 	public ChannelResourceClient() {

@@ -19,18 +19,15 @@
 	<dimen name="page_margin_bl">2sp</dimen>
 	<dimen name="content_left_margin_bl">8sp</dimen>
 
- 	<style name="page_background_bl">
- 		<item name="android:background">#000</item>
- 		<item name="android:padding">@dimen/page_margin_bl</item>
- 		<!-- 
- 		<item name="android:layout_marginTop">8dip</item>
- 		<item name="android:layout_marginBottom">20dip</item>
- 		 -->
- 	</style>
- 	<style name="page_padding_layout_bl">
- 		<item name="android:padding">@dimen/page_margin_bl</item>
- 	</style>
-	 	
+	<style name="page_background_bl">
+		<item name="android:background">#000</item>
+		<item name="android:padding">@dimen/page_margin_bl</item>
+		<!-- <item name="android:layout_marginTop">8dip</item> <item name="android:layout_marginBottom">20dip</item> -->
+	</style>
+	<style name="page_padding_layout_bl">
+		<item name="android:padding">@dimen/page_margin_bl</item>
+	</style>
+
 	<style name="text_title_bl">
 		<item name="android:textColor">#FFF</item>
 		<item name="android:textStyle">bold</item>
@@ -43,11 +40,11 @@
 		<item name="android:shadowColor">#DDD</item>
 		<item name="android:background">#FF004488</item>
 	</style>
-	
+
 	<style name="text_title_hidden_bl">
 		<item name="android:visibility">gone</item>
 	</style>
-	
+
 	<style name="text_subheader_bl">
 		<item name="android:textColor">#08C</item>
 		<item name="android:paddingLeft">5sp</item>
@@ -72,7 +69,8 @@
 		<item name="android:padding">5sp</item>
 	</style>
 	<style name="button_bl">
-		<item name="android:background">@drawable/button_bl</item>-->
+		<item name="android:background">@drawable/button_bl</item>
+		-->
 		<item name="android:textColor">#000</item>
 		<item name="android:textSize">14sp</item>
 		<item name="android:layout_margin">3sp</item>
@@ -95,26 +93,26 @@
 	<style name="list_item_bl" parent="text_large_bl">
 		<item name="android:background">@drawable/list_item_bl</item>
 		<item name="android:focusable">true</item>
-		<item name="android:clickable">true</item>		
+		<item name="android:clickable">true</item>
 	</style>
 	<style name="list_divider_bl" parent="list_divider">
 		<item name="android:background">@drawable/list_divider_bl</item>
 	</style>
-	
+
 	<!-- =============================================================== -->
- 	<!-- White styles                                                    -->
+	<!-- White styles -->
 	<!-- =============================================================== -->
 
 	<dimen name="page_margin_wh">5sp</dimen>
- 	<dimen name="content_left_margin_wh">8sp</dimen>
- 	
- 	<style name="page_background_wh">
- 		<item name="android:background">@drawable/gray_gradient_background</item>
- 		<item name="android:padding">@dimen/page_margin_wh</item>
- 	</style>
- 	<style name="page_padding_layout_wh">
- 		<item name="android:padding">@dimen/page_margin_wh</item>
- 	</style> 	
+	<dimen name="content_left_margin_wh">8sp</dimen>
+
+	<style name="page_background_wh">
+		<item name="android:background">@drawable/gray_gradient_background</item>
+		<item name="android:padding">@dimen/page_margin_wh</item>
+	</style>
+	<style name="page_padding_layout_wh">
+		<item name="android:padding">@dimen/page_margin_wh</item>
+	</style>
 	<style name="text_title_wh">
 		<item name="android:background">@drawable/title_bar_wh</item>
 		<item name="android:gravity">center_vertical|center_horizontal</item>
@@ -124,9 +122,9 @@
 		<item name="android:shadowDy">1.0</item>
 		<item name="android:shadowRadius">3</item>
 		<item name="android:shadowColor">#888</item>
-	</style>	
+	</style>
 	<style name="text_title_hidden_wh" parent="text_title_wh">
-	</style>	
+	</style>
 	<style name="text_subheader_wh">
 		<item name="android:textColor">#FFF</item>
 		<item name="android:textSize">14sp</item>
@@ -182,12 +180,12 @@
 		<item name="android:paddingLeft">5sp</item>
 		<item name="android:paddingRight">5sp</item>
 		<item name="android:focusable">true</item>
-		<item name="android:clickable">true</item>		
+		<item name="android:clickable">true</item>
 	</style>
 	<style name="list_divider_wh" parent="list_divider">
 		<item name="android:background">@drawable/list_divider_wh</item>
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">2sp</item>
 	</style>
-	
+
 </resources>

@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-				<TextView android:id="@+id/AdCode" android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:textColor="#ffffff"/>
-				<View android:layout_width="fill_parent" android:layout_height="1sp"
-						style="?listDivider" />
-				<ListView android:id="@+id/list" android:layout_width="fill_parent"
-					android:layout_height="fill_parent" android:layout_weight="1" />
-				<View android:layout_width="fill_parent" android:layout_height="1sp"
-				style="?listDivider" />
+	<TextView android:id="@+id/AdCode" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textColor="#ffffff" />
+	<View android:layout_width="fill_parent" android:layout_height="1sp"
+		style="?listDivider" />
+	<ListView android:id="@+id/list" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1" />
+	<View android:layout_width="fill_parent" android:layout_height="1sp"
+		style="?listDivider" />
 </LinearLayout>

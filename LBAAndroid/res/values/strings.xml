@@ -9,7 +9,7 @@
 	<string name="regnegative">Please enter all information!</string>
 	<string name="logneg">logneg</string>
 	<string name="loginegative">Invalid username or password!</string>
-	
+
 	<string name="proneg">proneg</string>
 	<string name="propos">propos</string>
 	<string name="propositive">Profile updated succesfully.</string>

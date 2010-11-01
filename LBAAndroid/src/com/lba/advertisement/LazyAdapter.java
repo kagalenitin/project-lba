@@ -1,9 +1,6 @@
 package com.lba.advertisement;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import org.restlet.ext.xml.DomRepresentation;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +13,6 @@ import android.widget.TextView;
 
 import com.lba.R;
 import com.lba.beans.AdvertisementBean;
-import com.lba.service.AdvertisementResourceClient;
 
 /**
  * @author payal
@@ -25,31 +21,23 @@ import com.lba.service.AdvertisementResourceClient;
 public class LazyAdapter extends BaseAdapter {
 
 	private Activity activity;
-	private String[] data;
 	private static LayoutInflater inflater = null;
 	public ImageLoader imageLoader;
 	static ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
+	private String adPath = "http://192.168.1.72:8080";
 
-	public LazyAdapter(Activity a, String[] d, String productId) {
+	String adLocation = "";
+
+	public LazyAdapter(Activity a, ArrayList<AdvertisementBean> advertisements) {
 		activity = a;
-		data = d;
 		inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		imageLoader = new ImageLoader(activity.getApplicationContext());
-		advertisements = getAdsByProduct(productId);
-	}
-
-	public LazyAdapter(Activity a, String[] d) {
-		activity = a;
-		data = d;
-		inflater = (LayoutInflater) activity
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		imageLoader = new ImageLoader(activity.getApplicationContext());
-		advertisements = getAdvertisements();
+		this.advertisements = advertisements;
 	}
 
 	public int getCount() {
-		return data.length;
+		return advertisements.size();
 	}
 
 	public Object getItem(int position) {
@@ -58,44 +46,6 @@ public class LazyAdapter extends BaseAdapter {
 
 	public long getItemId(int position) {
 		return position;
-	}
-
-	public static ArrayList<AdvertisementBean> getAdvertisements() {
-
-		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
-		try {
-			DomRepresentation representation = advertisementResource
-					.retrieveAdvertisements();
-			if (representation != null) {
-				advertisements = advertisementResource
-						.getAdvertisementsFromXml(representation);
-			} else {
-				advertisements = new ArrayList<AdvertisementBean>();
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return advertisements;
-	}
-
-	public static ArrayList<AdvertisementBean> getAdsByProduct(String productId) {
-
-		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
-		try {
-			DomRepresentation representation = advertisementResource
-					.retrieveAdvertisementsByProduct(productId);
-			if (representation != null) {
-				advertisements = advertisementResource
-						.getAdvertisementsFromXml(representation);
-			} else {
-				advertisements = new ArrayList<AdvertisementBean>();
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return advertisements;
 	}
 
 	public static class ViewHolder {
@@ -122,16 +72,22 @@ public class LazyAdapter extends BaseAdapter {
 					.getAdDesc();
 			holder.text.setText(((AdvertisementBean) advertisements
 					.get(position)).getAdName());
-			holder.image.setTag(data[position]);
+			System.out.println("Path");
+			// holder.image.setTag(data[position]);
+			adLocation = adPath
+					+ advertisements.get(position).getFileLocation();
+			holder.image.setTag(adPath
+					+ advertisements.get(position).getFileLocation());
 			holder.desc.setText(res);
 		} else {
 			String res = "Service not Available";
 			holder.text.setText("Service not Available");
-			holder.image.setTag(data[position]);
+			adLocation = adPath + "/AdvertiserLBA/nopicture.gif";
+			holder.image.setTag(R.drawable.nopicture);
 			holder.desc.setText(res);
 		}
 
-		imageLoader.DisplayImage(data[position], activity, holder.image);
+		imageLoader.DisplayImage(adLocation, activity, holder.image);
 		return vi;
 	}
 }
