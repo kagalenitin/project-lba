@@ -29,6 +29,7 @@ public class AdvertisementResourceClient {
 	public ClientResource advertisementbyProductResource;
 	public ClientResource advertisementsByMerchantResource;
 	public ClientResource advertisementsByMerchantIdResource;
+	public ClientResource advertisementsByMerchantDistanceResource;
 
 	String ipaddress = "192.168.1.72:8182";
 
@@ -135,6 +136,21 @@ public class AdvertisementResourceClient {
 			advertisementsByMerchantIdResource = new ClientResource(
 					serviceAddress + "/merchantId/" + adId);
 			return get(advertisementsByMerchantIdResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public DomRepresentation retrieveAdvertisementsByMerchantDistance(
+			String adName, String latitude, String longitude) {
+		try {
+			advertisementsByMerchantDistanceResource = new ClientResource(
+					serviceAddress + "/merchant/" + adName + "/" + latitude
+							+ "/" + longitude);
+			return get(advertisementsByMerchantDistanceResource);
 		} catch (ResourceException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
