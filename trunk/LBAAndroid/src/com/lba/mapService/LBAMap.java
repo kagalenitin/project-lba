@@ -91,6 +91,27 @@ public class LBAMap extends MapActivity implements LocationListener {
 		return advertisements;
 	}
 
+	public ArrayList<AdMerchantAdBean> getAdsByMerchantDistance(String adName,
+			String latitude, String longitude) {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+					.retrieveAdvertisementsByMerchantDistance(adName, latitude,
+							longitude);
+			if (representation != null) {
+				advertisements = advertisementResource
+						.getAdvertisementsByMerchantFromXml(representation);
+			} else {
+				advertisements = new ArrayList<AdMerchantAdBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisements;
+	}
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -140,7 +161,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 		for (int i = 0; i < advertisements.size(); i++) {
 			latitude = advertisements.get(i).getLatitude();
 			longitude = advertisements.get(i).getLongitude();
-			String coordinates[] = { latitude + 50, longitude + 30 };
+			String coordinates[] = { latitude, longitude };
 			double lat = Double.parseDouble(coordinates[0]);
 			double lng = Double.parseDouble(coordinates[1]);
 			p = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
@@ -161,6 +182,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 		listOfOverlays.add(mapOverlay);
 		mapView.invalidate();
 		mapView.setBuiltInZoomControls(true);
+
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -175,6 +197,17 @@ public class LBAMap extends MapActivity implements LocationListener {
 			// adds the user location as a point on the map
 			p = new GeoPoint((int) (Latitude * 1e6), (int) (Longitude * 1e6));
 			mc.animateTo(p);
+			for (int i = 0; i < advertisements.size(); i++) {
+				latitude = advertisements.get(i).getLatitude();
+				longitude = advertisements.get(i).getLongitude();
+				String coordinates[] = { latitude, longitude };
+				double lat = Double.parseDouble(coordinates[0]);
+				double lng = Double.parseDouble(coordinates[1]);
+				GeoPoint point = new GeoPoint((int) (lat * 1E6),
+						(int) (lng * 1E6));
+				DrawPath(p, point, Color.GREEN, mapView);
+
+			}
 		} catch (Exception e) {
 			Toast.makeText(getBaseContext(),
 					"No current locaiton information available!",
@@ -253,10 +286,10 @@ public class LBAMap extends MapActivity implements LocationListener {
 			if (event.getAction() == 1) {
 				GeoPoint p = mapView.getProjection().fromPixels(
 						(int) event.getX(), (int) event.getY());
-				// Toast.makeText(
-				// getBaseContext(),
-				// p.getLatitudeE6() / 1E6 + "," + p.getLongitudeE6()
-				// / 1E6, Toast.LENGTH_SHORT).show();
+				Toast.makeText(
+						getBaseContext(),
+						p.getLatitudeE6() / 1E6 + "," + p.getLongitudeE6()
+								/ 1E6, Toast.LENGTH_SHORT).show();
 			}
 
 			if (advertisements.size() == 0) {
@@ -271,18 +304,56 @@ public class LBAMap extends MapActivity implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
+
+		List<Overlay> listOfOverlays = mapView.getOverlays();
+		listOfOverlays.clear();
+
 		System.out.println(Log.VERBOSE + "LOCATION CHANGED");
 		if (location != null) {
 			double lat = location.getLatitude();
 			double lng = location.getLongitude();
 			p = new GeoPoint((int) (lat * 1000000), (int) (lng * 1000000));
+			GeoPoint currentLocation = p;
 			mc.animateTo(p);
+
+			advertisements = getAdsByMerchantDistance(adName,
+					String.valueOf(lat), String.valueOf(lng));
+			points.removeAll(advertisements);
+			points = new ArrayList<GeoPoint>();
+
+			for (int i = 0; i < advertisements.size(); i++) {
+
+				System.out.println("AD:" + advertisements.get(i).getAdID());
+				latitude = advertisements.get(i).getLatitude();
+				longitude = advertisements.get(i).getLongitude();
+				// String coordinates[] = { latitude + 50, longitude + 30 };
+				String coordinates[] = { latitude, longitude };
+
+				lat = Double.parseDouble(coordinates[0]);
+				lng = Double.parseDouble(coordinates[1]);
+				GeoPoint point = new GeoPoint((int) (lat * 1E6),
+						(int) (lng * 1E6));
+
+				points.add(point);
+				mc.animateTo(point);
+
+				DrawPath(currentLocation, point, Color.GREEN, mapView);
+
+				// mc.setZoom(13);
+			}
+			if (advertisements.size() == 0) {
+				Toast.makeText(getBaseContext(),
+						"No ads Available for your search distance",
+						Toast.LENGTH_SHORT).show();
+
+			}
+
 			// ---Add a location marker---
 			MapOverlay mapOverlay = new MapOverlay();
-			List<Overlay> listOfOverlays = mapView.getOverlays();
+			// List<Overlay> listOfOverlays = mapView.getOverlays();
 			// listOfOverlays.clear();
 			listOfOverlays.add(mapOverlay);
-			// mapView.invalidate();
+			mapView.invalidate();
 		}
 	}
 
@@ -361,7 +432,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 					R.drawable.blackblank);
 
 			canvas.drawBitmap(bmp, myScreenCoords.x, myScreenCoords.y, paint);
-			canvas.drawText("I am here...", myScreenCoords.x, myScreenCoords.y,
+			canvas.drawText("My Location", myScreenCoords.x, myScreenCoords.y,
 					paint);
 			return true;
 		}
