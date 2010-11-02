@@ -6,7 +6,7 @@
 			android:layout_gravity="center_vertical|center_horizontal|center"
 			android:textColor="#ffffff" />
 		<EditText android:id="@+id/adName" android:width="200px"
-			style="?button" />
+			style="?button" android:singleLine="true" />
 	</TableRow>
 	<Button android:id="@+id/map_button" android:text="Search Map"
 		style="?button" android:layout_gravity="center" />

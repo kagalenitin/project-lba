@@ -6,14 +6,14 @@
 			android:layout_gravity="center_vertical|center_horizontal|center"
 			android:textColor="#ffffff" />
 		<EditText android:id="@+id/username" android:width="240px"
-			style="?button" />
+			style="?button" android:singleLine="true" />
 		/>
 	</TableRow>
 	<TableRow>
 		<TextView android:id="@+id/textPasswd" android:text="Password:"
 			android:textColor="#ffffff" android:layout_gravity="center_vertical|center_horizontal|center" />
 		<EditText android:id="@+id/password" android:password="true"
-			style="?button" />
+			android:singleLine="true" style="?button" />
 	</TableRow>
 	<Button android:id="@+id/signin_button" android:text="Sign In"
 		android:layout_width="fill_parent" style="?button" />
