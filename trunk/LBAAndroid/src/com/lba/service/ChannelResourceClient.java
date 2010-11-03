@@ -23,6 +23,8 @@ public class ChannelResourceClient {
 
 	public ClientResource channelsResource;
 	public ClientResource channelResource;
+	public ClientResource channelsByNameResource;
+
 	String ipaddress = "192.168.1.72:8182";
 	String serviceAddress = "http://" + ipaddress + "/LBAResource/channels";
 
@@ -95,6 +97,18 @@ public class ChannelResourceClient {
 		return null;
 	}
 
+	
+	public DomRepresentation retrieveChannelByName(String channelName){
+		channelsByNameResource = new ClientResource(serviceAddress + "/channelname/"+ channelName);
+		try {
+			return get(channelsByNameResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public static void main(String args[]) {
 
 		ChannelResourceClient client = new ChannelResourceClient();
@@ -103,7 +117,7 @@ public class ChannelResourceClient {
 			ChannelBean channel = new ChannelBean();
 			channel.setChannelname("TestProd1" + i);
 			channel.setChanneldescription("testDesc");
-			client.createChannel(channel);
+	//		client.createChannel(channel);
 
 		}
 

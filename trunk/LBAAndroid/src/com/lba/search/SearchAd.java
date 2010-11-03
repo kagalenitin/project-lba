@@ -1,4 +1,4 @@
-package com.lba.mapService;
+package com.lba.search;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +27,6 @@ import com.lba.R;
 import com.lba.advertisement.AdDetail;
 import com.lba.beans.AdMerchantAdBean;
 import com.lba.home.WelcomeUser;
-import com.lba.search.SearchProduct;
 import com.lba.service.AdvertisementResourceClient;
 
 /**
@@ -35,9 +34,10 @@ import com.lba.service.AdvertisementResourceClient;
  * 
  */
 
-public class LBALocation extends Activity {
+public class SearchAd extends Activity {
 
 	private EditText elAdname;
+	// private EditText etLongitude;
 	private Button btnMap;
 	String uname;
 	AdAdapter adapter;
@@ -70,8 +70,8 @@ public class LBALocation extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
-		setContentView(R.layout.mapmain);
-		this.setTitle("Location Based Advertisement - Map");
+		setContentView(R.layout.searchad);
+		this.setTitle("Location Based Advertisement - Search Ad");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
 		// Get the EditText and Button References
@@ -92,13 +92,10 @@ public class LBALocation extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(LBALocation.this, LBAMap.class);
-				Bundle b = new Bundle();
-				b.putString("uname", uname);
-				b.putString("adName", elAdname.getText().toString());
-				// b.putString("longitude", etLongitude.getText().toString());
-				intent.putExtras(b);
-				startActivity(intent);
+				String adName = elAdname.getText().toString();
+				advertisements = getAdsByMerchant(adName);
+				adapter = new AdAdapter(SearchAd.this, advertisements);
+				adListView.setAdapter(adapter);
 			}
 		});
 
@@ -108,7 +105,7 @@ public class LBALocation extends Activity {
 
 				String adName = elAdname.getText().toString();
 				advertisements = getAdsByMerchant(adName);
-				adapter = new AdAdapter(LBALocation.this, advertisements);
+				adapter = new AdAdapter(SearchAd.this, advertisements);
 				adListView.setAdapter(adapter);
 			}
 
@@ -129,7 +126,7 @@ public class LBALocation extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// Load Ad
-				Intent intent = new Intent(LBALocation.this, AdDetail.class);
+				Intent intent = new Intent(SearchAd.this, AdDetail.class);
 				Bundle b = new Bundle();
 				String adLocation = "";
 				b.putString("uname", uname);
@@ -153,7 +150,7 @@ public class LBALocation extends Activity {
 		switch (item.getItemId()) {
 		case R.id.home:
 			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
-			Intent intent = new Intent(LBALocation.this, WelcomeUser.class);
+			Intent intent = new Intent(SearchAd.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);
@@ -161,7 +158,7 @@ public class LBALocation extends Activity {
 			break;
 		case R.id.search:
 			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
-			intent = new Intent(LBALocation.this, SearchProduct.class);
+			intent = new Intent(SearchAd.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);

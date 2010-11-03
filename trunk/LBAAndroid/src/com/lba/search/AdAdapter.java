@@ -11,21 +11,21 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.lba.R;
-import com.lba.beans.ProductBean;
+import com.lba.beans.AdMerchantAdBean;
 
 /**
  * @author payal
  * 
  */
-public class ProductAdapter extends BaseAdapter {
+public class AdAdapter extends BaseAdapter {
 
 	private Activity activity;
-	private ArrayList<ProductBean> data;
+	private ArrayList<AdMerchantAdBean> data;
 	private static LayoutInflater inflater = null;
 
-	public ProductAdapter(Activity a, ArrayList<ProductBean> products) {
+	public AdAdapter(Activity a, ArrayList<AdMerchantAdBean> advertisements) {
 		activity = a;
-		data = products;
+		data = advertisements;
 		inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -52,7 +52,7 @@ public class ProductAdapter extends BaseAdapter {
 		View vi = convertView;
 		ViewHolder holder;
 		if (convertView == null) {
-			vi = inflater.inflate(R.layout.searchproductadapter, null);
+			vi = inflater.inflate(R.layout.searchadadapter, null);
 			holder = new ViewHolder();
 			holder.text = (TextView) vi.findViewById(R.id.prodName);
 			holder.desc = (TextView) vi.findViewById(R.id.prodDesc);
@@ -61,12 +61,12 @@ public class ProductAdapter extends BaseAdapter {
 			holder = (ViewHolder) vi.getTag();
 
 		if (getCount() == 0) {
-			holder.text.setText("Search Product " + position);
+			holder.text.setText("Ad " + position);
 			holder.desc.setText("Service Not Available");
 		} else {
 
-			holder.text.setText(data.get(position).getProductName());
-			holder.desc.setText(data.get(position).getProductdescription());
+			holder.text.setText(data.get(position).getAdName());
+			holder.desc.setText(data.get(position).getAdDesc());
 		}
 		return vi;
 	}

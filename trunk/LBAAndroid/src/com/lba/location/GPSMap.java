@@ -72,7 +72,8 @@ public class GPSMap extends MapActivity implements LocationListener {
 		gMapView = (MapView) findViewById(R.id.myGMap);
 		p = new GeoPoint((int) (latitude * 1000000),
 				(int) (longitude * 1000000));
-		gMapView.setSatellite(true);
+		
+		gMapView.setSatellite(false);
 		mc = gMapView.getController();
 		mc.setCenter(p);
 		mc.setZoom(14);
@@ -175,7 +176,7 @@ public class GPSMap extends MapActivity implements LocationListener {
 					R.drawable.blackblank);
 
 			canvas.drawBitmap(bmp, myScreenCoords.x, myScreenCoords.y, paint);
-			canvas.drawText("I am here...", myScreenCoords.x, myScreenCoords.y,
+			canvas.drawText("My Location", myScreenCoords.x, myScreenCoords.y,
 					paint);
 			return true;
 		}

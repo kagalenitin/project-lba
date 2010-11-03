@@ -82,7 +82,7 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
-		setContentView(R.layout.map);
+		setContentView(R.layout.mapad);
 		this.setTitle("Location Based Advertisement - Map");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 

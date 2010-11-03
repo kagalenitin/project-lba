@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/icon" android:icon="@drawable/largetiles48"
+	<item android:id="@+id/icon" android:icon="@drawable/searchiconsmall48"
 		android:title="Channels" />
-	<item android:id="@+id/text" android:icon="@drawable/topview48"
+	<item android:id="@+id/text" android:icon="@drawable/searchiconsmall48"
 		android:title="Products" />
 	<item android:id="@+id/icontext" android:title="Advertisements"
-		android:icon="@drawable/button_add_to_cart" />
+		android:icon="@drawable/searchiconsmall48" />
 </menu>

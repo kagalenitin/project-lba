@@ -5,13 +5,6 @@
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<EditText android:id="@+id/txtlocateAd" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:text="" />
-
-	<Button android:id="@+id/map_button" android:text="Search"
-		android:layout_width="fill_parent" style="?button"
-		android:layout_gravity="center" android:layout_height="wrap_content" />
-
 	<com.google.android.maps.MapView
 		android:id="@+id/mapView" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:enabled="true"
