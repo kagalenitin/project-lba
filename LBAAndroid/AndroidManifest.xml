@@ -32,6 +32,9 @@
 		<activity android:name=".subscription.ChannelSubscription"></activity>
 		<activity android:name=".subscription.ViewChannelSubscription"></activity>
 		<activity android:name=".mapService.LBAMapAdId"></activity>
+		<activity android:name=".search.SearchAd"></activity>
+		<activity android:name=".mapService.LocateAd"></activity>
+		<activity android:name=".search.SearchChannel"></activity>
 	</application>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

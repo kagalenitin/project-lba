@@ -18,8 +18,10 @@ import com.lba.R;
 import com.lba.advertisement.Advertisement;
 import com.lba.channel.Channelv2;
 import com.lba.location.GPSMap;
-import com.lba.mapService.LBALocation;
+import com.lba.mapService.LocateAd;
 import com.lba.product.Product;
+import com.lba.search.SearchAd;
+import com.lba.search.SearchChannel;
 import com.lba.search.SearchProduct;
 import com.lba.subscription.ChannelSubscription;
 import com.lba.subscription.ViewChannelSubscription;
@@ -74,7 +76,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 				} else if (position == 1) {
 					Toast.makeText(WelcomeUser.this, "LocateAd",
 							Toast.LENGTH_SHORT).show();
-					intent = new Intent(WelcomeUser.this, LBALocation.class);
+					intent = new Intent(WelcomeUser.this, LocateAd.class);
 					b.putString("uname", uname);
 				} else if (position == 3) {
 					Toast.makeText(WelcomeUser.this, "Product",
@@ -133,7 +135,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 		switch (item.getItemId()) {
 		case R.id.icon:
 			Toast.makeText(this, "Channels", Toast.LENGTH_LONG).show();
-			Intent intent = new Intent(WelcomeUser.this, Channelv2.class);
+			Intent intent = new Intent(WelcomeUser.this, SearchChannel.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);
@@ -141,7 +143,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			break;
 		case R.id.text:
 			Toast.makeText(this, "Products", Toast.LENGTH_LONG).show();
-			intent = new Intent(WelcomeUser.this, Product.class);
+			intent = new Intent(WelcomeUser.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);
 			b.putString("channelId", "");
@@ -150,7 +152,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			break;
 		case R.id.icontext:
 			Toast.makeText(this, "Advertisements", Toast.LENGTH_LONG).show();
-			intent = new Intent(WelcomeUser.this, Advertisement.class);
+			intent = new Intent(WelcomeUser.this, SearchAd.class);
 			b = new Bundle();
 			b.putString("uname", uname);
 			b.putString("productId", "");

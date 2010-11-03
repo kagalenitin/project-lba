@@ -28,59 +28,61 @@ import android.widget.Toast;
 
 import com.lba.R;
 import com.lba.advertisement.Advertisement;
-import com.lba.beans.ProductBean;
+import com.lba.beans.ChannelBean;
 import com.lba.home.WelcomeUser;
 import com.lba.mapService.LBALocation;
-import com.lba.service.ProductResourceClient;
+import com.lba.service.ChannelResourceClient;
 
 /**
  * @author payal
  * 
  */
-public class SearchProduct extends Activity { // implements OnClickListener{
+public class SearchChannel extends Activity { // implements OnClickListener{
 
-	private ListView productListView;
+	private ListView channelListView;
 	private Button btnSearch;
-	private EditText elProductName;
-	static ArrayList<ProductBean> products = new ArrayList<ProductBean>();
-	String productName;
+	private EditText elChannelName;
+	String channelName;
 	int textlength = 0;
 	String uname;
-	ProductAdapter adapter;
+	ChannelAdapter adapter;
+	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
 
-	public static ArrayList<ProductBean> getProducts() {
 
-		ProductResourceClient itemConnect = new ProductResourceClient();
+	public static ArrayList<ChannelBean> getChannels() {
+
+		ChannelResourceClient channelResource = new ChannelResourceClient();
 		try {
-			DomRepresentation representation = itemConnect.retrieveProducts();
+			DomRepresentation representation = channelResource
+					.retrieveChannels();
 			if (representation != null) {
-				products = itemConnect.getProductsFromXml(representation);
+				channels = channelResource.getChannelsFromXml(representation);
 			} else {
-				products = new ArrayList<ProductBean>();
+				channels = new ArrayList<ChannelBean>();
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return products;
+		return channels;
 	}
+	
+	public static ArrayList<ChannelBean> getChannelsByName(String channelName) {
 
-	public static ArrayList<ProductBean> getProductsByName(String productId) {
-
-		ProductResourceClient itemConnect = new ProductResourceClient();
+		ChannelResourceClient itemConnect = new ChannelResourceClient();
 		try {
 			DomRepresentation representation = itemConnect
-					.retrieveProductbyName(productId);
+					.retrieveChannelByName(channelName);
 			if (representation != null) {
-				products = itemConnect.getProductsFromXml(representation);
+				channels = itemConnect.getChannelsFromXml(representation);
 			} else {
-				products = new ArrayList<ProductBean>();
+				channels = new ArrayList<ChannelBean>();
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return products;
+		return channels;
 	}
 
 	/** Called when the activity is first created. */
@@ -88,29 +90,29 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
-		setContentView(R.layout.searchproduct);
+		setContentView(R.layout.searchchannel);
 		this.setTitle("Location Based Advertisement - Search Item");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
-		elProductName = (EditText) findViewById(R.id.productName);
-		productListView = (ListView) findViewById(R.id.ListView01);
+		elChannelName = (EditText) findViewById(R.id.productName);
+		channelListView = (ListView) findViewById(R.id.ListView01);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
 			uname = b.getString("uname");
-			productName = b.getString("productName");
-			if (productName != null) {
-				elProductName.setText(productName);
-				if (!(productName.equalsIgnoreCase(""))) {
-					products = getProductsByName(productName);
+			channelName = b.getString("channelName");
+			if (channelName != null) {
+				elChannelName.setText(channelName);
+				if (!(channelName.equalsIgnoreCase(""))) {
+					channels = getChannelsByName(channelName);
 					// products = getProducts();
 				} else {
-					products = getProducts();
+					channels = getChannels();
 				}
 			}
 		}
-		adapter = new ProductAdapter(this, products);
-		productListView.setAdapter(adapter);
+		adapter = new ChannelAdapter(this, channels);
+		channelListView.setAdapter(adapter);
 		btnSearch = (Button) findViewById(R.id.searchbutton);
 
 		// Set Click Listener
@@ -119,14 +121,14 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 			@Override
 			public void onClick(View v) {
 
-				String prodName = elProductName.getText().toString();
-				products = getProductsByName(prodName);
-				adapter = new ProductAdapter(SearchProduct.this, products);
-				productListView.setAdapter(adapter);
+				String prodName = elChannelName.getText().toString();
+				channels = getChannelsByName(prodName);
+				adapter = new ChannelAdapter(SearchChannel.this, channels);
+				channelListView.setAdapter(adapter);
 			}
 		});
 
-		elProductName.addTextChangedListener(new TextWatcher() {
+		elChannelName.addTextChangedListener(new TextWatcher() {
 
 			public void afterTextChanged(Editable s) {
 			}
@@ -138,26 +140,26 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 
-				String prodName = elProductName.getText().toString();
-				products = getProductsByName(prodName);
-				adapter = new ProductAdapter(SearchProduct.this, products);
-				productListView.setAdapter(adapter);
+				String prodName = elChannelName.getText().toString();
+				channels = getChannelsByName(prodName);
+				adapter = new ChannelAdapter(SearchChannel.this, channels);
+				channelListView.setAdapter(adapter);
 			}
 		});
 
 		// Set Click Listener
-		productListView.setClickable(true);
-		productListView.setOnItemClickListener(new OnItemClickListener() {
+		channelListView.setClickable(true);
+		channelListView.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// Load Ad
-				Intent intent = new Intent(SearchProduct.this,
+				Intent intent = new Intent(SearchChannel.this,
 						Advertisement.class);
 				Bundle b = new Bundle();
 				b.putString("uname", uname);
-				b.putString("productId", String.valueOf(((ProductBean) products
-						.get(position)).getCount()));
+				b.putString("channelId", String.valueOf(((ChannelBean) channels
+						.get(position)).getChannelid()));
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -176,7 +178,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 		switch (item.getItemId()) {
 		case R.id.home:
 			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
-			Intent intent = new Intent(SearchProduct.this, WelcomeUser.class);
+			Intent intent = new Intent(SearchChannel.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);
@@ -184,7 +186,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 			break;
 		case R.id.search:
 			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
-			intent = new Intent(SearchProduct.this, LBALocation.class);
+			intent = new Intent(SearchChannel.this, LBALocation.class);
 			b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);
