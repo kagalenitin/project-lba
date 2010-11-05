@@ -95,9 +95,10 @@ public class Product extends Activity { // implements OnClickListener{
 			String channelId = b.getString("channelId");
 			if (channelId != null) {
 				if (!(channelId.equalsIgnoreCase(""))) {
+					String channelName = b.getString("channelName");
+					lblChannelCode.setText(channelName);
 					products = getProductsByChannel(channelId);
 				} else {
-					// lblChannelCode.setText("Product List:");
 					products = getProducts();
 				}
 			}
@@ -117,6 +118,9 @@ public class Product extends Activity { // implements OnClickListener{
 				b.putString("uname", uname);
 				b.putString("productId", String.valueOf(((ProductBean) products
 						.get(position)).getCount()));
+				b.putString("productName", String
+						.valueOf(((ProductBean) products.get(position))
+								.getProductName()));
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -134,7 +138,7 @@ public class Product extends Activity { // implements OnClickListener{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(Product.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -142,7 +146,7 @@ public class Product extends Activity { // implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(Product.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);

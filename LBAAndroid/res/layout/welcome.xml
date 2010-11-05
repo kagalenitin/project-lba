@@ -5,7 +5,7 @@
 
 	<TextView android:id="@+id/user" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:layout_x="0px"
-		android:layout_y="-1px" android:textSize="20sp" android:textStyle="bold"
+		android:layout_y="-1px" android:textSize="18sp" android:textStyle="bold"
 		android:textColor="#ffffff">
 	</TextView>
 
@@ -15,7 +15,8 @@
 
 	<TextView android:id="@+id/icon_text" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:gravity="center"
-		android:textColorHighlight="#656565" android:textColor="#ffffff">
+		android:textSize="12px" android:textColorHighlight="#656565"
+		android:textColor="#ffffff" android:textStyle="bold" android:typeface="monospace">
 	</TextView>
 
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
@@ -25,7 +26,7 @@
 		android:id="@+id/gridview" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:padding="2dp"
 		android:verticalSpacing="0dp" android:horizontalSpacing="2dp"
-		android:numColumns="3" android:columnWidth="90dp"
+		android:numColumns="3" android:columnWidth="92dp"
 		android:smoothScrollbar="true" android:stretchMode="none"
 		android:gravity="center_horizontal">
 	</GridView>

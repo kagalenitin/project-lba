@@ -4,72 +4,82 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<Button android:id="@+id/btnregister" android:layout_width="100px"
 		android:layout_height="39px" android:textSize="14sp" android:text="Sign up"
-		android:layout_x="58px" android:layout_y="385px" style="?button">
+		android:layout_x="58px" android:layout_y="385px" style="?button"
+		android:typeface="monospace">
 	</Button>
 	<Button android:id="@+id/btnCancel" android:layout_width="94px"
 		android:layout_height="41px" android:text="Cancel" android:textSize="14sp"
-		android:layout_x="176px" android:layout_y="385px" style="?button">
+		android:layout_x="176px" android:layout_y="385px" style="?button"
+		android:typeface="monospace">
 	</Button>
 	<EditText android:id="@+id/txtfirstname" android:layout_width="300px"
 		android:layout_height="36px" android:textSize="14sp" android:layout_x="15px"
 		android:layout_y="32px" android:inputType="textPersonName" style="?button"
-		android:singleLine="true">
+		android:singleLine="true" android:typeface="monospace">
 	</EditText>
 	<TextView android:id="@+id/widget35" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="First Name"
-		android:layout_x="13px" android:layout_y="13px" android:textColor="#ffffff">
+		android:layout_x="13px" android:layout_y="13px" android:textColor="#ffffff"
+		android:typeface="monospace">
 	</TextView>
 	<TextView android:id="@+id/widget36" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="Last Name"
-		android:layout_x="13px" android:layout_y="63px" android:textColor="#ffffff">
+		android:layout_x="13px" android:layout_y="63px" android:textColor="#ffffff"
+		android:typeface="monospace">
 	</TextView>
 	<EditText android:id="@+id/txtlastname" android:layout_width="300px"
 		android:layout_height="36px" android:textSize="14sp" android:layout_x="12px"
 		android:layout_y="82px" android:inputType="textPersonName" style="?button"
-		android:singleLine="true">
+		android:singleLine="true" android:typeface="monospace">
 	</EditText>
 	<TextView android:id="@+id/widget38" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="User Name"
-		android:layout_x="13px" android:layout_y="113px" android:textColor="#ffffff">
+		android:layout_x="13px" android:layout_y="113px" android:textColor="#ffffff"
+		android:typeface="monospace">
 	</TextView>
 	<EditText android:id="@+id/txtusername" android:layout_width="300px"
 		android:layout_height="36px" android:textSize="14sp" android:layout_x="12px"
-		android:layout_y="133px" style="?button" android:singleLine="true">
+		android:layout_y="133px" style="?button" android:singleLine="true"
+		android:typeface="monospace">
 	</EditText>
 	<TextView android:id="@+id/widget40" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="Password"
-		android:textColor="#ffffff" android:layout_x="13px" android:layout_y="166px">
+		android:textColor="#ffffff" android:layout_x="13px" android:layout_y="166px"
+		android:typeface="monospace">
 	</TextView>
 	<EditText android:id="@+id/txtpassword" android:layout_width="300px"
 		android:layout_height="36px" android:textSize="14sp" android:layout_x="13px"
 		android:layout_y="186px" android:inputType="textPassword" style="?button"
-		android:singleLine="true">
+		android:singleLine="true" android:typeface="monospace">
 	</EditText>
 	<TextView android:id="@+id/widget42" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="Email ID"
-		android:layout_x="13px" android:layout_y="221px" android:textColor="#ffffff">
+		android:layout_x="13px" android:layout_y="221px" android:textColor="#ffffff"
+		android:typeface="monospace">
 	</TextView>
 	<EditText android:id="@+id/txtemail" android:layout_width="300px"
 		android:layout_height="36px" android:textSize="14sp" android:layout_x="14px"
 		android:layout_y="241px" android:inputType="textEmailAddress" style="?button"
-		android:singleLine="true">
+		android:singleLine="true" android:typeface="monospace">
 	</EditText>
 	<TextView android:id="@+id/widget44" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="Address"
-		android:layout_x="13px" android:layout_y="324px" android:textColor="#ffffff">
+		android:layout_x="13px" android:layout_y="324px" android:textColor="#ffffff"
+		android:typeface="monospace">
 	</TextView>
 	<EditText android:id="@+id/txtaddress" android:layout_width="300px"
 		android:layout_height="36px" android:textSize="14sp" android:layout_x="15px"
 		android:layout_y="343px" android:inputType="textPostalAddress" style="?button"
-		android:singleLine="true">
+		android:singleLine="true" android:typeface="monospace">
 	</EditText>
 	<EditText android:id="@+id/txtphone" android:layout_width="300px"
 		android:layout_height="36px" android:textSize="14sp" android:layout_x="15px"
 		android:layout_y="291px" android:inputType="phone" style="?button"
-		android:singleLine="true">
+		android:singleLine="true" android:typeface="monospace">
 	</EditText>
 	<TextView android:id="@+id/widget105" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="Phone"
-		android:layout_x="13px" android:layout_y="272px" android:textColor="#ffffff">
+		android:layout_x="13px" android:layout_y="272px" android:textColor="#ffffff"
+		android:typeface="monospace">
 	</TextView>
 </AbsoluteLayout>

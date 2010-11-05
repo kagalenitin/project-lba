@@ -4,12 +4,12 @@
 	<TableRow>
 		<TextView android:id="@+id/txtAdName" android:text="Search Ad:"
 			android:layout_gravity="center_vertical|center_horizontal|center"
-			android:textColor="#ffffff" />
+			android:textColor="#ffffff" android:textStyle="bold|italic" />
 		<EditText android:id="@+id/adName" android:width="200px"
 			style="?button" android:singleLine="true" />
 	</TableRow>
 	<Button android:id="@+id/map_button" android:text="Search"
-		style="?button" android:layout_gravity="center" />
+		style="?button" android:layout_gravity="center" android:typeface="monospace" />
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
 

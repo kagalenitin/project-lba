@@ -27,10 +27,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lba.R;
-import com.lba.advertisement.Advertisement;
 import com.lba.beans.ChannelBean;
 import com.lba.home.WelcomeUser;
 import com.lba.mapService.LBALocation;
+import com.lba.product.Product;
 import com.lba.service.ChannelResourceClient;
 
 /**
@@ -47,7 +47,6 @@ public class SearchChannel extends Activity { // implements OnClickListener{
 	String uname;
 	ChannelAdapter adapter;
 	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
-
 
 	public static ArrayList<ChannelBean> getChannels() {
 
@@ -66,7 +65,7 @@ public class SearchChannel extends Activity { // implements OnClickListener{
 		}
 		return channels;
 	}
-	
+
 	public static ArrayList<ChannelBean> getChannelsByName(String channelName) {
 
 		ChannelResourceClient itemConnect = new ChannelResourceClient();
@@ -154,12 +153,13 @@ public class SearchChannel extends Activity { // implements OnClickListener{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// Load Ad
-				Intent intent = new Intent(SearchChannel.this,
-						Advertisement.class);
+				Intent intent = new Intent(SearchChannel.this, Product.class);
 				Bundle b = new Bundle();
 				b.putString("uname", uname);
 				b.putString("channelId", String.valueOf(((ChannelBean) channels
 						.get(position)).getChannelid()));
+				b.putString("channelName", ((ChannelBean) channels
+						.get(position)).getChannelname().toString());
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -177,7 +177,7 @@ public class SearchChannel extends Activity { // implements OnClickListener{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(SearchChannel.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -185,7 +185,7 @@ public class SearchChannel extends Activity { // implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(SearchChannel.this, LBALocation.class);
 			b = new Bundle();
 			b.putString("uname", uname);

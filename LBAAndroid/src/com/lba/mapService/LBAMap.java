@@ -252,18 +252,18 @@ public class LBAMap extends MapActivity implements LocationListener {
 			paint.setARGB(255, 140, 23, 23);
 			// paint.setStyle(Paint.Style.STROKE);
 			paint.setTextSize(15);
-			
+
 			// ---add the marker---
-			try{
+			try {
 				mapView.getProjection().toPixels(p, screenPts);
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(),
 						R.drawable.redblank);
 
 				canvas.drawBitmap(bmp, screenPts.x - 6, screenPts.y - 6, null);
-			} catch(Exception e){
-//				Toast.makeText(getBaseContext(),
-//						"No location information available", Toast.LENGTH_SHORT)
-//						.show();
+			} catch (Exception e) {
+				// Toast.makeText(getBaseContext(),
+				// "No location information available", Toast.LENGTH_SHORT)
+				// .show();
 			}
 			return true;
 		}
@@ -380,7 +380,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(LBAMap.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -388,7 +388,7 @@ public class LBAMap extends MapActivity implements LocationListener {
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(LBAMap.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);

@@ -72,7 +72,7 @@ public class GPSMap extends MapActivity implements LocationListener {
 		gMapView = (MapView) findViewById(R.id.myGMap);
 		p = new GeoPoint((int) (latitude * 1000000),
 				(int) (longitude * 1000000));
-		
+
 		gMapView.setSatellite(false);
 		mc = gMapView.getController();
 		mc.setCenter(p);
@@ -193,7 +193,7 @@ public class GPSMap extends MapActivity implements LocationListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(GPSMap.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -201,7 +201,7 @@ public class GPSMap extends MapActivity implements LocationListener {
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(GPSMap.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);

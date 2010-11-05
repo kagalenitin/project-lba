@@ -160,7 +160,7 @@ public class ViewChannelSubscription extends Activity { // implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(ViewChannelSubscription.this,
 					WelcomeUser.class);
 			Bundle b = new Bundle();
@@ -169,7 +169,7 @@ public class ViewChannelSubscription extends Activity { // implements
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(ViewChannelSubscription.this,
 					SearchProduct.class);
 			b = new Bundle();

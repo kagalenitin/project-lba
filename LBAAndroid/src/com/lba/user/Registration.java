@@ -84,19 +84,19 @@ public class Registration extends Activity {
 						mobileUserClient.createMobileUser(mobileUser);
 
 						Toast.makeText(Registration.this, R.string.regpositive,
-								Toast.LENGTH_LONG).show();
+								Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(Registration.this,
 								LBALogin.class);
 						startActivity(intent);
 
 					} else {
 						Toast.makeText(Registration.this, R.string.regnegative,
-								Toast.LENGTH_LONG).show();
+								Toast.LENGTH_SHORT).show();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					Toast.makeText(Registration.this, R.string.regnegative,
-							Toast.LENGTH_LONG).show();
+							Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
