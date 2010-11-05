@@ -88,7 +88,7 @@ public class ViewChannelSubscription extends Activity { // implements
 
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
-		setContentView(R.layout.channelsubscription);
+		setContentView(R.layout.mychannelsubscription);
 		this.setTitle("Location Based Advertisement - Channel");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
