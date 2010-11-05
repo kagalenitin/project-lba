@@ -26,7 +26,7 @@ public class ProductResourceClient {
 	public ClientResource productByChannelResource;
 	public ClientResource productByNameResource;
 
-	String ipaddress = "192.168.1.72:8182";
+	private String ipaddress = new ServiceUtil().getAddress();
 
 	String serviceAddress = "http://" + ipaddress + "/LBAResource/products";
 

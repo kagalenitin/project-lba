@@ -4,7 +4,7 @@
 	android:layout_height="fill_parent">
 
 	<TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Channel Subscription"
+		android:layout_height="wrap_content" android:text="My Channel Subscription"
 		android:textStyle="bold|italic" android:layout_gravity="center_horizontal"
 		android:textColor="#ffffff">
 	</TextView>

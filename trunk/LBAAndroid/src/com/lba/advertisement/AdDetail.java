@@ -39,10 +39,10 @@ public class AdDetail extends Activity {
 	private TextView lblAdId;
 	String uname;
 	String adId;
-	private String adPath = "http://192.168.1.72:8080";
-	static AdvertisementBean advertisement = null;
+	private String adPath = "";
+	private AdvertisementBean advertisement = null;
 
-	public static AdvertisementBean getAdsByID(String adId) {
+	public AdvertisementBean getAdsByID(String adId) {
 
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
 		try {
@@ -65,6 +65,10 @@ public class AdDetail extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
+		System.out.println("tomcatServer "
+				+ this.getResources().getString(R.string.tomcatServer));
+		this.adPath = this.getResources().getString(R.string.tomcatServer);
+
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.adimage);
@@ -86,12 +90,12 @@ public class AdDetail extends Activity {
 				advertisement = getAdsByID(adId);
 				adImagePath = adPath + advertisement.getFileLocation();
 				if (advertisement != null) {
-				//	drawable = LoadImageFromWebOperations(adImagePath);
+					// drawable = LoadImageFromWebOperations(adImagePath);
 				}
 			} else {
 				Toast.makeText(this, "Tap on the ad to get location info!",
 						Toast.LENGTH_LONG).show();
-				//drawable = LoadImageFromWebOperations(adImagePath);
+				// drawable = LoadImageFromWebOperations(adImagePath);
 			}
 			Drawable drawable = LoadImageFromWebOperations(adImagePath);
 			if (imgView != null) {

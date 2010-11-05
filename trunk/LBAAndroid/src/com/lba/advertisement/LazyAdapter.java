@@ -23,8 +23,8 @@ public class LazyAdapter extends BaseAdapter {
 	private Activity activity;
 	private static LayoutInflater inflater = null;
 	public ImageLoader imageLoader;
-	static ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
-	private String adPath = "http://192.168.1.72:8080";
+	private ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
+	private String adPath = "";
 
 	String adLocation = "";
 
@@ -34,6 +34,9 @@ public class LazyAdapter extends BaseAdapter {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		imageLoader = new ImageLoader(activity.getApplicationContext());
 		this.advertisements = advertisements;
+		System.out.println("tomcatServer "
+				+ a.getResources().getString(R.string.tomcatServer));
+		this.adPath = a.getResources().getString(R.string.tomcatServer);
 	}
 
 	public int getCount() {

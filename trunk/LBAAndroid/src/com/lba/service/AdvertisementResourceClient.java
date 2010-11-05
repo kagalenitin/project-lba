@@ -31,9 +31,9 @@ public class AdvertisementResourceClient {
 	public ClientResource advertisementsByMerchantIdResource;
 	public ClientResource advertisementsByMerchantDistanceResource;
 
-	String ipaddress = "192.168.1.72:8182";
+	private String ipaddress = new ServiceUtil().getAddress();
 
-	String serviceAddress = "http://" + ipaddress
+	private String serviceAddress = "http://" + ipaddress
 			+ "/LBAResource/advertisements";
 
 	public AdvertisementResourceClient() {

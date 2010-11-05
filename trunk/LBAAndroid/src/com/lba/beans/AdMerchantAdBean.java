@@ -1,6 +1,10 @@
 package com.lba.beans;
 
-public class AdMerchantAdBean {
+import java.io.Serializable;
+
+public class AdMerchantAdBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	public String adID;
 	public String latitude;
 	public String longitude;
