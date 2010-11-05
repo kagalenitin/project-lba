@@ -32,7 +32,7 @@ import com.lba.service.ChannelResourceClient;
  * @author payal
  * 
  */
-public class Channelv2 extends Activity { // implements OnClickListener{
+public class Channelv2 extends Activity {
 
 	private ListView channelListView;
 	// private TextView lblChannelCode;

@@ -39,8 +39,8 @@ public class LBALogin extends Activity {
 			Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
 			// This example shows how to add a custom layout to an AlertDialog
 			LayoutInflater factory = LayoutInflater.from(this);
-			final View textEntryView = factory.inflate(
-					R.layout.login_dialog, null);
+			final View textEntryView = factory.inflate(R.layout.login_dialog,
+					null);
 			return new AlertDialog.Builder(LBALogin.this)
 					.setIcon(R.drawable.logo)
 					.setTitle(R.string.alert_dialog_text_entry)

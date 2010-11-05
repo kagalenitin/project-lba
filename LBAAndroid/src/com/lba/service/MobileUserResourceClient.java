@@ -22,7 +22,7 @@ public class MobileUserResourceClient {
 
 	public ClientResource mobleUsersResource;
 	public ClientResource mobilrUserResource;
-	String ipaddress = "192.168.1.72:8182";
+	private String ipaddress = new ServiceUtil().getAddress();
 	String serviceAddress = "http://" + ipaddress + "/LBAResource/mobileusers";
 
 	public MobileUserResourceClient() {

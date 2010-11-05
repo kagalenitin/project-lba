@@ -223,7 +223,6 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 		}
 	}
 
-
 	@Override
 	public void onProviderDisabled(String provider) {
 

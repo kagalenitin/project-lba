@@ -1,7 +1,13 @@
 package com.lba.beans;
 
-public class AdvertisementBean {
+import java.io.Serializable;
 
+public class AdvertisementBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String adId;
 
 	public String getAdId() {

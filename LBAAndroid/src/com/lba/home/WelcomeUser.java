@@ -151,7 +151,8 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.icontext:
-			Toast.makeText(this, "Search Advertisements", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Search Advertisements", Toast.LENGTH_SHORT)
+					.show();
 			intent = new Intent(WelcomeUser.this, SearchAd.class);
 			b = new Bundle();
 			b.putString("uname", uname);

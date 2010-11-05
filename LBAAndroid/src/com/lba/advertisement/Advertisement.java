@@ -40,14 +40,18 @@ public class Advertisement extends Activity {
 	LazyAdapter adapter;
 	String uname;
 
-	static ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
-	private String adPath = "http://192.168.1.72:8080";
+	ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
+	private String adPath = "";
 
 	String adLocation = "";
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
+		System.out.println("tomcatServer "
+				+ this.getResources().getString(R.string.tomcatServer));
+		adPath = this.getResources().getString(R.string.tomcatServer);
 
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
@@ -156,9 +160,10 @@ public class Advertisement extends Activity {
 		return true;
 	}
 
-	public static ArrayList<AdvertisementBean> getAdvertisements() {
+	public ArrayList<AdvertisementBean> getAdvertisements() {
 
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+
 		try {
 			DomRepresentation representation = advertisementResource
 					.retrieveAdvertisements();
@@ -175,9 +180,10 @@ public class Advertisement extends Activity {
 		return advertisements;
 	}
 
-	public static ArrayList<AdvertisementBean> getAdsByProduct(String productId) {
+	public ArrayList<AdvertisementBean> getAdsByProduct(String productId) {
 
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+
 		try {
 			DomRepresentation representation = advertisementResource
 					.retrieveAdvertisementsByProduct(productId);
