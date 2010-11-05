@@ -19,7 +19,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lba.R;
@@ -36,7 +35,7 @@ import com.lba.service.ChannelResourceClient;
 public class Channelv2 extends Activity { // implements OnClickListener{
 
 	private ListView channelListView;
-	private TextView lblChannelCode;
+	// private TextView lblChannelCode;
 	String uname;
 	ChannelAdapter adapter;
 	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
@@ -69,7 +68,7 @@ public class Channelv2 extends Activity { // implements OnClickListener{
 		this.setTitle("Location Based Advertisement - Channel");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
-		lblChannelCode = (TextView) findViewById(R.id.ChannelCode);
+		// lblChannelCode = (TextView) findViewById(R.id.ChannelCode);
 		channelListView = (ListView) findViewById(R.id.ListView01);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
@@ -97,6 +96,8 @@ public class Channelv2 extends Activity { // implements OnClickListener{
 				Bundle b = new Bundle();
 				b.putString("channelId", ((ChannelBean) channels.get(position))
 						.getChannelid().toString());
+				b.putString("channelName", ((ChannelBean) channels
+						.get(position)).getChannelname().toString());
 				b.putString("uname", uname);
 				intent.putExtras(b);
 				startActivity(intent);
@@ -115,7 +116,7 @@ public class Channelv2 extends Activity { // implements OnClickListener{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(Channelv2.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -123,7 +124,7 @@ public class Channelv2 extends Activity { // implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(Channelv2.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);

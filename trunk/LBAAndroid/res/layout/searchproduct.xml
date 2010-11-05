@@ -4,13 +4,13 @@
 	<TableRow>
 		<TextView android:id="@+id/txtAdName" android:text="Search Product:"
 			android:layout_gravity="center_vertical|center_horizontal|center"
-			android:textColor="#ffffff" />
+			android:textColor="#ffffff" android:textStyle="bold|italic" />
 		<EditText android:id="@+id/productName" android:width="200px"
 			style="?button" android:singleLine="true" />
 	</TableRow>
 	<Button android:id="@+id/searchbutton" android:text="Search"
 		android:layout_width="fill_parent" android:layout_gravity="center"
-		style="?button" />
+		style="?button" android:typeface="monospace" />
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
 

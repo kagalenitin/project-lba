@@ -80,16 +80,18 @@ public class AdDetail extends Activity {
 			uname = b.getString("uname");
 			String adImagePath = b.getString("AdId");
 			adId = b.getString("adId");
-			lblAdId.setText("Advertisement Details:");
+			lblAdId.setText("Advertisement Details");
 			ImageView imgView = (ImageView) findViewById(R.id.AdImage);
 			if (adImagePath.equals("") || adImagePath.equals(null)) {
 				advertisement = getAdsByID(adId);
 				adImagePath = adPath + advertisement.getFileLocation();
 				if (advertisement != null) {
-					Drawable drawable = LoadImageFromWebOperations(adImagePath);
+				//	drawable = LoadImageFromWebOperations(adImagePath);
 				}
 			} else {
-				Drawable drawable = LoadImageFromWebOperations(adImagePath);
+				Toast.makeText(this, "Tap on the ad to get location info!",
+						Toast.LENGTH_LONG).show();
+				//drawable = LoadImageFromWebOperations(adImagePath);
 			}
 			Drawable drawable = LoadImageFromWebOperations(adImagePath);
 			if (imgView != null) {
@@ -132,7 +134,7 @@ public class AdDetail extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(AdDetail.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -140,7 +142,7 @@ public class AdDetail extends Activity {
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(AdDetail.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);

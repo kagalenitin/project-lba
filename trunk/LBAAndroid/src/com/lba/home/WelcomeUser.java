@@ -134,7 +134,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.icon:
-			Toast.makeText(this, "Channels", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search Channels", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(WelcomeUser.this, SearchChannel.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -142,7 +142,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.text:
-			Toast.makeText(this, "Products", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search Products", Toast.LENGTH_SHORT).show();
 			intent = new Intent(WelcomeUser.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);
@@ -151,7 +151,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.icontext:
-			Toast.makeText(this, "Advertisements", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search Advertisements", Toast.LENGTH_SHORT).show();
 			intent = new Intent(WelcomeUser.this, SearchAd.class);
 			b = new Bundle();
 			b.putString("uname", uname);

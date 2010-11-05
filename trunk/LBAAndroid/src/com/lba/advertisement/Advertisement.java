@@ -65,12 +65,12 @@ public class Advertisement extends Activity {
 			uname = b.getString("uname");
 			if (productId != null) {
 				if (!(productId.equalsIgnoreCase(""))) {
-					lblAdCode.setText("List of Advertisements: " + productId);
+					String productName = b.getString("productName");
+					lblAdCode.setText(productName);
 					advertisements = getAdsByProduct(productId);
 					adapter = new LazyAdapter(this, advertisements);
 				} else {
 					advertisements = getAdvertisements();
-					lblAdCode.setText("List of Advertisements " + productId);
 					adapter = new LazyAdapter(this, advertisements);
 				}
 			}
@@ -137,7 +137,7 @@ public class Advertisement extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(Advertisement.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -145,7 +145,7 @@ public class Advertisement extends Activity {
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(Advertisement.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);

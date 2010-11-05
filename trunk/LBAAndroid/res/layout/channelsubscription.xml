@@ -4,11 +4,15 @@
 	android:layout_height="fill_parent">
 
 	<TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="List of Channels"></TextView>
+		android:layout_height="wrap_content" android:text="Channel Subscription"
+		android:textStyle="bold|italic" android:layout_gravity="center_horizontal"
+		android:textColor="#ffffff">
+	</TextView>
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
 
 	<ListView android:id="@+id/ListView01" android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:choiceMode="multipleChoice" />
+		android:layout_height="fill_parent" android:choiceMode="multipleChoice"
+		android:smoothScrollbar="true" />
 
 </LinearLayout>

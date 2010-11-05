@@ -223,17 +223,6 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 		}
 	}
 
-	/* User can zoom in/out using keys provided on keypad */
-	/*
-	 * public boolean onKeyDown(int keyCode, KeyEvent event) { if (keyCode ==
-	 * KeyEvent.KEYCODE_I) {
-	 * mapView.getController().setZoom(mapView.getZoomLevel() + 1); return true;
-	 * } else if (keyCode == KeyEvent.KEYCODE_O) {
-	 * mapView.getController().setZoom(mapView.getZoomLevel() - 1); return true;
-	 * } else if (keyCode == KeyEvent.KEYCODE_S) { mapView.setSatellite(true);
-	 * return true; } else if (keyCode == KeyEvent.KEYCODE_T) {
-	 * mapView.setTraffic(true); return true; } return false; }
-	 */
 
 	@Override
 	public void onProviderDisabled(String provider) {
@@ -261,7 +250,7 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(LBAMapAdId.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -269,7 +258,7 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(LBAMapAdId.this, SearchProduct.class);
 			b = new Bundle();
 			b.putString("uname", uname);

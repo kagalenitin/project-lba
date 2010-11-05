@@ -158,6 +158,9 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 				b.putString("uname", uname);
 				b.putString("productId", String.valueOf(((ProductBean) products
 						.get(position)).getCount()));
+				b.putString("productName", String
+						.valueOf(((ProductBean) products.get(position))
+								.getProductName()));
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -175,7 +178,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.home:
-			Toast.makeText(this, "Home", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(SearchProduct.this, WelcomeUser.class);
 			Bundle b = new Bundle();
 			b.putString("uname", uname);
@@ -183,7 +186,7 @@ public class SearchProduct extends Activity { // implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.search:
-			Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
 			intent = new Intent(SearchProduct.this, LBALocation.class);
 			b = new Bundle();
 			b.putString("uname", uname);
