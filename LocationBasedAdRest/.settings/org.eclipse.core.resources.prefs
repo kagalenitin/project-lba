@@ -1,0 +1,7 @@
+#Tue Oct 26 16:57:10 PDT 2010
+eclipse.preferences.version=1
+encoding//src/com/LBA/service/advertisement/AdvertisementResourceClient.java=UTF-8
+encoding//src/com/LBA/service/channel/ChannelResourceClient.java=UTF-8
+encoding//src/com/LBA/service/channelSubscription/UserSubscriptionResourceClient.java=UTF-8
+encoding//src/com/LBA/service/mobileuser/MobileUserResourceClient.java=UTF-8
+encoding//src/com/LBA/service/product/ProductResourceClient.java=UTF-8
