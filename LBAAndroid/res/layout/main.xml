@@ -3,25 +3,6 @@
 	android:layout_height="fill_parent" android:layout_width="fill_parent"
 	android:background="@drawable/droidxbluefloor">
 
-	<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" -->
-	<!-- android:orientation="vertical" android:layout_width="fill_parent" -->
-	<!-- android:layout_height="fill_parent" android:background="@drawable/droidxbluefloor"> -->
-	<!-- <TableRow> -->
-	<!-- <TextView android:id="@+id/textName" android:text="Username:" -->
-	<!-- android:layout_gravity="center_vertical|center_horizontal|center" -->
-	<!-- android:textColor="#ffffff" /> -->
-	<!-- <EditText android:id="@+id/username" android:width="240px" -->
-	<!-- style="?button" android:singleLine="true" /> -->
-	<!-- /> -->
-	<!-- </TableRow> -->
-	<!-- <TableRow> -->
-	<!-- <TextView android:id="@+id/textPasswd" android:text="Password:" -->
-	<!-- android:textColor="#ffffff" android:layout_gravity="center_vertical|center_horizontal|center" 
-		/> -->
-	<!-- <EditText android:id="@+id/password" android:password="true" -->
-	<!-- android:singleLine="true" style="?button" /> -->
-	<!-- </TableRow> -->
-
 	<TableRow android:padding="20dp" />
 
 	<TextView android:id="@+id/textName"
