@@ -201,6 +201,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 		// listOfOverlays.add(mapOverlay);
 		// mapView.invalidate();
 		mapView.setBuiltInZoomControls(true);
+		mapView.getZoomButtonsController().setAutoDismissed(false);
 
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 

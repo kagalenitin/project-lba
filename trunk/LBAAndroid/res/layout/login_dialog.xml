@@ -37,6 +37,6 @@
 		android:scrollHorizontally="true" android:autoText="false"
 		android:capitalize="none" android:gravity="fill_horizontal"
 		android:password="true" android:textAppearance="?android:attr/textAppearanceMedium"
-		android:singleLine="true" />
+		android:singleLine="true"/>
 
 </LinearLayout>

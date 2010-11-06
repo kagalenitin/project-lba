@@ -116,6 +116,8 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 
 		mapView.setSatellite(false);
 		mapView.displayZoomControls(true);
+		mapView.setBuiltInZoomControls(true);
+		mapView.getZoomButtonsController().setAutoDismissed(false);
 		mc = mapView.getController();
 
 		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
