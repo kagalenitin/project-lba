@@ -42,12 +42,12 @@ public class ChannelSubscription extends Activity { // implements
 	String uname;
 	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
 
-	public static ArrayList<ChannelBean> getChannels() {
+	public static ArrayList<ChannelBean> getChannelsByUser(String username) {
 
 		ChannelResourceClient channelResource = new ChannelResourceClient();
 		try {
 			DomRepresentation representation = channelResource
-					.retrieveChannels();
+					.retrieveChannelsByUser(username);
 			if (representation != null) {
 				channels = channelResource.getChannelsFromXml(representation);
 			} else {
@@ -98,7 +98,7 @@ public class ChannelSubscription extends Activity { // implements
 			if (!(uname.equalsIgnoreCase("default"))) {
 			}
 		}
-		channels = getChannels();
+		channels = getChannelsByUser(uname);
 		String lv_items[] = new String[channels.size()];
 		for (int i = 0; i < channels.size(); i++) {
 			lv_items[i] = new String(channels.get(i).getChannelname());
