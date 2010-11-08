@@ -151,11 +151,11 @@ public class LocateAd extends MapActivity implements LocationListener {
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
-			adName = b.getString("adName");
+			//adName = b.getString("adName");
 			this.setTitle("LBA: Search Ad");
 			uname = b.getString("uname");
 			if (adName != null || adName != "") {
-				advertisements = getAdsByMerchant(adName);
+			//	advertisements = getAdsByMerchant(adName);
 			} else {
 				Toast.makeText(LocateAd.this, "" + "Service not available",
 						Toast.LENGTH_SHORT).show();
@@ -179,14 +179,14 @@ public class LocateAd extends MapActivity implements LocationListener {
 		mapView.displayZoomControls(true);
 		mc = mapView.getController();
 
-		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 500.0f,
-				this);
+//		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 500.0f,
+//				this);
 
 		mapView.setBuiltInZoomControls(true);
 		mapView.getZoomButtonsController().setAutoDismissed(false);
 
-		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		LocationListener myLocationListener = new MyLocationListener();
@@ -216,7 +216,9 @@ public class LocateAd extends MapActivity implements LocationListener {
 				new SitesOverlay(getResources()
 						.getDrawable(R.drawable.redblank), currentPoint,
 						"Current Location"));
-
+		mapView.getProjection().toPixels(currentPoint, new Point());
+		mc.setZoom(10);
+		
 		// mc.animateTo(currentPoint);
 		try {
 
@@ -280,7 +282,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 						mapView.getOverlays().add(
 								new SitesOverlay(marker, p, advertisements.get(
 										i).getAdName()));
-						// mc.setZoom(13);
+						mc.setZoom(13);
 					}
 					getResources().getDrawable(R.drawable.redblank).setBounds(
 							0,
