@@ -8,6 +8,7 @@ import org.restlet.ext.xml.DomRepresentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -55,6 +56,8 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 	private String adId = "";
 	private String longitude = "";
 	private String latitude = "";
+	
+	Resources resource;
 
 	ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
 
@@ -80,6 +83,8 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
+		this.resource = this.getResources();
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.mapad);
@@ -175,8 +180,19 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 				mapView.getProjection().toPixels(points.get(i), screenPts);
 
 				// ---add the marker---
+				String resourceName;
+				if (i < 10) {
+					resourceName = "black" + "0" + i;
+				} else if (i <= 100) {
+					resourceName = "black" + i;
+				} else {
+					resourceName = "blackblank";
+				}
+
+				int id = resource.getIdentifier(resourceName,
+						"drawable", getPackageName());
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-						R.drawable.blackblank);
+						id);
 
 				canvas.drawBitmap(bmp, screenPts.x, screenPts.y - 50, null);
 				// canvas.drawText(advertisements.get(i).getAdName(),

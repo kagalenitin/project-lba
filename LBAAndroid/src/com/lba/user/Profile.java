@@ -64,7 +64,7 @@ public class Profile extends Activity {
 
 		try {
 			DomRepresentation representation = mobileUserClient
-					.retrieveMobileUser(uname);
+			.retrieveMobileUser(uname);
 			if (representation == null) {
 				Toast.makeText(Profile.this,
 						"" + "Service temporary not available",
@@ -113,23 +113,64 @@ public class Profile extends Activity {
 					String email = txtEmail.getText().toString();
 					String password = txtpassword.getText().toString();
 
-					mobileUser.setAddress(address);
-					mobileUser.setUsername(username);
-					mobileUser.setFirstName(firstName);
-					mobileUser.setLastName(lastName);
-					mobileUser.setPhone(phone);
-					mobileUser.setEmail(email);
-					mobileUser.setPassword(password);
+					if (!(username.equals("") || firstName.equals("")
+							|| lastName.equals("") || address.equals("")
+							|| phone.equals("") || email.equals("") || password
+							.equals(""))) {
+						if (!(ValidateUser.validateFirstName(firstName))) {
+							Toast.makeText(Profile.this,
+									R.string.regFirstNameNeg,
+									Toast.LENGTH_SHORT).show();
+						} else if (!(ValidateUser.validateLastName(lastName))) {
+							Toast.makeText(Profile.this,
+									R.string.regLastNameNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validateUserName(username))) {
+							Toast.makeText(Profile.this,
+									R.string.regUserNameNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validatePassword(password))) {
+							Toast.makeText(Profile.this,
+									R.string.regPasswordNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validateEmail(email))) {
+							Toast.makeText(Profile.this, R.string.regEmailNeg,
+									Toast.LENGTH_SHORT).show();
+						} else if (!(ValidateUser.validaetPhoneNumber(phone))) {
+							Toast.makeText(Profile.this, R.string.regPhoneNeg,
+									Toast.LENGTH_SHORT).show();
+						} else if (!(ValidateUser.validateAddress(address))) {
+							Toast.makeText(Profile.this,
+									R.string.regAddressNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else {
+							mobileUser.setAddress(address);
+							mobileUser.setUsername(username);
+							mobileUser.setFirstName(firstName);
+							mobileUser.setLastName(lastName);
+							mobileUser.setPhone(phone);
+							mobileUser.setEmail(email);
+							mobileUser.setPassword(password);
 
-					mobileUserClient.updateMobileUser(uname, mobileUser);
+							mobileUserClient
+							.updateMobileUser(uname, mobileUser);
 
-					Toast.makeText(Profile.this, "Profile update Successfully",
-							Toast.LENGTH_LONG).show();
-					Intent intent = new Intent(Profile.this, WelcomeUser.class);
-					Bundle b = new Bundle();
-					b.putString("uname", uname);
-					intent.putExtras(b);
-					startActivity(intent);
+							Toast.makeText(Profile.this,
+									"Profile update Successfully",
+									Toast.LENGTH_LONG).show();
+							Intent intent = new Intent(Profile.this,
+									WelcomeUser.class);
+							Bundle b = new Bundle();
+							b.putString("uname", uname);
+							intent.putExtras(b);
+							startActivity(intent);
+						}
+
+					} else {
+						Toast.makeText(Profile.this, R.string.regnegative,
+								Toast.LENGTH_SHORT).show();
+					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
 					Toast.makeText(Profile.this, "Error updating profile!",

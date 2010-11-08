@@ -24,4 +24,12 @@
 
 	<string name="tomcatServer">http://192.168.1.72:8080</string>
 
+	<string name="regFirstNameNeg">"Please enter valid first name For example: John"</string>
+	<string name="regLastNameNeg">"Please enter valid last name For example: Smith"</string>
+	<string name="regUserNameNeg">"Please enter valid user name For example: john_smith123</string>
+	<string name="regPasswordNeg">"Please enter valid password For example: qscrgn2P$"</string>
+	<string name="regEmailNeg">"Please enter valid email For example: xy.z@pqr.net"</string>
+	<string name="regPhoneNeg">"Please enter valid Phone For example: 1234567890"</string>
+	<string name="regAddressNeg">"Please enter valid Address For example: 123 xyz Street"</string>
+	
 </resources>

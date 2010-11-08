@@ -1,5 +1,8 @@
 package com.lba.user;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -72,23 +75,53 @@ public class Registration extends Activity {
 							|| lastName.equals("") || address.equals("")
 							|| phone.equals("") || email.equals("") || password
 							.equals(""))) {
-						MobileUserResourceClient mobileUserClient = new MobileUserResourceClient();
-						MobileUserBean mobileUser = new MobileUserBean();
-						mobileUser.setAddress(address);
-						mobileUser.setUsername(username);
-						mobileUser.setFirstName(firstName);
-						mobileUser.setLastName(lastName);
-						mobileUser.setPhone(phone);
-						mobileUser.setEmail(email);
-						mobileUser.setPassword(password);
-						mobileUserClient.createMobileUser(mobileUser);
+						if (!(ValidateUser.validateFirstName(firstName))) {
+							Toast.makeText(Registration.this,
+									R.string.regFirstNameNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validateLastName(lastName))) {
+							Toast.makeText(Registration.this,
+									R.string.regLastNameNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validateUserName(username))) {
+							Toast.makeText(Registration.this,
+									R.string.regUserNameNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validatePassword(password))) {
+							Toast.makeText(Registration.this,
+									R.string.regPasswordNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validateEmail(email))) {
+							Toast.makeText(Registration.this,
+									R.string.regEmailNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validaetPhoneNumber(phone))) {
+							Toast.makeText(Registration.this,
+									R.string.regPhoneNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else if (!(ValidateUser.validateAddress(address))) {
+							Toast.makeText(Registration.this,
+									R.string.regAddressNeg, Toast.LENGTH_SHORT)
+									.show();
+						} else {
+							MobileUserResourceClient mobileUserClient = new MobileUserResourceClient();
+							MobileUserBean mobileUser = new MobileUserBean();
+							mobileUser.setAddress(address);
+							mobileUser.setUsername(username);
+							mobileUser.setFirstName(firstName);
+							mobileUser.setLastName(lastName);
+							mobileUser.setPhone(phone);
+							mobileUser.setEmail(email);
+							mobileUser.setPassword(password);
 
-						Toast.makeText(Registration.this, R.string.regpositive,
-								Toast.LENGTH_SHORT).show();
-						Intent intent = new Intent(Registration.this,
-								LBALogin.class);
-						startActivity(intent);
-
+							// create user
+							mobileUserClient.createMobileUser(mobileUser);
+							Toast.makeText(Registration.this, R.string.regpositive,
+									Toast.LENGTH_SHORT).show();
+							Intent intent = new Intent(Registration.this,
+									LBALogin.class);
+							startActivity(intent);
+						}
 					} else {
 						Toast.makeText(Registration.this, R.string.regnegative,
 								Toast.LENGTH_SHORT).show();
