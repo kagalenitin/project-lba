@@ -23,9 +23,9 @@ public class ChannelModel {
 		try {
 			stmtInsert = DBConnect.con.createStatement();
 			String qry = "INSERT into channel"
-					+ " (channelname,channeldescription)" + " values ('"
-					+ chBeanObject.getChannelname() + "','"
-					+ chBeanObject.getChanneldescription() + "');";
+				+ " (channelname,channeldescription)" + " values ('"
+				+ chBeanObject.getChannelname() + "','"
+				+ chBeanObject.getChanneldescription() + "');";
 			int res = stmtInsert.executeUpdate(qry);
 			if (res == 1) {
 				valueInserted = true;
@@ -180,8 +180,41 @@ public class ChannelModel {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
 			String qry = "SELECT * from channel where channelname like " + "'%"
-					+ channelName + "%' " + "or '%" + channelName + "' or '"
-					+ channelName + "%';";
+			+ channelName + "%' " + "or '%" + channelName + "' or '"
+			+ channelName + "%';";
+			System.out.println(qry);
+			rsSet = stmtView.executeQuery(qry);
+			while (rsSet.next()) {
+				ChannelBean channel = new ChannelBean();
+				channel.setChannelid(rsSet.getString("channelid"));
+				channel.setChannelname(rsSet.getString("channelname"));
+				channel.setChanneldescription(rsSet
+						.getString("channeldescription"));
+				channels.add(channel);
+			}
+
+			stmtView.close();
+			rsSet.close();
+			DBConnect.disconnectDB();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return channels;
+	}
+
+	public ArrayList<ChannelBean> getChannelByUserName(String userName) {
+		/*
+		 * This function will retrieve contract details based on channalName
+		 */
+
+		// int count = getChannelCount();
+		ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
+		// if (count != 0)
+		try {
+			DBConnect.connectDB();
+			stmtView = DBConnect.con.createStatement();
+			String qry = "SELECT * from channel where channelid not in (Select channelid from usersubscription where username ='"
+				+ userName + "');";
 			System.out.println(qry);
 			rsSet = stmtView.executeQuery(qry);
 			while (rsSet.next()) {

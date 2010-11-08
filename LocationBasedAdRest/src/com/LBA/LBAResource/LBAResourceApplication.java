@@ -12,6 +12,7 @@ import com.LBA.service.advertisement.AdvertisementsByProductResource;
 import com.LBA.service.advertisement.AdvertisementsResource;
 import com.LBA.service.channel.ChannelResource;
 import com.LBA.service.channel.ChannelsByNameResource;
+import com.LBA.service.channel.ChannelsByUserNameResource;
 import com.LBA.service.channel.ChannelsResource;
 import com.LBA.service.channelSubscription.UserSubscriptionResource;
 import com.LBA.service.channelSubscription.UserSubscriptionsResource;
@@ -49,9 +50,12 @@ public class LBAResourceApplication extends Application {
 		router.attach("/channels", ChannelsResource.class);
 		// Defines a route for the resource "channel"
 		router.attach("/channels/{channelId}", ChannelResource.class);
-		// Defines a route for the resource "products"
+		// Defines a route for the resource "channelName"
 		router.attach("/channels/channelname/{channelName}",
 				ChannelsByNameResource.class);
+		// Defines a route for the resource "channelBy!UserName"
+		router.attach("/channels/username/{userName}",
+				ChannelsByUserNameResource.class);
 
 		// Defines a route for the resource "list of advertisements"
 		router.attach("/advertisements", AdvertisementsResource.class);
