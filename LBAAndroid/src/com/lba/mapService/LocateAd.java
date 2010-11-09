@@ -19,7 +19,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -97,10 +96,10 @@ public class LocateAd extends MapActivity implements LocationListener {
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
 		try {
 			DomRepresentation representation = advertisementResource
-			.retrieveAdvertisementsByMerchant(adName);
+					.retrieveAdvertisementsByMerchant(adName);
 			if (representation != null) {
 				advertisements = advertisementResource
-				.getAdvertisementsByMerchantFromXml(representation);
+						.getAdvertisementsByMerchantFromXml(representation);
 			} else {
 				advertisements = new ArrayList<AdMerchantAdBean>();
 			}
@@ -117,11 +116,11 @@ public class LocateAd extends MapActivity implements LocationListener {
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
 		try {
 			DomRepresentation representation = advertisementResource
-			.retrieveAdvertisementsByMerchantDistance(adName, latitude,
-					longitude);
+					.retrieveAdvertisementsByMerchantDistance(adName, latitude,
+							longitude);
 			if (representation != null) {
 				advertisements = advertisementResource
-				.getAdvertisementsByMerchantFromXml(representation);
+						.getAdvertisementsByMerchantFromXml(representation);
 			} else {
 				advertisements = new ArrayList<AdMerchantAdBean>();
 			}
@@ -151,11 +150,11 @@ public class LocateAd extends MapActivity implements LocationListener {
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
-			//adName = b.getString("adName");
+			// adName = b.getString("adName");
 			this.setTitle("LBA: Search Ad");
 			uname = b.getString("uname");
 			if (adName != null || adName != "") {
-			//	advertisements = getAdsByMerchant(adName);
+				// advertisements = getAdsByMerchant(adName);
 			} else {
 				Toast.makeText(LocateAd.this, "" + "Service not available",
 						Toast.LENGTH_SHORT).show();
@@ -179,21 +178,23 @@ public class LocateAd extends MapActivity implements LocationListener {
 		mapView.displayZoomControls(true);
 		mc = mapView.getController();
 
-//		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 500.0f,
-//				this);
+		// LocationManager lm = (LocationManager)
+		// getSystemService(Context.LOCATION_SERVICE);
+		// lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L,
+		// 500.0f,
+		// this);
 
 		mapView.setBuiltInZoomControls(true);
 		mapView.getZoomButtonsController().setAutoDismissed(false);
 
-//		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		// lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		LocationListener myLocationListener = new MyLocationListener();
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				1000L, 500.0f, myLocationListener);
 		currentLocation = locationManager
-		.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (currentLocation == null) {
 			Latitude = 37.3348412;
 			Longitude = -121.8849198;
@@ -208,9 +209,9 @@ public class LocateAd extends MapActivity implements LocationListener {
 				0,
 				0,
 				getResources().getDrawable(R.drawable.redblank)
-				.getIntrinsicWidth(),
+						.getIntrinsicWidth(),
 				getResources().getDrawable(R.drawable.redblank)
-				.getIntrinsicHeight());
+						.getIntrinsicHeight());
 
 		mapView.getOverlays().add(
 				new SitesOverlay(getResources()
@@ -218,7 +219,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 						"Current Location"));
 		mapView.getProjection().toPixels(currentPoint, new Point());
 		mc.setZoom(10);
-		
+
 		// mc.animateTo(currentPoint);
 		try {
 
@@ -240,7 +241,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 					currentPoint = new GeoPoint((int) (Latitude * 1E6),
 							(int) (Longitude * 1E6));
 
-			//		 mc.animateTo(currentPoint);
+					// mc.animateTo(currentPoint);
 
 					points = new ArrayList<GeoPoint>();
 					adName = elAdname.getText().toString();
@@ -288,14 +289,14 @@ public class LocateAd extends MapActivity implements LocationListener {
 							0,
 							0,
 							getResources().getDrawable(R.drawable.redblank)
-							.getIntrinsicWidth(),
+									.getIntrinsicWidth(),
 							getResources().getDrawable(R.drawable.redblank)
-							.getIntrinsicHeight());
+									.getIntrinsicHeight());
 
 					mapView.getOverlays().add(
 							new SitesOverlay(getResources().getDrawable(
 									R.drawable.redblank), currentPoint,
-							"Current Location"));
+									"Current Location"));
 
 					if (advertisements.size() == 0) {
 						Toast.makeText(getBaseContext(),
@@ -366,25 +367,25 @@ public class LocateAd extends MapActivity implements LocationListener {
 			 * }
 			 */
 			// ---translate the GeoPoint to screen pixels---
-//			 Point screenPts = new Point();
-//			 Paint paint = new Paint();
-//			 paint.setStrokeWidth(1);
-//			 paint.setARGB(255, 140, 23, 23);
-//			 // paint.setStyle(Paint.Style.STROKE);
-//			 paint.setTextSize(15);
-//			//
-//			// // ---add the marker---
-//			 try {
-//			 mapView.getProjection().toPixels(currentPoint, screenPts);
-//			 Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-//			 R.drawable.redblank);
-//			
-//			 canvas.drawBitmap(bmp, screenPts.x-6, screenPts.y-6, null);
-//			 } catch (Exception e) {
-//			 // Toast.makeText(getBaseContext(),
-//			 // "No location information available", Toast.LENGTH_SHORT)
-//			 // .show();
-//			 }
+			// Point screenPts = new Point();
+			// Paint paint = new Paint();
+			// paint.setStrokeWidth(1);
+			// paint.setARGB(255, 140, 23, 23);
+			// // paint.setStyle(Paint.Style.STROKE);
+			// paint.setTextSize(15);
+			// //
+			// // // ---add the marker---
+			// try {
+			// mapView.getProjection().toPixels(currentPoint, screenPts);
+			// Bitmap bmp = BitmapFactory.decodeResource(getResources(),
+			// R.drawable.redblank);
+			//
+			// canvas.drawBitmap(bmp, screenPts.x-6, screenPts.y-6, null);
+			// } catch (Exception e) {
+			// // Toast.makeText(getBaseContext(),
+			// // "No location information available", Toast.LENGTH_SHORT)
+			// // .show();
+			// }
 			return true;
 		}
 
@@ -394,11 +395,11 @@ public class LocateAd extends MapActivity implements LocationListener {
 			if (event.getAction() == 1) {
 				GeoPoint p = mapView.getProjection().fromPixels(
 						(int) event.getX(), (int) event.getY());
-//				Toast.makeText(getBaseContext(),
-//						p.getLatitudeE6() / 1E6 + "," + p.getLongitudeE6() / 1E6,
-//						Toast.LENGTH_SHORT).show();
+				// Toast.makeText(getBaseContext(),
+				// p.getLatitudeE6() / 1E6 + "," + p.getLongitudeE6() / 1E6,
+				// Toast.LENGTH_SHORT).show();
 			}
-		
+
 			return false;
 		}
 	}
@@ -466,14 +467,14 @@ public class LocateAd extends MapActivity implements LocationListener {
 					0,
 					0,
 					getResources().getDrawable(R.drawable.redblank)
-					.getIntrinsicWidth(),
+							.getIntrinsicWidth(),
 					getResources().getDrawable(R.drawable.redblank)
-					.getIntrinsicHeight());
+							.getIntrinsicHeight());
 
 			mapView.getOverlays().add(
 					new SitesOverlay(getResources().getDrawable(
 							R.drawable.redblank), currentPoint,
-					"Current Location"));
+							"Current Location"));
 
 			if (advertisements.size() == 0) {
 				Toast.makeText(getBaseContext(),
@@ -620,7 +621,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 						paint.setColor(defaultColor);
 					RectF oval = new RectF(point.x - mRadius,
 							point.y - mRadius, point.x + mRadius, point.y
-							+ mRadius);
+									+ mRadius);
 					// start point
 					canvas.drawOval(oval, paint);
 				}
@@ -670,13 +671,13 @@ public class LocateAd extends MapActivity implements LocationListener {
 		urlString.append(Double.toString((double) src.getLatitudeE6() / 1.0E6));
 		urlString.append(",");
 		urlString
-		.append(Double.toString((double) src.getLongitudeE6() / 1.0E6));
+				.append(Double.toString((double) src.getLongitudeE6() / 1.0E6));
 		urlString.append("&daddr=");// to
 		urlString
-		.append(Double.toString((double) dest.getLatitudeE6() / 1.0E6));
+				.append(Double.toString((double) dest.getLatitudeE6() / 1.0E6));
 		urlString.append(",");
 		urlString
-		.append(Double.toString((double) dest.getLongitudeE6() / 1.0E6));
+				.append(Double.toString((double) dest.getLongitudeE6() / 1.0E6));
 		urlString.append("&ie=UTF8&0&om=0&output=kml");
 		// Log.d("xxx", "URL=" + urlString.toString());
 		// get the kml (XML) doc. And parse it to get the coordinates(direction
@@ -700,8 +701,8 @@ public class LocateAd extends MapActivity implements LocationListener {
 				// String path =
 				// doc.getElementsByTagName("GeometryCollection").item(0).getFirstChild().getFirstChild().getNodeName();
 				String path = doc.getElementsByTagName("GeometryCollection")
-				.item(0).getFirstChild().getFirstChild()
-				.getFirstChild().getNodeValue();
+						.item(0).getFirstChild().getFirstChild()
+						.getFirstChild().getNodeValue();
 				Log.d("xxx", "path=" + path);
 				String[] pairs = path.split(" ");
 				String[] lngLat = pairs[0].split(","); // lngLat[0]=longitude
@@ -712,11 +713,11 @@ public class LocateAd extends MapActivity implements LocationListener {
 						(int) (Double.parseDouble(lngLat[1]) * 1E6),
 						(int) (Double.parseDouble(lngLat[0]) * 1E6));
 				mMapView01.getOverlays()
-				.add(new MyOverLay(startGP, startGP, 1));
+						.add(new MyOverLay(startGP, startGP, 1));
 				GeoPoint gp1;
 				GeoPoint gp2 = startGP;
 				for (int i = 1; i < pairs.length; i++) // the last one would be
-					// crash
+				// crash
 				{
 					lngLat = pairs[i].split(",");
 					gp1 = gp2;
@@ -726,7 +727,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 							(int) (Double.parseDouble(lngLat[0]) * 1E6));
 					mMapView01.getOverlays().add(
 							new MyOverLay(gp1, gp2, 2, color));
-					 Log.d("xxx", "pair:" + pairs[i]);
+					Log.d("xxx", "pair:" + pairs[i]);
 				}
 				mMapView01.getOverlays().add(new MyOverLay(dest, dest, 3)); // use
 				// the

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author payalpatel
- *
+ * 
  */
 public class ValidateUser {
 	/**
@@ -123,14 +123,13 @@ public class ValidateUser {
 	 * 
 	 * @param password
 	 *            password for validation
-	 * @return true valid password, false invalid password 
-	 *         (?=.*\d) # must contains one digit from 0-9 
-	 *         (?=.*[a-z]) # must contains one lowercase characters 
-	 *         (?=.*[A-Z]) # must contains one uppercase characters 
-	 *         (?=.*[@#$%]) # must contains one special symbols in the list 
-	 *         "@#$%" . # match anything with previouscondition checking 
-	 *         {6,20} # length at least 6 characters and
-	 *         maximum of 20 )
+	 * @return true valid password, false invalid password (?=.*\d) # must
+	 *         contains one digit from 0-9 (?=.*[a-z]) # must contains one
+	 *         lowercase characters (?=.*[A-Z]) # must contains one uppercase
+	 *         characters (?=.*[@#$%]) # must contains one special symbols in
+	 *         the list "@#$%" . # match anything with previouscondition
+	 *         checking {6,20} # length at least 6 characters and maximum of 20
+	 *         )
 	 */
 	public static boolean validatePassword(final String password) {
 

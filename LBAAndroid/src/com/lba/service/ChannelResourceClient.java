@@ -25,7 +25,7 @@ public class ChannelResourceClient {
 	public ClientResource channelResource;
 	public ClientResource channelsByNameResource;
 	public ClientResource channelsByUserResource;
-
+	public ClientResource channelsByNameByUserResource;
 
 	private String ipaddress = new ServiceUtil().getAddress();
 	String serviceAddress = "http://" + ipaddress + "/LBAResource/channels";
@@ -102,7 +102,7 @@ public class ChannelResourceClient {
 	public DomRepresentation retrieveChannelsByUser(String user) {
 		channelsByUserResource = new ClientResource(serviceAddress
 				+ "/username/" + user);
-	
+
 		try {
 			return get(channelsByUserResource);
 		} catch (ResourceException e) {
@@ -112,6 +112,22 @@ public class ChannelResourceClient {
 		}
 		return null;
 	}
+
+	public DomRepresentation retrieveChannelsByNameByUser(String channelName,
+			String user) {
+		channelsByNameByUserResource = new ClientResource(serviceAddress
+				+ "/channelname/" + channelName + "/username/" + user);
+
+		try {
+			return get(channelsByNameByUserResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public DomRepresentation retrieveChannelByName(String channelName) {
 		channelsByNameResource = new ClientResource(serviceAddress
 				+ "/channelname/" + channelName);
