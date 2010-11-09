@@ -383,7 +383,7 @@ public class AdvertisementModel implements Serializable {
 				stmtView = DBConnect.con.createStatement();
 				String qry = " SELECT a.adID,adname,addesc,adstartdate,adenddate from advertisement a,ad_product adp, product p "
 						+ "where a.adid = adp.adid and adp.productid= p.productid "
-						+ "and a.adID='" + prodobj.getCount() + "';";
+						+ "and a.adID='" + prodobj.getCount() + "' order by adname;";
 				System.out.println(qry);
 				int i = 0;
 				rsSet = stmtView.executeQuery(qry);
@@ -417,7 +417,7 @@ public class AdvertisementModel implements Serializable {
 					+ "from merchantlocation ml,ad_merchant aml,advertisement a where ml.merchantlocationID = aml.merchantlocationID "
 					+ "and aml.adid = a.adid and adname like '%"
 					+ adName
-					+ "%';";
+					+ "%' order by adname;";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
 			while (rsRead.next()) {
@@ -455,7 +455,7 @@ public class AdvertisementModel implements Serializable {
 			String qry = "SELECT ad.adID as adv, ad.adfilelocation as loc, ad.adSize as size,"
 					+ " a.adstartdate as stdt, a.adenddate as eddt, a.adname as name, a.addesc as descrp "
 					+ "from advertisement a, ad_product ad, product p where a.adID=ad.adID and ad.productID=p.productID and p.productID="
-					+ product.getCount() + ";";
+					+ product.getCount() + " order by name;";
 			rsSet = stmtView.executeQuery(qry);
 
 			while (rsSet.next()) {
@@ -485,7 +485,7 @@ public class AdvertisementModel implements Serializable {
 			String qry = "SELECT ad.adID as adv, ad.adfilelocation as loc, ad.adSize as size,"
 					+ " a.adstartdate as stdt, a.adenddate as eddt, a.adname as name, a.addesc as descrp "
 					+ "from advertisement a, ad_product ad, product p where a.adID=ad.adID and ad.productID=p.productID"
-					+ " and a.adID=" + adId + ";";
+					+ " and a.adID=" + adId + " order by name;";
 
 			// String qry = "SELECT * FROM Advertisement where adID=" + adId +
 			// ";";
@@ -524,7 +524,7 @@ public class AdvertisementModel implements Serializable {
 				String qry = "SELECT ad.adID as adv, ad.adfilelocation as loc, ad.adSize as size,"
 						+ " a.adstartdate as stdt, a.adenddate as eddt, a.adname as name, a.addesc as descrp "
 						+ "from advertisement a, ad_product ad, product p where a.adID=ad.adID and ad.productID=p.productID"
-						+ ";";
+						+ " order by name;";
 				System.out.println(qry);
 				rsRead = stmtView.executeQuery(qry);
 				while (rsRead.next()) {
@@ -558,7 +558,7 @@ public class AdvertisementModel implements Serializable {
 			stmtView = DBConnect.con.createStatement();
 			String qry = "select a.adid,adname,addesc,adstartdate,adenddate,longitude,latitude,address,city,state,zip "
 					+ "from merchantlocation ml,ad_merchant aml,advertisement a where ml.merchantlocationID = aml.merchantlocationID "
-					+ "and aml.adid = a.adid and a.adId='" + adID + "';";
+					+ "and aml.adid = a.adid and a.adId='" + adID + "' order by adname;";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
 			while (rsRead.next()) {
@@ -621,7 +621,7 @@ public class AdvertisementModel implements Serializable {
 					+ "from merchantlocation ml,ad_merchant aml,advertisement a where ml.merchantlocationID = aml.merchantlocationID "
 					+ "and aml.adid = a.adid and adname like '%"
 					+ adName
-					+ "%';";
+					+ "%' order by adname;";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
 			while (rsRead.next()) {
