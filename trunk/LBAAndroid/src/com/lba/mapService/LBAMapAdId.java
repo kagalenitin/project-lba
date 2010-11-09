@@ -56,7 +56,7 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 	private String adId = "";
 	private String longitude = "";
 	private String latitude = "";
-	
+
 	Resources resource;
 
 	ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
@@ -83,7 +83,7 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		
+
 		this.resource = this.getResources();
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
@@ -189,10 +189,9 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 					resourceName = "blackblank";
 				}
 
-				int id = resource.getIdentifier(resourceName,
-						"drawable", getPackageName());
-				Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-						id);
+				int id = resource.getIdentifier(resourceName, "drawable",
+						getPackageName());
+				Bitmap bmp = BitmapFactory.decodeResource(getResources(), id);
 
 				canvas.drawBitmap(bmp, screenPts.x, screenPts.y - 50, null);
 				// canvas.drawText(advertisements.get(i).getAdName(),

@@ -8,6 +8,18 @@
 		android:textStyle="bold|italic" android:layout_gravity="center_horizontal"
 		android:textColor="#ffffff">
 	</TextView>
+
+	<TextView android:id="@+id/txtName" android:text="Search Channel"
+		android:layout_gravity="center_vertical|center_horizontal|center"
+		android:textColor="#ffffff" android:textStyle="bold|italic"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	<EditText android:id="@+id/channelName" android:width="320px"
+		style="?button" android:singleLine="true" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<Button android:id="@+id/searchbutton" android:text="Search"
+		android:layout_width="fill_parent" android:layout_gravity="center"
+		style="?button" android:typeface="monospace" android:layout_height="wrap_content"/>
+
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
 

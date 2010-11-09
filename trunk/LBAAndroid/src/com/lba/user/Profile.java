@@ -64,7 +64,7 @@ public class Profile extends Activity {
 
 		try {
 			DomRepresentation representation = mobileUserClient
-			.retrieveMobileUser(uname);
+					.retrieveMobileUser(uname);
 			if (representation == null) {
 				Toast.makeText(Profile.this,
 						"" + "Service temporary not available",
@@ -153,7 +153,7 @@ public class Profile extends Activity {
 							mobileUser.setPassword(password);
 
 							mobileUserClient
-							.updateMobileUser(uname, mobileUser);
+									.updateMobileUser(uname, mobileUser);
 
 							Toast.makeText(Profile.this,
 									"Profile update Successfully",

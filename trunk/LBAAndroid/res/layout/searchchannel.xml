@@ -2,10 +2,10 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="fill_parent" android:layout_width="fill_parent">
 	<TableRow>
-		<TextView android:id="@+id/txtAdName" android:text="Search Channel"
+		<TextView android:id="@+id/txtName" android:text="Search Channel"
 			android:layout_gravity="center_vertical|center_horizontal|center"
 			android:textColor="#ffffff" android:textStyle="bold|italic" />
-		<EditText android:id="@+id/productName" android:width="200px"
+		<EditText android:id="@+id/channelName" android:width="200px"
 			style="?button" android:singleLine="true" />
 	</TableRow>
 	<Button android:id="@+id/searchbutton" android:text="Search"

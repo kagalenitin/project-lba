@@ -92,7 +92,7 @@ public class SearchChannel extends Activity { // implements OnClickListener{
 		setContentView(R.layout.searchchannel);
 		this.setTitle("Location Based Advertisement - Search Item");
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
-		elChannelName = (EditText) findViewById(R.id.productName);
+		elChannelName = (EditText) findViewById(R.id.channelName);
 		channelListView = (ListView) findViewById(R.id.ListView01);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();

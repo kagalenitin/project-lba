@@ -11,15 +11,20 @@ import org.restlet.ext.xml.DomRepresentation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +46,8 @@ public class ChannelSubscription extends Activity { // implements
 	private ListView channelListView;
 	String uname;
 	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
+	private Button btnSearch;
+	private EditText elChannelName;
 
 	public static ArrayList<ChannelBean> getChannelsByUser(String username) {
 
@@ -48,6 +55,25 @@ public class ChannelSubscription extends Activity { // implements
 		try {
 			DomRepresentation representation = channelResource
 					.retrieveChannelsByUser(username);
+			if (representation != null) {
+				channels = channelResource.getChannelsFromXml(representation);
+			} else {
+				channels = new ArrayList<ChannelBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return channels;
+	}
+
+	public static ArrayList<ChannelBean> getChannelsByNameByUser(
+			String channelName, String username) {
+
+		ChannelResourceClient channelResource = new ChannelResourceClient();
+		try {
+			DomRepresentation representation = channelResource
+					.retrieveChannelsByNameByUser(channelName, username);
 			if (representation != null) {
 				channels = channelResource.getChannelsFromXml(representation);
 			} else {
@@ -105,6 +131,56 @@ public class ChannelSubscription extends Activity { // implements
 		}
 		channelListView.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice, lv_items));
+
+		btnSearch = (Button) findViewById(R.id.searchbutton);
+		// Set Click Listener
+		btnSearch.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				String channelName = elChannelName.getText().toString();
+				channels = getChannelsByNameByUser(channelName, uname);
+				String lv_items[] = new String[channels.size()];
+				for (int i = 0; i < channels.size(); i++) {
+					lv_items[i] = new String(channels.get(i).getChannelname());
+				}
+				channelListView.setAdapter(new ArrayAdapter<String>(
+						ChannelSubscription.this,
+						android.R.layout.simple_list_item_multiple_choice,
+						lv_items));
+				channelListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+				channelListView.setClickable(true);
+			}
+		});
+
+		elChannelName = (EditText) findViewById(R.id.channelName);
+		elChannelName.addTextChangedListener(new TextWatcher() {
+
+			public void afterTextChanged(Editable s) {
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+				String channelName = elChannelName.getText().toString();
+				channels = getChannelsByNameByUser(channelName, uname);
+				String lv_items[] = new String[channels.size()];
+				for (int i = 0; i < channels.size(); i++) {
+					lv_items[i] = new String(channels.get(i).getChannelname());
+				}
+				channelListView.setAdapter(new ArrayAdapter<String>(
+						ChannelSubscription.this,
+						android.R.layout.simple_list_item_multiple_choice,
+						lv_items));
+				channelListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+				channelListView.setClickable(true);
+			}
+		});
 
 		// Set Click Listener
 		channelListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);

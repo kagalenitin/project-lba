@@ -1,8 +1,5 @@
 package com.lba.user;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,8 +74,8 @@ public class Registration extends Activity {
 							.equals(""))) {
 						if (!(ValidateUser.validateFirstName(firstName))) {
 							Toast.makeText(Registration.this,
-									R.string.regFirstNameNeg, Toast.LENGTH_SHORT)
-									.show();
+									R.string.regFirstNameNeg,
+									Toast.LENGTH_SHORT).show();
 						} else if (!(ValidateUser.validateLastName(lastName))) {
 							Toast.makeText(Registration.this,
 									R.string.regLastNameNeg, Toast.LENGTH_SHORT)
@@ -116,8 +113,9 @@ public class Registration extends Activity {
 
 							// create user
 							mobileUserClient.createMobileUser(mobileUser);
-							Toast.makeText(Registration.this, R.string.regpositive,
-									Toast.LENGTH_SHORT).show();
+							Toast.makeText(Registration.this,
+									R.string.regpositive, Toast.LENGTH_SHORT)
+									.show();
 							Intent intent = new Intent(Registration.this,
 									LBALogin.class);
 							startActivity(intent);
