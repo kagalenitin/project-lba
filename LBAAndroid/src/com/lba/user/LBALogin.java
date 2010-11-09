@@ -1,5 +1,9 @@
 package com.lba.user;
 
+import java.io.IOException;
+
+import org.restlet.ext.xml.DomRepresentation;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,6 +21,7 @@ import android.widget.Toast;
 
 import com.lba.R;
 import com.lba.home.WelcomeUser;
+import com.lba.service.MobileUserResourceClient;
 
 /**
  * @author payal
@@ -62,32 +67,33 @@ public class LBALogin extends Activity {
 										String password = etPassword.getText()
 												.toString();
 
-										if ((username.equals("payal") && password
-												.equals("payal"))
-												|| (username.equals("veenit") && password
-														.equals("veenit"))
-												|| (username.equals("nitin") && password
-														.equals("nitin"))) {
+										if (!((username.equals("") && password
+												.equals("")))) {
 
-											Intent intent = new Intent(
-													LBALogin.this,
-													WelcomeUser.class);
-											Bundle b = new Bundle();
-											b.putString("uname", etUsername
-													.getText().toString());
-											intent.putExtras(b);
-											startActivity(intent);
+											if (verifyMobileUser(username,
+													password)) {
+
+												Intent intent = new Intent(
+														LBALogin.this,
+														WelcomeUser.class);
+												Bundle b = new Bundle();
+												b.putString("uname", etUsername
+														.getText().toString());
+												intent.putExtras(b);
+												startActivity(intent);
+											} else {
+												Toast.makeText(
+														LBALogin.this,"Invalid Username or password!",
+														Toast.LENGTH_SHORT)
+														.show();
+											}
 										} else {
 											Toast.makeText(
 													LBALogin.this,
-													"Invalid Username or password!",
+													"Username or Password can not be empty!",
 													Toast.LENGTH_SHORT).show();
-										}
-									} else {
-										Toast.makeText(LBALogin.this,
-												"Login NULL",
-												Toast.LENGTH_SHORT).show();
 
+										}
 									}
 
 								}
@@ -102,6 +108,20 @@ public class LBALogin extends Activity {
 							}).create();
 		}
 		return null;
+	}
+
+	private boolean verifyMobileUser(String username, String password) {
+		boolean result = false;
+		MobileUserResourceClient mobileUserClient = new MobileUserResourceClient();
+		DomRepresentation representation = mobileUserClient.verifyMobileUser(
+				username, password);
+		try {
+			result = mobileUserClient
+					.getMobileUserVerificationFromXml(representation);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	/** Called when the activity is first created. */
