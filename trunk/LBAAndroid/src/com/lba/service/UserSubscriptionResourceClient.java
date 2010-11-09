@@ -67,6 +67,19 @@ public class UserSubscriptionResourceClient {
 
 	}
 
+	public DomRepresentation retrieveSubscrptionByUserByName(String username,String channelName) {
+		try {
+			UserSubscriptionsResource = new ClientResource(serviceAddress + "/"
+					+ username + "/channelname/" + channelName);
+			return get(UserSubscriptionsResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public DomRepresentation retrieveSubscrptionByUser(String username) {
 		try {
 			UserSubscriptionsResource = new ClientResource(serviceAddress + "/"

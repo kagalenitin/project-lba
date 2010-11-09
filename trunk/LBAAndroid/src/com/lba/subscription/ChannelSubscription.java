@@ -140,7 +140,11 @@ public class ChannelSubscription extends Activity { // implements
 			public void onClick(View v) {
 
 				String channelName = elChannelName.getText().toString();
-				channels = getChannelsByNameByUser(channelName, uname);
+				if(channelName.equals("")){
+					channels = getChannelsByUser(uname);
+				} else {
+					channels = getChannelsByNameByUser(channelName, uname);
+				}
 				String lv_items[] = new String[channels.size()];
 				for (int i = 0; i < channels.size(); i++) {
 					lv_items[i] = new String(channels.get(i).getChannelname());
@@ -168,7 +172,11 @@ public class ChannelSubscription extends Activity { // implements
 					int count) {
 
 				String channelName = elChannelName.getText().toString();
-				channels = getChannelsByNameByUser(channelName, uname);
+				if(channelName.equals("")){
+					channels = getChannelsByUser(uname);
+				} else {
+					channels = getChannelsByNameByUser(channelName, uname);
+				}
 				String lv_items[] = new String[channels.size()];
 				for (int i = 0; i < channels.size(); i++) {
 					lv_items[i] = new String(channels.get(i).getChannelname());

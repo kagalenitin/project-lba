@@ -18,7 +18,7 @@
 		android:layout_height="wrap_content" />
 	<Button android:id="@+id/searchbutton" android:text="Search"
 		android:layout_width="fill_parent" android:layout_gravity="center"
-		style="?button" android:typeface="monospace" android:layout_height="wrap_content"/>
+		style="?button" android:typeface="monospace" android:layout_height="wrap_content" />
 
 	<View android:layout_width="fill_parent" android:layout_height="1sp"
 		style="?listDivider" />
