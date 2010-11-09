@@ -19,6 +19,7 @@ import com.LBA.service.channelSubscription.UserSubscriptionResource;
 import com.LBA.service.channelSubscription.UserSubscriptionsByChannelNameResource;
 import com.LBA.service.channelSubscription.UserSubscriptionsResource;
 import com.LBA.service.mobileuser.MobileUserResource;
+import com.LBA.service.mobileuser.MobileUserVerificationResource;
 import com.LBA.service.mobileuser.MobileUsersResource;
 import com.LBA.service.product.ProductResource;
 import com.LBA.service.product.ProductsByChannelResource;
@@ -86,7 +87,9 @@ public class LBAResourceApplication extends Application {
 		router.attach("/mobileusers", MobileUsersResource.class);
 		// Defines a route for the resource "mobileuser"
 		router.attach("/mobileusers/{username}", MobileUserResource.class);
-
+		// Defines a route for the resource "mobileuser verification"
+		router.attach("/mobileusers/authenticate/{username}/{password}", MobileUserVerificationResource.class);
+		
 		// Defines a route for the resource "usersubscriptions"
 		router.attach("/subscription/{username}/{channelId}",
 				UserSubscriptionResource.class);

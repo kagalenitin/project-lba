@@ -129,15 +129,16 @@ public class MobileUserModel {
 					+ "';";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
-			rsRead.next();
-
-			mobileUserBean.setUsername(rsRead.getString("username"));
-			mobileUserBean.setPassword(rsRead.getString("password"));
-			mobileUserBean.setFirstName(rsRead.getString("firstname"));
-			mobileUserBean.setLastName(rsRead.getString("lastname"));
-			mobileUserBean.setAddress(rsRead.getString("address"));
-			mobileUserBean.setPhone(rsRead.getString("phone"));
-			mobileUserBean.setEmail(rsRead.getString("email"));
+			if(rsRead.next()){
+				mobileUserBean.setUsername(rsRead.getString("username"));
+				mobileUserBean.setPassword(rsRead.getString("password"));
+				mobileUserBean.setFirstName(rsRead.getString("firstname"));
+				mobileUserBean.setLastName(rsRead.getString("lastname"));
+				mobileUserBean.setAddress(rsRead.getString("address"));
+				mobileUserBean.setPhone(rsRead.getString("phone"));
+				mobileUserBean.setEmail(rsRead.getString("email"));
+			}
+			
 			stmtView.close();
 			rsRead.close();
 		} catch (SQLException e) {
