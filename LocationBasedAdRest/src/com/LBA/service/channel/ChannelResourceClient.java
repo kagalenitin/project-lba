@@ -25,6 +25,7 @@ public class ChannelResourceClient {
 	public ClientResource channelResource;
 	public ClientResource channelsByNameResource;
 	public ClientResource channelsByUserResource;
+	public ClientResource channelsByNameByUserResource;
 
 
 	// String ipaddress = "10.185.3.16:8182";
@@ -105,6 +106,20 @@ public class ChannelResourceClient {
 				+ "/username/" + user);
 		try {
 			return get(channelsByUserResource);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public DomRepresentation retrieveChannelsByNameByUser(String channelName, String user) {
+		channelsByNameByUserResource = new ClientResource(serviceAddress
+				+ "/channelname/"+ channelName +"/username/" + user);
+	
+		try {
+			return get(channelsByNameByUserResource);
 		} catch (ResourceException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

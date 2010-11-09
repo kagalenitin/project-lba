@@ -84,7 +84,7 @@ public class ChannelModel {
 			try {
 				DBConnect.connectDB();
 				stmtView = DBConnect.con.createStatement();
-				String qry = "SELECT * from channel;";
+				String qry = "SELECT * from channel order by channelname;";
 				int i = 0;
 				rsSet = stmtView.executeQuery(qry);
 				while (rsSet.next()) {
@@ -120,7 +120,7 @@ public class ChannelModel {
 			stmtView = DBConnect.con.createStatement();
 			// String qry = "SELECT * from contract where space='"+
 			// UserRegistrationServlet.globalSession +"'";
-			String qry = "SELECT * from channel where channelid=(select count(*) from channel)";
+			String qry = "SELECT * from channel where channelid=(select count(*) from channel)  order by channelname";
 			rsSet = stmtView.executeQuery(qry);
 			rsSet.next();
 
@@ -149,7 +149,7 @@ public class ChannelModel {
 		try {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
-			String qry = "SELECT * from channel where channelid=" + channelId;
+			String qry = "SELECT * from channel where channelid=" + channelId + " order by channelname";
 			rsSet = stmtView.executeQuery(qry);
 			rsSet.next();
 
@@ -181,7 +181,7 @@ public class ChannelModel {
 			stmtView = DBConnect.con.createStatement();
 			String qry = "SELECT * from channel where channelname like " + "'%"
 			+ channelName + "%' " + "or '%" + channelName + "' or '"
-			+ channelName + "%';";
+			+ channelName + "%'  order by channelname;";
 			System.out.println(qry);
 			rsSet = stmtView.executeQuery(qry);
 			while (rsSet.next()) {
@@ -204,7 +204,7 @@ public class ChannelModel {
 
 	public ArrayList<ChannelBean> getChannelByUserName(String userName) {
 		/*
-		 * This function will retrieve contract details based on channalName
+		 * This function will retrieve contract details based on NOT username
 		 */
 
 		// int count = getChannelCount();
@@ -214,7 +214,7 @@ public class ChannelModel {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
 			String qry = "SELECT * from channel where channelid not in (Select channelid from usersubscription where username ='"
-				+ userName + "');";
+				+ userName + "')  order by channelname;";
 			System.out.println(qry);
 			rsSet = stmtView.executeQuery(qry);
 			while (rsSet.next()) {
@@ -234,4 +234,41 @@ public class ChannelModel {
 		}
 		return channels;
 	}
+	
+	public ArrayList<ChannelBean> getChannelByNameByUser(String channelName, String userName) {
+		/*
+		 * This function will retrieve contract details based on channalName and NOTusername
+		 */
+
+		// int count = getChannelCount();
+		ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
+		// if (count != 0)
+		try {
+			DBConnect.connectDB();
+			stmtView = DBConnect.con.createStatement();
+			String qry = "SELECT * from channel where (channelname like " + "'%"
+			+ channelName + "%' " + "or '%" + channelName + "' or '"
+			+ channelName + "%') and  channelid not in (Select channelid from usersubscription where username ='"
+				+ userName + "') order by channelname;";
+			System.out.println(qry);
+			rsSet = stmtView.executeQuery(qry);
+			while (rsSet.next()) {
+				ChannelBean channel = new ChannelBean();
+				channel.setChannelid(rsSet.getString("channelid"));
+				channel.setChannelname(rsSet.getString("channelname"));
+				channel.setChanneldescription(rsSet
+						.getString("channeldescription"));
+				channels.add(channel);
+			}
+
+			stmtView.close();
+			rsSet.close();
+			DBConnect.disconnectDB();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return channels;
+	}
+	
+	
 }

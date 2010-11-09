@@ -116,7 +116,7 @@ public class ChannelSubscriptionModel {
 			stmtView = DBConnect.con.createStatement();
 			String qry = "Select * FROM Channel where channelId in ("
 					+ "select channelId from usersubscription where username='"
-					+ username + "');";
+					+ username + "')  order by channelname;";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
 			while (rsRead.next()) {
@@ -137,4 +137,38 @@ public class ChannelSubscriptionModel {
 		}
 		return null;
 	}
+	
+	public ArrayList<ChannelBean> getChannelBySubscriptionChannelName(String username,String channelName) {
+
+		try {
+			DBConnect.connectDB();
+			ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
+			stmtView = DBConnect.con.createStatement();
+			String qry = "Select * FROM Channel where  (channelname like " + "'%"
+			+ channelName + "%' " + "or '%" + channelName + "' or '"
+			+ channelName + "%') and  channelId in ("
+					+ "select channelId from usersubscription where username='"
+					+ username + "' )  order by channelname;";
+			System.out.println(qry);
+			rsRead = stmtView.executeQuery(qry);
+			while (rsRead.next()) {
+				ChannelBean channelBean = new ChannelBean();
+				System.out.println("select==="
+						+ rsRead.getString("channelname"));
+				channelBean.setChannelid(rsRead.getString("channelID"));
+				channelBean.setChannelname(rsRead.getString("channelname"));
+				channelBean.setChanneldescription(rsRead
+						.getString("channeldescription"));
+				channels.add(channelBean);
+			}
+			stmtView.close();
+			rsRead.close();
+			return channels;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 }
