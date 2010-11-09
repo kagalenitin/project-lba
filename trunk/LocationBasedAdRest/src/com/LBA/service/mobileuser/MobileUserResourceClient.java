@@ -21,14 +21,16 @@ import com.LBA.Advertiser.bean.MobileUserBean;
 public class MobileUserResourceClient {
 
 	public ClientResource mobleUsersResource;
-	public ClientResource mobilrUserResource;
+	public ClientResource mobileUserResource;
+	public ClientResource mobileUserVerificationResource;
+
 	// String ipaddress = "10.185.3.16:8182";
 	String ipaddress = "192.168.1.72:8182";
 	String serviceAddress = "http://" + ipaddress + "/LBAResource/mobileusers";
 
 	public MobileUserResourceClient() {
 		mobleUsersResource = new ClientResource(serviceAddress);
-		mobilrUserResource = null;
+		mobileUserResource = null;
 	}
 
 	public void createMobileUser(MobileUserBean mobileUser) {
@@ -37,7 +39,7 @@ public class MobileUserResourceClient {
 		try {
 			Representation r = mobleUsersResource
 					.post(getRepresentation(mobileUser));
-			mobilrUserResource = new ClientResource(r.getLocationRef());
+			mobileUserResource = new ClientResource(r.getLocationRef());
 
 		} catch (ResourceException e) {
 			System.out.println("Error  status:: " + e.getStatus());
@@ -54,7 +56,7 @@ public class MobileUserResourceClient {
 
 	public void updateMobileUser(String username, MobileUserBean newMobileUser)
 			throws IOException {
-		mobilrUserResource = new ClientResource(serviceAddress + "/" + username);
+		mobileUserResource = new ClientResource(serviceAddress + "/" + username);
 		MobileUserBean mobileuser = new MobileUserBean();
 		DomRepresentation representation = retrieveMobileUser(username);
 		mobileuser = getMobileUserFromXml(representation);
@@ -66,20 +68,20 @@ public class MobileUserResourceClient {
 		mobileuser.setPhone(newMobileUser.getPhone());
 		mobileuser.setEmail(newMobileUser.getEmail());
 
-		mobilrUserResource.put(getRepresentation(mobileuser));
+		mobileUserResource.put(getRepresentation(mobileuser));
 	}
 
 	public void deleteMobileUser(String username) {
-		mobilrUserResource = new ClientResource(serviceAddress + "/" + username);
-		mobilrUserResource.delete();
+		mobileUserResource = new ClientResource(serviceAddress + "/" + username);
+		mobileUserResource.delete();
 
 	}
 
 	public DomRepresentation retrieveMobileUser(String username) {
 		try {
-			mobilrUserResource = new ClientResource(serviceAddress + "/"
+			mobileUserResource = new ClientResource(serviceAddress + "/"
 					+ username);
-			return get(mobilrUserResource);
+			return get(mobileUserResource);
 		} catch (ResourceException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -88,6 +90,63 @@ public class MobileUserResourceClient {
 		return null;
 	}
 
+	public DomRepresentation verifyMobileUser(String username, String password) {
+		try {
+			mobileUserVerificationResource = new ClientResource(serviceAddress
+					+ "/authenticate/" + username + "/" + password);
+			// return get(mobileUserVerificationResource);
+			DomRepresentation rep = get(mobileUserVerificationResource);
+			getMobileUserVerificationFromXml(rep);
+			return rep;
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public boolean getMobileUserVerificationFromXml(
+			DomRepresentation representation) throws IOException {
+
+		boolean result = false;
+		try {
+			Document doc = representation.getDocument();
+			if (doc != null) {
+				doc.getDocumentElement().normalize();
+				System.out.println("Root element "
+						+ doc.getDocumentElement().getNodeName());
+				NodeList nodeLst = doc.getElementsByTagName("mobileuser");
+				System.out.println("Verification Information of User");
+				Node fstNode = nodeLst.item(0);
+
+				if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element fstElmnt = (Element) fstNode;
+
+					NodeList usernameElmntLst = fstElmnt
+					.getElementsByTagName("username");
+					Element userNameElmnt = (Element) usernameElmntLst.item(0);
+					NodeList username = userNameElmnt.getChildNodes();
+					System.out.println("Username : "
+							+ ((Node) username.item(0)).getNodeValue());
+
+					NodeList authenticateElmntLst = fstElmnt
+					.getElementsByTagName("authenticate");
+					Element authenticateElmnt = (Element) authenticateElmntLst
+					.item(0);
+					NodeList authenticate = authenticateElmnt.getChildNodes();
+					System.out.println( "authenticate : "
+							+ ((Node) authenticate.item(0)).getNodeValue());
+					result = Boolean.valueOf(((Node) authenticate.item(0))
+							.getNodeValue());
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public static void main(String args[]) {
 
 		MobileUserResourceClient client = new MobileUserResourceClient();
@@ -101,14 +160,15 @@ public class MobileUserResourceClient {
 		mobileuser.setAddress("address");
 		mobileuser.setPhone("1234567890");
 		mobileuser.setEmail("payal");
-		client.createMobileUser(mobileuser);
+	//	client.createMobileUser(mobileuser);
 		// }
 		// client.deleteMobileUser("payal");
 		mobileuser.setFirstName("Payal");
 
 		try {
-			client.updateMobileUser("payal", mobileuser);
-		} catch (IOException e) {
+//			client.updateMobileUser("payal", mobileuser);
+			client.verifyMobileUser("payal", "payal");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// client.retrieveMobileUser("payal");
@@ -245,12 +305,12 @@ public class MobileUserResourceClient {
 					NodeList prodNm = prodNmElmnt.getChildNodes();
 					System.out.println("Name : "
 							+ ((Node) prodNm.item(0)).getNodeValue());
-					NodeList prodDescElmntLst = fstElmnt
-							.getElementsByTagName("firstName");
-					Element prodDescElmnt = (Element) prodDescElmntLst.item(0);
-					NodeList prodDesc = prodDescElmnt.getChildNodes();
-					System.out.println("first name : "
-							+ ((Node) prodDesc.item(0)).getNodeValue());
+//					NodeList prodDescElmntLst = fstElmnt
+//							.getElementsByTagName("firstName");
+//					Element prodDescElmnt = (Element) prodDescElmntLst.item(0);
+//					NodeList prodDesc = prodDescElmnt.getChildNodes();
+//					System.out.println("first name : "
+//							+ ((Node) prodDesc.item(0)).getNodeValue());
 				}
 
 			}
