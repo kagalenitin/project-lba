@@ -57,6 +57,9 @@ public class ProductAdapter extends BaseAdapter {
 			holder.text = (TextView) vi.findViewById(R.id.prodName);
 			holder.desc = (TextView) vi.findViewById(R.id.prodDesc);
 			vi.setTag(holder);
+			int[] colors = new int[] { 0x30ffffff, 0x30808080 };
+			int colorPos = position % colors.length;
+			vi.setBackgroundColor(colors[colorPos]);
 		} else
 			holder = (ViewHolder) vi.getTag();
 
@@ -64,7 +67,6 @@ public class ProductAdapter extends BaseAdapter {
 			holder.text.setText("Channel " + position);
 			holder.desc.setText("Service Not Available");
 		} else {
-
 			holder.text.setText(data.get(position).getProductName());
 			holder.desc.setText(data.get(position).getProductdescription());
 		}

@@ -137,8 +137,6 @@ public class LBALogin extends Activity {
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
 		// Get the EditText and Button References
-		// etUsername = (EditText) findViewById(R.id.username);
-		// etPassword = (EditText) findViewById(R.id.password);
 		btnLogin = (Button) findViewById(R.id.signin_button);
 		btnSignUp = (Button) findViewById(R.id.signup_button);
 		imageView = (ImageView) findViewById(R.id.ImageView01);
@@ -151,35 +149,6 @@ public class LBALogin extends Activity {
 			public void onClick(View v) {
 
 				showDialog(DIALOG_TEXT_ENTRY);
-
-				// Check Login
-				// String username = etUsername.getText().toString();
-				// String password = etPassword.getText().toString();
-
-				/* Display a text entry dialog */
-				// Button textEntry = (Button) findViewById(R.id.signin_button);
-				// textEntry.setOnClickListener(new OnClickListener() {
-				// public void onClick(View v) {
-				// showDialog(DIALOG_TEXT_ENTRY);
-				// }
-				// });
-
-				// if ((username.equals("payal") && password.equals("payal"))
-				// || (username.equals("veenit") && password
-				// .equals("veenit"))
-				// || (username.equals("nitin") && password
-				// .equals("nitin"))) {
-				//
-				// Intent intent = new Intent(LBALogin.this, WelcomeUser.class);
-				// Bundle b = new Bundle();
-				// b.putString("uname", etUsername.getText().toString());
-				// intent.putExtras(b);
-				// startActivity(intent);
-				// } else {
-				// CustomizeDialog customizeDialog = new CustomizeDialog(
-				// LBALogin.this, R.string.logneg);
-				// customizeDialog.show();
-				// }
 			}
 		});
 		btnSignUp.setOnClickListener(new OnClickListener() {
