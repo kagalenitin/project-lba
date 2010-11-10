@@ -70,6 +70,9 @@ public class ImageAdapter extends BaseAdapter {
 			holder.image = (ImageView) vi.findViewById(R.id.icon_image);
 
 			vi.setTag(holder);
+			int[] colors = new int[] { 0x30ffffff};
+			int colorPos = position % colors.length;
+		//	vi.setBackgroundColor(colors[colorPos]);
 
 		} else {
 			holder = (ViewHolder) vi.getTag();

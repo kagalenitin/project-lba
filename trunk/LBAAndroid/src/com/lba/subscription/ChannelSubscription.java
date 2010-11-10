@@ -131,7 +131,6 @@ public class ChannelSubscription extends Activity { // implements
 		}
 		channelListView.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_multiple_choice, lv_items));
-
 		btnSearch = (Button) findViewById(R.id.searchbutton);
 		// Set Click Listener
 		btnSearch.setOnClickListener(new OnClickListener() {

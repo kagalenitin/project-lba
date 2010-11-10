@@ -53,6 +53,7 @@ public class ChannelAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View vi = convertView;
 		ViewHolder holder;
+		int[] colors = new int[] { 0x30ffffff, 0x30808080 };
 
 		if (convertView == null) {
 			vi = inflater.inflate(R.layout.channel_detail, null);
@@ -67,9 +68,11 @@ public class ChannelAdapter extends BaseAdapter {
 
 		if (getCount() == 0) {
 			holder.text.setText("Channel " + position);
-			holder.desc
-					.setText("this is a long description of a Channel and it can be multiple line also in the screen so it should show the details of the channels.");
+			holder.desc.setText("");
 		} else {
+			int colorPos = position % colors.length;
+			vi.setBackgroundColor(colors[colorPos]);
+			//vi.setBackgroundResource(R.layout.customshape);
 			holder.text.setText(data.get(position).getChannelname());
 			holder.desc.setText(data.get(position).getChanneldescription());
 		}
