@@ -1,5 +1,7 @@
 package com.lba.util;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,7 +16,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.google.android.maps.GeoPoint;
 import com.lba.R;
 
 public class Notify extends Activity {
@@ -48,7 +49,7 @@ public class Notify extends Activity {
 		mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
 		final Notification notifyDetails = new Notification(R.drawable.arrow,
-				"New Alert, Click Me!", System.currentTimeMillis());
+				"New Alert, LBA", System.currentTimeMillis());
 
 		long[] vibrate = { 100, 100, 200, 300 };
 		notifyDetails.vibrate = vibrate;
@@ -63,8 +64,8 @@ public class Notify extends Activity {
 			public void onClick(View v) {
 
 				Context context = getApplicationContext();
-				CharSequence contentTitle = "Androidpeople.com Simple Notification";
-				CharSequence contentText = "Get back to Application on clicking me";
+				CharSequence contentTitle = "LBA Notification";
+				CharSequence contentText = "Ad Name";
 
 				Intent notifyIntent = new Intent(context, Notify.class);
 
@@ -93,13 +94,9 @@ public class Notify extends Activity {
 	private class MyLocationListener implements LocationListener {
 
 		public void onLocationChanged(Location argLocation) {
-			GeoPoint myGeoPoint = new GeoPoint(
-					(int) (argLocation.getLatitude() * 1E6),
-					(int) (argLocation.getLongitude() * 1E6));
 
 			final Notification notifyDetails = new Notification(
-					R.drawable.arrow, "New Alert, Click Me!",
-					System.currentTimeMillis());
+					R.drawable.arrow, "LBA!", System.currentTimeMillis());
 
 			Context context = getApplicationContext();
 			CharSequence contentTitle = "LBA Notification";
@@ -114,7 +111,9 @@ public class Notify extends Activity {
 			notifyDetails.setLatestEventInfo(context, contentTitle,
 					contentText, intent);
 
-			mNotificationManager.notify(SIMPLE_NOTFICATION_ID, notifyDetails);
+			mNotificationManager.notify(
+					SIMPLE_NOTFICATION_ID + new Random().nextInt(),
+					notifyDetails);
 		}
 
 		public void onProviderDisabled(String provider) {
