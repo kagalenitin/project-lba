@@ -19,19 +19,24 @@ import com.LBA.LBAResource.BaseResource;
  * Resource that manages a list of items.
  * @author payalpatel
  */
-public class AdvertisementsByMerchantIdResource extends BaseResource {
+public class AdvertisementsByDistanceBySubscriptionResource extends BaseResource {
 
 	AdvertisementBean advertisement;
 	AdvertisementModel advertisementModel = new AdvertisementModel();
-	String adID;
+	String username;
+	String latitude;
+	String longitude;
 
 	@Override
 	protected void doInit() throws ResourceException {
 
-		this.adID = (String) getRequest().getAttributes().get("adId");
+		this.username = (String) getRequest().getAttributes().get("username");
+		this.latitude = (String) getRequest().getAttributes().get("latitude");
+		this.longitude = (String) getRequest().getAttributes().get("longitude");
+
 		// Get the item directly from the "persistence layer".
 		try {
-			setExisting(this.adID != null);
+			setExisting(this.username != null);
 		} catch (NullPointerException e) {
 			this.advertisement = null;
 		}
@@ -56,7 +61,7 @@ public class AdvertisementsByMerchantIdResource extends BaseResource {
 			d.appendChild(r);
 
 			ArrayList<AdMerchantAdBean> advertisements = advertisementModel
-					.getAdsbyMerchantID(adID);
+					.getAdsbyMerchantNearByUserSubscription(username, latitude, longitude);
 
 			for (int i = 0; i < advertisements.size(); i++) {
 				Element eltItem = d.createElement("advertisement");

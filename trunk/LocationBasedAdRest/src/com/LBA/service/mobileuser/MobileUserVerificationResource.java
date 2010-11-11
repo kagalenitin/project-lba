@@ -17,7 +17,10 @@ import org.w3c.dom.Element;
 import com.LBA.Advertiser.bean.MobileUserBean;
 import com.LBA.Advertiser.model.MobileUserModel;
 import com.LBA.LBAResource.BaseResource;
-
+/**
+ * @author payalpatel
+ * 
+ */
 public class MobileUserVerificationResource extends BaseResource {
 
 	/** The underlying Item object. */
