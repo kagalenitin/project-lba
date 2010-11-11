@@ -139,7 +139,7 @@ public class ChannelSubscription extends Activity { // implements
 			public void onClick(View v) {
 
 				String channelName = elChannelName.getText().toString();
-				if(channelName.equals("")){
+				if (channelName.equals("")) {
 					channels = getChannelsByUser(uname);
 				} else {
 					channels = getChannelsByNameByUser(channelName, uname);
@@ -171,7 +171,7 @@ public class ChannelSubscription extends Activity { // implements
 					int count) {
 
 				String channelName = elChannelName.getText().toString();
-				if(channelName.equals("")){
+				if (channelName.equals("")) {
 					channels = getChannelsByUser(uname);
 				} else {
 					channels = getChannelsByNameByUser(channelName, uname);

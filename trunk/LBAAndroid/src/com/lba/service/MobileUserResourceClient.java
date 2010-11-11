@@ -40,7 +40,7 @@ public class MobileUserResourceClient {
 		// Create a new user
 		try {
 			Representation r = mobleUsersResource
-			.post(getRepresentation(mobileUser));
+					.post(getRepresentation(mobileUser));
 			mobileUserResource = new ClientResource(r.getLocationRef());
 
 		} catch (ResourceException e) {
@@ -57,7 +57,7 @@ public class MobileUserResourceClient {
 	}
 
 	public void updateMobileUser(String username, MobileUserBean newMobileUser)
-	throws IOException {
+			throws IOException {
 		mobileUserResource = new ClientResource(serviceAddress + "/" + username);
 		MobileUserBean mobileuser = new MobileUserBean();
 		DomRepresentation representation = retrieveMobileUser(username);
@@ -127,16 +127,16 @@ public class MobileUserResourceClient {
 					Element fstElmnt = (Element) fstNode;
 
 					NodeList usernameElmntLst = fstElmnt
-					.getElementsByTagName("username");
+							.getElementsByTagName("username");
 					Element userNameElmnt = (Element) usernameElmntLst.item(0);
 					NodeList username = userNameElmnt.getChildNodes();
 					System.out.println(Log.VERBOSE + "Username : "
 							+ ((Node) username.item(0)).getNodeValue());
 
 					NodeList authenticateElmntLst = fstElmnt
-					.getElementsByTagName("authenticate");
+							.getElementsByTagName("authenticate");
 					Element authenticateElmnt = (Element) authenticateElmntLst
-					.item(0);
+							.item(0);
 					NodeList authenticate = authenticateElmnt.getChildNodes();
 					System.out.println(Log.VERBOSE + "authenticate : "
 							+ ((Node) authenticate.item(0)).getNodeValue());
@@ -177,7 +177,7 @@ public class MobileUserResourceClient {
 	}
 
 	public MobileUserBean getMobileUserFromXml(DomRepresentation representation)
-	throws IOException {
+			throws IOException {
 
 		MobileUserBean mobileuser = new MobileUserBean();
 		try {
@@ -198,7 +198,7 @@ public class MobileUserResourceClient {
 					Element fstElmnt = (Element) fstNode;
 
 					NodeList usernameElmntLst = fstElmnt
-					.getElementsByTagName("username");
+							.getElementsByTagName("username");
 					Element userNameElmnt = (Element) usernameElmntLst.item(0);
 					NodeList username = userNameElmnt.getChildNodes();
 					System.out.println("Username : "
@@ -208,7 +208,7 @@ public class MobileUserResourceClient {
 							.getNodeValue().toString());
 
 					NodeList passwordElmntLst = fstElmnt
-					.getElementsByTagName("password");
+							.getElementsByTagName("password");
 					Element passwordElmnt = (Element) passwordElmntLst.item(0);
 					NodeList password = passwordElmnt.getChildNodes();
 					System.out.println("password : "
@@ -218,9 +218,9 @@ public class MobileUserResourceClient {
 							.getNodeValue().toString());
 
 					NodeList firstNameElmntLst = fstElmnt
-					.getElementsByTagName("firstName");
+							.getElementsByTagName("firstName");
 					Element firstNameElmnt = (Element) firstNameElmntLst
-					.item(0);
+							.item(0);
 					NodeList firstName = firstNameElmnt.getChildNodes();
 					System.out.println("f Name : "
 							+ ((Node) firstName.item(0)).getNodeValue());
@@ -229,7 +229,7 @@ public class MobileUserResourceClient {
 							.getNodeValue().toString());
 
 					NodeList lastNameElmntLst = fstElmnt
-					.getElementsByTagName("lastName");
+							.getElementsByTagName("lastName");
 					Element lastNameElmnt = (Element) lastNameElmntLst.item(0);
 					NodeList lastName = lastNameElmnt.getChildNodes();
 					System.out.println("l Name : "
@@ -239,7 +239,7 @@ public class MobileUserResourceClient {
 							.getNodeValue().toString());
 
 					NodeList addressElmntLst = fstElmnt
-					.getElementsByTagName("address");
+							.getElementsByTagName("address");
 					Element addressElmnt = (Element) addressElmntLst.item(0);
 					NodeList address = addressElmnt.getChildNodes();
 					System.out.println("Address : "
@@ -249,7 +249,7 @@ public class MobileUserResourceClient {
 							.getNodeValue().toString());
 
 					NodeList phoneElmntLst = fstElmnt
-					.getElementsByTagName("phone");
+							.getElementsByTagName("phone");
 					Element phoneElmnt = (Element) phoneElmntLst.item(0);
 					NodeList phone = phoneElmnt.getChildNodes();
 					System.out.println("Phone : "
@@ -259,7 +259,7 @@ public class MobileUserResourceClient {
 							.toString());
 
 					NodeList emailElmntLst = fstElmnt
-					.getElementsByTagName("email");
+							.getElementsByTagName("email");
 					Element emailElmnt = (Element) emailElmntLst.item(0);
 					NodeList email = emailElmnt.getChildNodes();
 					System.out.println("Email : "
@@ -286,7 +286,7 @@ public class MobileUserResourceClient {
 	 * @throws ResourceException
 	 */
 	public static DomRepresentation get(ClientResource clientResource)
-	throws IOException, ResourceException {
+			throws IOException, ResourceException {
 		try {
 			clientResource.get().write(System.out);
 
@@ -307,17 +307,18 @@ public class MobileUserResourceClient {
 
 					Element fstElmnt = (Element) fstNode;
 					NodeList prodNmElmntLst = fstElmnt
-					.getElementsByTagName("username");
+							.getElementsByTagName("username");
 					Element prodNmElmnt = (Element) prodNmElmntLst.item(0);
 					NodeList prodNm = prodNmElmnt.getChildNodes();
 					System.out.println("Name : "
 							+ ((Node) prodNm.item(0)).getNodeValue());
-//					NodeList prodDescElmntLst = fstElmnt
-//					.getElementsByTagName("firstName");
-//					Element prodDescElmnt = (Element) prodDescElmntLst.item(0);
-//					NodeList prodDesc = prodDescElmnt.getChildNodes();
-//					System.out.println("first name : "
-//							+ ((Node) prodDesc.item(0)).getNodeValue());
+					// NodeList prodDescElmntLst = fstElmnt
+					// .getElementsByTagName("firstName");
+					// Element prodDescElmnt = (Element)
+					// prodDescElmntLst.item(0);
+					// NodeList prodDesc = prodDescElmnt.getChildNodes();
+					// System.out.println("first name : "
+					// + ((Node) prodDesc.item(0)).getNodeValue());
 				}
 
 			}

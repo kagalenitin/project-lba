@@ -25,7 +25,9 @@ import com.lba.search.SearchChannel;
 import com.lba.search.SearchProduct;
 import com.lba.subscription.ChannelSubscription;
 import com.lba.subscription.ViewChannelSubscription;
+import com.lba.user.LBALogin;
 import com.lba.user.Profile;
+import com.lba.util.Notify;
 
 /**
  * @author payal
@@ -50,6 +52,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 		gridview.setAdapter(new ImageAdapter(this, this));
 
 		lblUser = (TextView) findViewById(R.id.user);
+
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
@@ -87,14 +90,13 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 				} else if (position == 4) {
 					Toast.makeText(WelcomeUser.this, "Search",
 							Toast.LENGTH_SHORT).show();
-					intent = new Intent(WelcomeUser.this, SearchProduct.class);
+					intent = new Intent(WelcomeUser.this, Notify.class);
 					b.putString("uname", uname);
 					b.putString("productId", "");
 				} else if (position == 5) {
-					Toast.makeText(WelcomeUser.this, "My Subscription",
+					Toast.makeText(WelcomeUser.this, "Direction",
 							Toast.LENGTH_SHORT).show();
-					intent = new Intent(WelcomeUser.this,
-							ViewChannelSubscription.class);
+					intent = new Intent(WelcomeUser.this, GPSMap.class);
 					b.putString("uname", uname);
 				} else if (position == 6) {
 					Toast.makeText(WelcomeUser.this, "Advertisement",
@@ -109,9 +111,10 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 							ChannelSubscription.class);
 					b.putString("uname", uname);
 				} else if (position == 8) {
-					Toast.makeText(WelcomeUser.this, "Direction",
+					Toast.makeText(WelcomeUser.this, "My Subscription",
 							Toast.LENGTH_SHORT).show();
-					intent = new Intent(WelcomeUser.this, GPSMap.class);
+					intent = new Intent(WelcomeUser.this,
+							ViewChannelSubscription.class);
 					b.putString("uname", uname);
 				} else {
 					intent = new Intent(WelcomeUser.this, Channelv2.class);
@@ -160,7 +163,15 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			intent.putExtras(b);
 			startActivity(intent);
 			break;
+		case R.id.singout:
+			Toast.makeText(this, "Exit", Toast.LENGTH_SHORT).show();
+			intent = new Intent(WelcomeUser.this, LBALogin.class);
+			b = new Bundle();
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
 		}
+
 		return true;
 	}
 }

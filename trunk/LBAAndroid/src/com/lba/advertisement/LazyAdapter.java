@@ -31,7 +31,7 @@ public class LazyAdapter extends BaseAdapter {
 	public LazyAdapter(Activity a, ArrayList<AdvertisementBean> advertisements) {
 		activity = a;
 		inflater = (LayoutInflater) activity
-		.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		imageLoader = new ImageLoader(activity.getApplicationContext());
 		this.advertisements = advertisements;
 		System.out.println("tomcatServer "
@@ -76,13 +76,13 @@ public class LazyAdapter extends BaseAdapter {
 		vi.setBackgroundColor(colors[colorPos]);
 		if (advertisements.size() != 0) {
 			String res = ((AdvertisementBean) advertisements.get(position))
-			.getAdDesc();
+					.getAdDesc();
 			holder.text.setText(((AdvertisementBean) advertisements
 					.get(position)).getAdName());
 			System.out.println("Path");
 			// holder.image.setTag(data[position]);
 			adLocation = adPath
-			+ advertisements.get(position).getFileLocation();
+					+ advertisements.get(position).getFileLocation();
 			holder.image.setTag(adPath
 					+ advertisements.get(position).getFileLocation());
 			holder.desc.setText(res);

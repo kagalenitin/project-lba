@@ -83,7 +83,8 @@ public class LBALogin extends Activity {
 												startActivity(intent);
 											} else {
 												Toast.makeText(
-														LBALogin.this,"Invalid Username or password!",
+														LBALogin.this,
+														"Invalid Username or password!",
 														Toast.LENGTH_SHORT)
 														.show();
 											}

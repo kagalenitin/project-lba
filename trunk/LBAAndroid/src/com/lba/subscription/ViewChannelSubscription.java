@@ -18,8 +18,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -70,7 +70,8 @@ public class ViewChannelSubscription extends Activity { // implements
 		return channels;
 	}
 
-	public static ArrayList<ChannelBean> getChannelsByUserSubscription(String channelName, String username) {
+	public static ArrayList<ChannelBean> getChannelsByUserSubscription(
+			String channelName, String username) {
 
 		UserSubscriptionResourceClient userSubscriptionResourceClient = new UserSubscriptionResourceClient(
 				username);
@@ -78,7 +79,7 @@ public class ViewChannelSubscription extends Activity { // implements
 		userSubscription.setUserId(username);
 		try {
 			DomRepresentation representation = userSubscriptionResourceClient
-					.retrieveSubscrptionByUserByName(username,channelName);
+					.retrieveSubscrptionByUserByName(username, channelName);
 			if (representation != null) {
 				channels = userSubscriptionResourceClient
 						.getChannelsFromXml(representation);
@@ -91,6 +92,7 @@ public class ViewChannelSubscription extends Activity { // implements
 		}
 		return channels;
 	}
+
 	public void subscribeChannel(String channelId, String username) {
 		UserSubscriptionResourceClient userSubscriptionResourceClient = new UserSubscriptionResourceClient(
 				username);
@@ -145,7 +147,7 @@ public class ViewChannelSubscription extends Activity { // implements
 		for (int i = 0; i < channels.size(); i++) {
 			channelListView.setItemChecked(i, true);
 		}
-		
+
 		btnSearch = (Button) findViewById(R.id.searchbutton);
 		// Set Click Listener
 		btnSearch.setOnClickListener(new OnClickListener() {
@@ -154,7 +156,7 @@ public class ViewChannelSubscription extends Activity { // implements
 			public void onClick(View v) {
 
 				String channelName = elChannelName.getText().toString();
-				if(channelName.equals("")){
+				if (channelName.equals("")) {
 					channels = getChannels(uname);
 				} else {
 					channels = getChannelsByUserSubscription(channelName, uname);
@@ -189,7 +191,7 @@ public class ViewChannelSubscription extends Activity { // implements
 					int count) {
 
 				String channelName = elChannelName.getText().toString();
-				if(channelName.equals("")){
+				if (channelName.equals("")) {
 					channels = getChannels(uname);
 				} else {
 					channels = getChannelsByUserSubscription(channelName, uname);
