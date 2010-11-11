@@ -656,4 +656,52 @@ public class AdvertisementModel {
 		}
 		return adMerchantList;
 	}
+	
+	public ArrayList<AdMerchantAdBean> getAdsbyMerchantNearByUserSubscription(String username,
+			String latitude, String longitude) {
+
+		DBConnect.connectDB();
+		ArrayList<AdMerchantAdBean> adMerchantList = new ArrayList<AdMerchantAdBean>();
+		try {
+			stmtView = DBConnect.con.createStatement();
+			String qry = "select a.adid,adname,addesc,adstartdate,adenddate,longitude,latitude,address,city,state,zip "
+					+ "from merchantlocation ml,ad_merchant aml,advertisement a , channel_ad ca, usersubscription u" +
+					   " where ml.merchantlocationID = aml.merchantlocationID "
+					+ "and aml.adid = a.adid and ca.channelid=u.channelid and ca.adid=a.adid and u.username='" + username + "'";
+			System.out.println(qry);
+			rsRead = stmtView.executeQuery(qry);
+			while (rsRead.next()) {
+				AdMerchantAdBean adMerchant = new AdMerchantAdBean();
+				adMerchant.setAdID(rsRead.getString("adID"));
+				adMerchant.setAdName(rsRead.getString("adname"));
+				adMerchant.setAdDesc(rsRead.getString("addesc"));
+				adMerchant.setAdStartDate(rsRead.getString("adstartdate"));
+				adMerchant.setAdStartDate(rsRead.getString("adenddate"));
+				adMerchant.setAddress(rsRead.getString("address"));
+				adMerchant.setLatitude(rsRead.getString("latitude"));
+				adMerchant.setLongitude(rsRead.getString("longitude"));
+				adMerchant.setCity(rsRead.getString("city"));
+				adMerchant.setState(rsRead.getString("state"));
+				adMerchant.setZip(rsRead.getString("zip"));
+
+				double distance = distance(Double.parseDouble(latitude),
+						Double.parseDouble(longitude),
+						Double.parseDouble(adMerchant.getLatitude()),
+						Double.parseDouble(adMerchant.getLongitude()), 'M');
+				System.out.println("Distance: " + distance + " "
+						+ adMerchant.adID);
+				if (distance <= 10.0d) {
+					System.out.println("IN: " + distance + " "
+							+ adMerchant.adID);
+					adMerchantList.add(adMerchant);
+				}
+			}
+			stmtView.close();
+			rsRead.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return adMerchantList;
+	}
 }

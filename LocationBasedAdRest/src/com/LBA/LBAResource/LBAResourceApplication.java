@@ -5,6 +5,7 @@ import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
 import com.LBA.service.advertisement.AdvertisementResource;
+import com.LBA.service.advertisement.AdvertisementsByDistanceBySubscriptionResource;
 import com.LBA.service.advertisement.AdvertisementsByMerchantByDistanceResource;
 import com.LBA.service.advertisement.AdvertisementsByMerchantIdResource;
 import com.LBA.service.advertisement.AdvertisementsByMerchantResource;
@@ -25,7 +26,10 @@ import com.LBA.service.product.ProductResource;
 import com.LBA.service.product.ProductsByChannelResource;
 import com.LBA.service.product.ProductsByNameResource;
 import com.LBA.service.product.ProductsResource;
-
+/**
+ * @author payalpatel
+ * 
+ */
 public class LBAResourceApplication extends Application {
 
 	/**
@@ -82,6 +86,11 @@ public class LBAResourceApplication extends Application {
 		router.attach(
 				"/advertisements/merchant/{adName}/{latitude}/{longitude}",
 				AdvertisementsByMerchantByDistanceResource.class);
+		
+		// Defines a route for the resource "Advertisement by Subscription"
+		router.attach(
+				"/advertisements/subscription/{username}/{latitude}/{longitude}",
+				AdvertisementsByDistanceBySubscriptionResource.class);
 
 		// Defines a route for the resource "list of mobileusers"
 		router.attach("/mobileusers", MobileUsersResource.class);

@@ -14,7 +14,7 @@ import com.LBA.LBAResource.BaseResource;
 
 /**
  * Resource that manages a list of items.
- * 
+ * @author payalpatel
  */
 public class UserSubscriptionResource extends BaseResource {
 

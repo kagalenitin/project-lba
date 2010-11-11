@@ -16,7 +16,10 @@ import org.w3c.dom.Element;
 import com.LBA.Advertiser.bean.ChannelBean;
 import com.LBA.Advertiser.model.ChannelModel;
 import com.LBA.LBAResource.BaseResource;
-
+/**
+ * @author payalpatel
+ * 
+ */
 public class ChannelResource extends BaseResource {
 
 	/** The underlying Item object. */

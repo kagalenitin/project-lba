@@ -6,7 +6,10 @@ import java.sql.Statement;
 
 import com.LBA.Advertiser.bean.MobileUserBean;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-
+/**
+ * @author payalpatel
+ * 
+ */
 public class MobileUserModel {
 	static boolean valueInserted;
 	static boolean valueDeleted;
