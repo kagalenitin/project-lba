@@ -1,6 +1,5 @@
 package com.LBA.Advertiser.model;
 
-import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,9 +11,8 @@ import com.LBA.Advertiser.bean.AdvertisementBean;
 import com.LBA.Advertiser.bean.GlobalBean;
 import com.LBA.Advertiser.bean.ProductBean;
 
-public class AdvertisementModel implements Serializable {
+public class AdvertisementModel {
 
-	private static final long serialVersionUID = 1L;
 	static boolean valueInserted;
 	static boolean valueDeleted;
 	static Statement stmtInsert = null;
