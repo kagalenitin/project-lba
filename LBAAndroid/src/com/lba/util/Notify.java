@@ -1,6 +1,10 @@
 package com.lba.util;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
+
+import org.restlet.ext.xml.DomRepresentation;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -16,8 +20,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.google.android.maps.GeoPoint;
 import com.lba.R;
-
+import com.lba.beans.AdMerchantAdBean;
+import com.lba.service.AdvertisementResourceClient;
+/**
+ * @author payalpatel
+ * 
+ */
 public class Notify extends Activity {
 
 	private NotificationManager mNotificationManager;
@@ -25,6 +35,8 @@ public class Notify extends Activity {
 	private Location currentLocation;
 	private double Latitude;
 	private double Longitude;
+	private ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
+	String uname;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -32,12 +44,19 @@ public class Notify extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.notify);
 
+		Intent intent = getIntent();
+		Bundle b = new Bundle();
+		b = intent.getExtras();
+		if (b != null) {
+			this.setTitle("LBA: Notify Ad");
+			uname = b.getString("uname");
+		}
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		LocationListener myLocationListener = new MyLocationListener();
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				1000L, 500.0f, myLocationListener);
 		currentLocation = locationManager
-				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (currentLocation == null) {
 			Latitude = 37.3348412;
 			Longitude = -121.8849198;
@@ -54,7 +73,6 @@ public class Notify extends Activity {
 		long[] vibrate = { 100, 100, 200, 300 };
 		notifyDetails.vibrate = vibrate;
 		notifyDetails.defaults = Notification.DEFAULT_ALL;
-		Context context = getApplicationContext();
 
 		Button start = (Button) findViewById(R.id.btn_showsample);
 		Button cancel = (Button) findViewById(R.id.btn_clear);
@@ -63,21 +81,22 @@ public class Notify extends Activity {
 
 			public void onClick(View v) {
 
-				Context context = getApplicationContext();
-				CharSequence contentTitle = "LBA Notification";
-				CharSequence contentText = "Ad Name";
-
-				Intent notifyIntent = new Intent(context, Notify.class);
-
-				PendingIntent intent = PendingIntent.getActivity(Notify.this,
-						0, notifyIntent,
-						android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
-
-				notifyDetails.setLatestEventInfo(context, contentTitle,
-						contentText, intent);
-
-				mNotificationManager.notify(SIMPLE_NOTFICATION_ID,
-						notifyDetails);
+				LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+			//	LocationListener myLocationListener = new MyLocationListener();
+				locationManager.requestLocationUpdates(
+						LocationManager.GPS_PROVIDER, 1000L, 500.0f, new MyLocationListener());
+				currentLocation = locationManager
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				if (currentLocation == null) {
+					Latitude = 37.3348412;
+					Longitude = -121.8849198;
+				} else {
+					Latitude = currentLocation.getLatitude();
+					Longitude = currentLocation.getLongitude();
+				}
+				advertisements = getAdsBySubscriptionDistance(uname, String.valueOf(Latitude),
+						String.valueOf(Longitude));
+				notifyAd();
 
 			}
 		});
@@ -93,27 +112,21 @@ public class Notify extends Activity {
 
 	private class MyLocationListener implements LocationListener {
 
-		public void onLocationChanged(Location argLocation) {
+		public void onLocationChanged(Location location) {
 
-			final Notification notifyDetails = new Notification(
-					R.drawable.arrow, "LBA!", System.currentTimeMillis());
+			if (location != null) {
+				double lat = location.getLatitude();
+				String.valueOf(lat);
+				double lng = location.getLongitude();
+				String.valueOf(lng);
+				new GeoPoint((int) (lat * 1E6),
+						(int) (lng * 1E6));
 
-			Context context = getApplicationContext();
-			CharSequence contentTitle = "LBA Notification";
-			CharSequence contentText = "LBA";
+				advertisements = getAdsBySubscriptionDistance(uname,
+						String.valueOf(lat), String.valueOf(lng));
 
-			Intent notifyIntent = new Intent(context, Notify.class);
-
-			PendingIntent intent = PendingIntent
-					.getActivity(Notify.this, 0, notifyIntent,
-							android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
-
-			notifyDetails.setLatestEventInfo(context, contentTitle,
-					contentText, intent);
-
-			mNotificationManager.notify(
-					SIMPLE_NOTFICATION_ID + new Random().nextInt(),
-					notifyDetails);
+				notifyAd();
+			}
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -126,4 +139,52 @@ public class Notify extends Activity {
 		}
 	}
 
+	public ArrayList<AdMerchantAdBean> getAdsBySubscriptionDistance(
+			String username, String latitude, String longitude) {
+
+		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
+		try {
+			DomRepresentation representation = advertisementResource
+			.retrieveAdvertisementsBySubscriptionDistance(username,
+					latitude, longitude);
+			if (representation != null) {
+				advertisements = advertisementResource
+				.getAdvertisementsByMerchantFromXml(representation);
+			} else {
+				advertisements = new ArrayList<AdMerchantAdBean>();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return advertisements;
+	}
+
+	private void notifyAd() {
+
+		for (int i = 0; i < advertisements.size(); i++) {
+
+			System.out.println("AD:" + advertisements.get(i).getAdID());
+
+			final Notification notifyDetails = new Notification(
+					R.drawable.arrow, "LBA!", System.currentTimeMillis());
+
+			Context context = getApplicationContext();
+			CharSequence contentTitle = "LBA Notification";
+			CharSequence contentText = advertisements.get(i).getAdName();
+
+			Intent notifyIntent = new Intent(context, Notify.class);
+
+			PendingIntent intent = PendingIntent
+			.getActivity(Notify.this, 0, notifyIntent,
+					android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+
+			notifyDetails.setLatestEventInfo(context, contentTitle,
+					contentText, intent);
+
+			mNotificationManager.notify(
+					SIMPLE_NOTFICATION_ID + new Random().nextInt(),
+					notifyDetails);
+		}
+	}
 }
