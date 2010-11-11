@@ -1,8 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/singout" android:title="Sign out"
+		android:icon="@drawable/gnome_session_logout" android:visible="true" />
+	<item android:id="@+id/singout" android:title="Sign out"
+		android:icon="@drawable/gnome_session_logout" />
+	<item android:id="@+id/singout" android:title="Sign out"
+		android:icon="@drawable/gnome_session_logout"  android:visible="true"/>
 	<item android:id="@+id/icon" android:icon="@drawable/searchiconsmall48"
 		android:title="Channels" />
 	<item android:id="@+id/text" android:icon="@drawable/searchiconsmall48"
 		android:title="Products" />
 	<item android:id="@+id/icontext" android:title="Advertisements"
 		android:icon="@drawable/searchiconsmall48" />
+
 </menu>

@@ -67,7 +67,8 @@ public class UserSubscriptionResourceClient {
 
 	}
 
-	public DomRepresentation retrieveSubscrptionByUserByName(String username,String channelName) {
+	public DomRepresentation retrieveSubscrptionByUserByName(String username,
+			String channelName) {
 		try {
 			UserSubscriptionsResource = new ClientResource(serviceAddress + "/"
 					+ username + "/channelname/" + channelName);
@@ -79,7 +80,7 @@ public class UserSubscriptionResourceClient {
 		}
 		return null;
 	}
-	
+
 	public DomRepresentation retrieveSubscrptionByUser(String username) {
 		try {
 			UserSubscriptionsResource = new ClientResource(serviceAddress + "/"

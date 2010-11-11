@@ -5,7 +5,7 @@
 
 	<TextView android:id="@+id/user" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:layout_x="0px"
-		android:layout_y="-1px" android:textSize="18sp" android:textStyle="bold"
+		android:layout_y="-1px" android:textSize="12sp" android:textStyle="bold"
 		android:textColor="#ffffff">
 	</TextView>
 
@@ -15,7 +15,7 @@
 
 	<TextView android:id="@+id/icon_text" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:gravity="center"
-		android:textSize="12px" android:textColorHighlight="#656565"
+		android:textSize="11px" android:textColorHighlight="#656565"
 		android:textColor="#ffffff" android:textStyle="bold" android:typeface="monospace">
 	</TextView>
 
@@ -24,8 +24,8 @@
 
 	<GridView xmlns:android="http://schemas.android.com/apk/res/android"
 		android:id="@+id/gridview" android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:padding="2dp"
-		android:verticalSpacing="0dp" android:horizontalSpacing="2dp"
+		android:layout_height="fill_parent" android:padding="1dp"
+		android:verticalSpacing="0dp" android:horizontalSpacing="1dp"
 		android:numColumns="3" android:columnWidth="100dp" 
 		android:smoothScrollbar="true" android:stretchMode="none"
 		android:gravity="center_horizontal" android:focusable="false" android:textFilterEnabled="true">

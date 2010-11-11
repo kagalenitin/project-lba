@@ -72,7 +72,7 @@ public class ChannelAdapter extends BaseAdapter {
 		} else {
 			int colorPos = position % colors.length;
 			vi.setBackgroundColor(colors[colorPos]);
-			//vi.setBackgroundResource(R.layout.customshape);
+			// vi.setBackgroundResource(R.layout.customshape);
 			holder.text.setText(data.get(position).getChannelname());
 			holder.desc.setText(data.get(position).getChanneldescription());
 		}
