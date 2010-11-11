@@ -178,12 +178,6 @@ public class LocateAd extends MapActivity implements LocationListener {
 		mapView.displayZoomControls(true);
 		mc = mapView.getController();
 
-		// LocationManager lm = (LocationManager)
-		// getSystemService(Context.LOCATION_SERVICE);
-		// lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L,
-		// 500.0f,
-		// this);
-
 		mapView.setBuiltInZoomControls(true);
 		mapView.getZoomButtonsController().setAutoDismissed(false);
 
@@ -192,7 +186,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		LocationListener myLocationListener = new MyLocationListener();
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				1000L, 500.0f, myLocationListener);
+				1000L, 500.0f, this);
 		currentLocation = locationManager
 		.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (currentLocation == null) {
