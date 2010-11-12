@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.LBA.Advertiser.bean.CategoryBean;
 import com.LBA.Advertiser.bean.ChannelBean;
 
 public class ChannelModel {
@@ -270,5 +271,38 @@ public class ChannelModel {
 		return channels;
 	}
 	
+	public ArrayList<ChannelBean> getChannelByCategory(CategoryBean categoryBean) {
+		/*
+		 * This function will retrieve contract details based on category
+		 */
+
+		// int count = getChannelCount();
+		ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
+		// if (count != 0)
+		try {
+			DBConnect.connectDB();
+			stmtView = DBConnect.con.createStatement();
+			String qry = "select * from channel c, cat_channel ca where c.channelId=ca .channelid and ca.categoryId='"+ 
+			categoryBean.getCategoryID() +"'";
+
+			System.out.println(qry);
+			rsSet = stmtView.executeQuery(qry);
+			while (rsSet.next()) {
+				ChannelBean channel = new ChannelBean();
+				channel.setChannelid(rsSet.getString("channelid"));
+				channel.setChannelname(rsSet.getString("channelname"));
+				channel.setChanneldescription(rsSet
+						.getString("channeldescription"));
+				channels.add(channel);
+			}
+
+			stmtView.close();
+			rsSet.close();
+			DBConnect.disconnectDB();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return channels;
+	}
 	
 }
