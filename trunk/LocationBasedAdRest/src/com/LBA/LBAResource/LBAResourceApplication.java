@@ -4,6 +4,8 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
+import com.LBA.category.CategoriesResource;
+import com.LBA.category.CategoryResource;
 import com.LBA.service.advertisement.AdvertisementResource;
 import com.LBA.service.advertisement.AdvertisementsByDistanceBySubscriptionResource;
 import com.LBA.service.advertisement.AdvertisementsByMerchantByDistanceResource;
@@ -12,6 +14,7 @@ import com.LBA.service.advertisement.AdvertisementsByMerchantResource;
 import com.LBA.service.advertisement.AdvertisementsByProductResource;
 import com.LBA.service.advertisement.AdvertisementsResource;
 import com.LBA.service.channel.ChannelResource;
+import com.LBA.service.channel.ChannelsByCategoryResource;
 import com.LBA.service.channel.ChannelsByNameByUserResource;
 import com.LBA.service.channel.ChannelsByNameResource;
 import com.LBA.service.channel.ChannelsByUserNameResource;
@@ -66,6 +69,9 @@ public class LBAResourceApplication extends Application {
 		// Defines a route for the resource "channelBy!UserName"
 		router.attach("/channels/channelname/{channelName}/username/{userName}",
 				ChannelsByNameByUserResource.class);
+		// Defines a route for the resource "channelBy!UserName"
+		router.attach("/channels/category/{categoryName}",
+				ChannelsByCategoryResource.class);
 
 		// Defines a route for the resource "list of advertisements"
 		router.attach("/advertisements", AdvertisementsResource.class);
@@ -109,6 +115,10 @@ public class LBAResourceApplication extends Application {
 		router.attach("/subscription/{username}/channelname/{channelname}",
 				UserSubscriptionsByChannelNameResource.class);
 		
+		// Defines a route for the resource "list of Categories"
+		router.attach("/categories", CategoriesResource.class);
+		// Defines a route for the resource "category"
+		router.attach("/categories/{categoryName}", CategoryResource.class);
 
 		return router;
 	}
