@@ -84,11 +84,11 @@ public class ImageAdapter extends BaseAdapter {
 	private Integer[] mThumbIds = {
 
 	R.drawable.largetiles48, R.drawable.black_pin, R.drawable.user_48,
-			R.drawable.topview48, R.drawable.searchiconsmall48,
+			R.drawable.topview48, R.drawable.alert_dialog_icon,
 			R.drawable.im_directions_icon_48, R.drawable.button_add_to_cart,
-			R.drawable.settingsicon48, R.drawable.rss1 };
+			R.drawable.settingsicon48, R.drawable.rss1, R.drawable.largetiles48 };
 	private String[] mTextIds = {
 
 	"Channel", "LocateAd", "Profile", "Products", "Alert", "Direction", "Ads",
-			"Subscribe", "Subscription" };
+			"Subscribe", "Subscription", "Category" };
 }

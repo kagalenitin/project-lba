@@ -39,4 +39,6 @@
 	<string name="regAddressNeg">"Please enter valid Address For example: 123 xyz
 		Street"</string>
 
+	<string name="expandable_list_sample_action">Sample action</string>
+
 </resources>
