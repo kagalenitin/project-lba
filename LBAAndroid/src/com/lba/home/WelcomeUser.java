@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.lba.R;
 import com.lba.advertisement.Advertisement;
+import com.lba.category.Category;
 import com.lba.channel.Channelv2;
 import com.lba.location.GPSMap;
 import com.lba.mapService.LocateAd;
@@ -88,7 +89,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 					b.putString("channelId", "");
 					b.putString("uname", uname);
 				} else if (position == 4) {
-					Toast.makeText(WelcomeUser.this, "Search",
+					Toast.makeText(WelcomeUser.this, "Alert",
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Notify.class);
 					b.putString("uname", uname);
@@ -115,6 +116,11 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this,
 							ViewChannelSubscription.class);
+					b.putString("uname", uname);
+				} else if (position == 9) {
+					Toast.makeText(WelcomeUser.this, "Category",
+							Toast.LENGTH_SHORT).show();
+					intent = new Intent(WelcomeUser.this, Category.class);
 					b.putString("uname", uname);
 				} else {
 					intent = new Intent(WelcomeUser.this, Channelv2.class);

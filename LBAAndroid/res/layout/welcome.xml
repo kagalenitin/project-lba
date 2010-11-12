@@ -26,9 +26,10 @@
 		android:id="@+id/gridview" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:padding="1dp"
 		android:verticalSpacing="0dp" android:horizontalSpacing="1dp"
-		android:numColumns="3" android:columnWidth="100dp" 
+		android:numColumns="3" android:columnWidth="100dp"
 		android:smoothScrollbar="true" android:stretchMode="none"
-		android:gravity="center_horizontal" android:focusable="false" android:textFilterEnabled="true">
+		android:gravity="center_horizontal" android:focusable="false"
+		android:textFilterEnabled="true">
 	</GridView>
 
 </LinearLayout>

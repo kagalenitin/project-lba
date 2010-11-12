@@ -25,6 +25,7 @@
 
 	<ListView android:id="@+id/ListView01" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:choiceMode="multipleChoice"
-		android:smoothScrollbar="true" android:textSize="14px" android:typeface="sans"  />
+		android:smoothScrollbar="true" android:textSize="14px"
+		android:typeface="sans" />
 
 </LinearLayout>

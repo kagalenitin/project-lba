@@ -34,8 +34,9 @@
 		<activity android:name=".search.SearchAd"></activity>
 		<activity android:name=".mapService.LocateAd"></activity>
 		<activity android:name=".search.SearchChannel"></activity>
-	<activity android:name=".util.Notify"></activity>
-</application>
+		<activity android:name=".util.Notify"></activity>
+		<activity android:name=".category.Category"></activity>
+	</application>
 
 	<uses-library android:name="com.google.android.maps"
 		android:required="true" />

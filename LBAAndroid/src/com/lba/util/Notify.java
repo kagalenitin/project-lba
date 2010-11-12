@@ -18,12 +18,14 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 
 import com.google.android.maps.GeoPoint;
 import com.lba.R;
 import com.lba.beans.AdMerchantAdBean;
 import com.lba.service.AdvertisementResourceClient;
+
 /**
  * @author payalpatel
  * 
@@ -42,13 +44,15 @@ public class Notify extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.notify);
+		this.setTitle("Location Based Advertisement - Notification");
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
 		if (b != null) {
-			this.setTitle("LBA: Notify Ad");
 			uname = b.getString("uname");
 		}
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -56,7 +60,7 @@ public class Notify extends Activity {
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				1000L, 500.0f, myLocationListener);
 		currentLocation = locationManager
-		.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (currentLocation == null) {
 			Latitude = 37.3348412;
 			Longitude = -121.8849198;
@@ -82,11 +86,13 @@ public class Notify extends Activity {
 			public void onClick(View v) {
 
 				LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-			//	LocationListener myLocationListener = new MyLocationListener();
+				// LocationListener myLocationListener = new
+				// MyLocationListener();
 				locationManager.requestLocationUpdates(
-						LocationManager.GPS_PROVIDER, 1000L, 500.0f, new MyLocationListener());
+						LocationManager.GPS_PROVIDER, 1000L, 500.0f,
+						new MyLocationListener());
 				currentLocation = locationManager
-				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+						.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 				if (currentLocation == null) {
 					Latitude = 37.3348412;
 					Longitude = -121.8849198;
@@ -94,8 +100,8 @@ public class Notify extends Activity {
 					Latitude = currentLocation.getLatitude();
 					Longitude = currentLocation.getLongitude();
 				}
-				advertisements = getAdsBySubscriptionDistance(uname, String.valueOf(Latitude),
-						String.valueOf(Longitude));
+				advertisements = getAdsBySubscriptionDistance(uname,
+						String.valueOf(Latitude), String.valueOf(Longitude));
 				notifyAd();
 
 			}
@@ -119,8 +125,7 @@ public class Notify extends Activity {
 				String.valueOf(lat);
 				double lng = location.getLongitude();
 				String.valueOf(lng);
-				new GeoPoint((int) (lat * 1E6),
-						(int) (lng * 1E6));
+				new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
 
 				advertisements = getAdsBySubscriptionDistance(uname,
 						String.valueOf(lat), String.valueOf(lng));
@@ -145,11 +150,11 @@ public class Notify extends Activity {
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
 		try {
 			DomRepresentation representation = advertisementResource
-			.retrieveAdvertisementsBySubscriptionDistance(username,
-					latitude, longitude);
+					.retrieveAdvertisementsBySubscriptionDistance(username,
+							latitude, longitude);
 			if (representation != null) {
 				advertisements = advertisementResource
-				.getAdvertisementsByMerchantFromXml(representation);
+						.getAdvertisementsByMerchantFromXml(representation);
 			} else {
 				advertisements = new ArrayList<AdMerchantAdBean>();
 			}
@@ -176,8 +181,8 @@ public class Notify extends Activity {
 			Intent notifyIntent = new Intent(context, Notify.class);
 
 			PendingIntent intent = PendingIntent
-			.getActivity(Notify.this, 0, notifyIntent,
-					android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+					.getActivity(Notify.this, 0, notifyIntent,
+							android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
 
 			notifyDetails.setLatestEventInfo(context, contentTitle,
 					contentText, intent);
