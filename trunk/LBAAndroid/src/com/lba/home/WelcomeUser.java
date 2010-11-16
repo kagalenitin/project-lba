@@ -88,7 +88,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 					intent = new Intent(WelcomeUser.this, Product.class);
 					b.putString("channelId", "");
 					b.putString("uname", uname);
-				} else if (position == 4) {
+				} else if (position == 10) {
 					Toast.makeText(WelcomeUser.this, "Alert",
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Notify.class);
@@ -117,7 +117,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 					intent = new Intent(WelcomeUser.this,
 							ViewChannelSubscription.class);
 					b.putString("uname", uname);
-				} else if (position == 9) {
+				} else if (position == 4) {
 					Toast.makeText(WelcomeUser.this, "Category",
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Category.class);
@@ -142,7 +142,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.icon:
+		case R.id.channels:
 			Toast.makeText(this, "Search Channels", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(WelcomeUser.this, SearchChannel.class);
 			Bundle b = new Bundle();
@@ -150,7 +150,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			intent.putExtras(b);
 			startActivity(intent);
 			break;
-		case R.id.text:
+		case R.id.products:
 			Toast.makeText(this, "Search Products", Toast.LENGTH_SHORT).show();
 			intent = new Intent(WelcomeUser.this, SearchProduct.class);
 			b = new Bundle();
@@ -159,7 +159,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			intent.putExtras(b);
 			startActivity(intent);
 			break;
-		case R.id.icontext:
+		case R.id.ads:
 			Toast.makeText(this, "Search Advertisements", Toast.LENGTH_SHORT)
 					.show();
 			intent = new Intent(WelcomeUser.this, SearchAd.class);
@@ -173,11 +173,28 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			Toast.makeText(this, "Exit", Toast.LENGTH_SHORT).show();
 			intent = new Intent(WelcomeUser.this, LBALogin.class);
 			b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+
+		case R.id.alert:
+			Toast.makeText(this, "Notification", Toast.LENGTH_SHORT).show();
+			intent = new Intent(WelcomeUser.this, Notify.class);
+			b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		case R.id.category:
+			Toast.makeText(this, "Category", Toast.LENGTH_SHORT).show();
+			intent = new Intent(WelcomeUser.this, Category.class);
+			b = new Bundle();
+			b.putString("uname", uname);
 			intent.putExtras(b);
 			startActivity(intent);
 			break;
 		}
-
 		return true;
 	}
 }

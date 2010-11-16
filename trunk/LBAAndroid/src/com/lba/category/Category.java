@@ -117,6 +117,7 @@ public class Category extends ExpandableListActivity {
 		if (b != null) {
 			uname = b.getString("uname");
 		}
+		
 	}
 
 	@Override

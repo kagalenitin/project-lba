@@ -2,7 +2,6 @@ package com.lba.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.restlet.ext.xml.DomRepresentation;
 
@@ -16,14 +15,20 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
 import com.lba.R;
 import com.lba.beans.AdMerchantAdBean;
+import com.lba.home.WelcomeUser;
+import com.lba.search.SearchProduct;
 import com.lba.service.AdvertisementResourceClient;
 
 /**
@@ -38,6 +43,7 @@ public class Notify extends Activity {
 	private double Latitude;
 	private double Longitude;
 	private ArrayList<AdMerchantAdBean> advertisements = new ArrayList<AdMerchantAdBean>();
+	private ArrayList<Integer> notificationID = new ArrayList<Integer>();
 	String uname;
 
 	/** Called when the activity is first created. */
@@ -111,7 +117,9 @@ public class Notify extends Activity {
 
 			public void onClick(View v) {
 
-				mNotificationManager.cancel(SIMPLE_NOTFICATION_ID);
+				for(int i=0;i<notificationID.size();i++){
+					mNotificationManager.cancel(notificationID.get(i));
+				}
 			}
 		});
 	}
@@ -166,7 +174,7 @@ public class Notify extends Activity {
 	}
 
 	private void notifyAd() {
-
+		
 		for (int i = 0; i < advertisements.size(); i++) {
 
 			System.out.println("AD:" + advertisements.get(i).getAdID());
@@ -187,9 +195,41 @@ public class Notify extends Activity {
 			notifyDetails.setLatestEventInfo(context, contentTitle,
 					contentText, intent);
 
+			notificationID.add(Integer.parseInt(advertisements.get(i).getAdID()));
+			
 			mNotificationManager.notify(
-					SIMPLE_NOTFICATION_ID + new Random().nextInt(),
+					Integer.parseInt(advertisements.get(i).getAdID()),
 					notifyDetails);
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.commonmenu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.home:
+			Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(Notify.this, WelcomeUser.class);
+			Bundle b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		case R.id.search:
+			Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
+			intent = new Intent(Notify.this, SearchProduct.class);
+			b = new Bundle();
+			b.putString("uname", uname);
+			intent.putExtras(b);
+			startActivity(intent);
+			break;
+		}
+		return true;
 	}
 }
