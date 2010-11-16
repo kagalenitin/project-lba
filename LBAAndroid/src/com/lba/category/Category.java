@@ -69,7 +69,7 @@ public class Category extends ExpandableListActivity {
 			DomRepresentation representation = categoryResource.getCategories();
 			if (representation != null) {
 				categories = categoryResource
-				.getCategoriesFromXml(representation);
+						.getCategoriesFromXml(representation);
 			} else {
 				categories = new ArrayList<CategoryBean>();
 			}
@@ -85,7 +85,7 @@ public class Category extends ExpandableListActivity {
 		ChannelResourceClient channelResource = new ChannelResourceClient();
 		try {
 			DomRepresentation representation = channelResource
-			.retrieveChannelsByCategory(categoryName);
+					.retrieveChannelsByCategory(categoryName);
 			if (representation != null) {
 				channels = channelResource.getChannelsFromXml(representation);
 			} else {
@@ -117,7 +117,7 @@ public class Category extends ExpandableListActivity {
 		if (b != null) {
 			uname = b.getString("uname");
 		}
-		
+
 	}
 
 	@Override
@@ -130,25 +130,25 @@ public class Category extends ExpandableListActivity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item
-		.getMenuInfo();
+				.getMenuInfo();
 
 		String title = ((TextView) info.targetView).getText().toString();
 
 		int type = ExpandableListView
-		.getPackedPositionType(info.packedPosition);
+				.getPackedPositionType(info.packedPosition);
 		if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
 			int groupPos = ExpandableListView
-			.getPackedPositionGroup(info.packedPosition);
+					.getPackedPositionGroup(info.packedPosition);
 			int childPos = ExpandableListView
-			.getPackedPositionChild(info.packedPosition);
+					.getPackedPositionChild(info.packedPosition);
 			Toast.makeText(
 					this,
 					title + ": Child " + childPos + " clicked in group "
-					+ groupPos, Toast.LENGTH_SHORT).show();
+							+ groupPos, Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
 			int groupPos = ExpandableListView
-			.getPackedPositionGroup(info.packedPosition);
+					.getPackedPositionGroup(info.packedPosition);
 			Toast.makeText(this, title + ": Group " + groupPos + " clicked",
 					Toast.LENGTH_SHORT).show();
 			return true;
