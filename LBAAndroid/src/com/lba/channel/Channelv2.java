@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.restlet.ext.xml.DomRepresentation;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,7 +32,7 @@ import com.lba.service.ChannelResourceClient;
  * @author payal
  * 
  */
-public class Channelv2 extends Activity {
+public class Channelv2 extends ListActivity {
 
 	private ListView channelListView;
 	// private TextView lblChannelCode;
@@ -69,7 +69,7 @@ public class Channelv2 extends Activity {
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
 		// lblChannelCode = (TextView) findViewById(R.id.ChannelCode);
-		channelListView = (ListView) findViewById(R.id.ListView01);
+		channelListView = (ListView) findViewById(android.R.id.list);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
@@ -84,6 +84,8 @@ public class Channelv2 extends Activity {
 		channels = getChannels();
 		adapter = new ChannelAdapter(this, channels);
 		channelListView.setAdapter(adapter);
+		channelListView.setTextFilterEnabled(true);
+   //     getListView().setTextFilterEnabled(true);
 
 		// Set Click Listener
 		channelListView.setClickable(true);
