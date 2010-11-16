@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.lba.R;
 import com.lba.beans.ChannelBean;
+import com.lba.subscription.ChannelSubscription;
 
 /**
  * @author payal
