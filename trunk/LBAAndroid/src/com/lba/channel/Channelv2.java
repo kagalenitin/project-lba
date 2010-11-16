@@ -85,7 +85,7 @@ public class Channelv2 extends ListActivity {
 		adapter = new ChannelAdapter(this, channels);
 		channelListView.setAdapter(adapter);
 		channelListView.setTextFilterEnabled(true);
-   //     getListView().setTextFilterEnabled(true);
+		// getListView().setTextFilterEnabled(true);
 
 		// Set Click Listener
 		channelListView.setClickable(true);

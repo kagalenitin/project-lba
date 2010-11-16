@@ -2,7 +2,6 @@ package com.lba.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.restlet.ext.xml.DomRepresentation;
 
@@ -39,7 +38,6 @@ import com.lba.service.AdvertisementResourceClient;
 public class Notify extends Activity {
 
 	private NotificationManager mNotificationManager;
-	private int SIMPLE_NOTFICATION_ID;
 	private Location currentLocation;
 	private double Latitude;
 	private double Longitude;
@@ -118,7 +116,7 @@ public class Notify extends Activity {
 
 			public void onClick(View v) {
 
-				for(int i=0;i<notificationID.size();i++){
+				for (int i = 0; i < notificationID.size(); i++) {
 					mNotificationManager.cancel(notificationID.get(i));
 				}
 			}
@@ -175,7 +173,7 @@ public class Notify extends Activity {
 	}
 
 	private void notifyAd() {
-		
+
 		for (int i = 0; i < advertisements.size(); i++) {
 
 			System.out.println("AD:" + advertisements.get(i).getAdID());
@@ -196,8 +194,9 @@ public class Notify extends Activity {
 			notifyDetails.setLatestEventInfo(context, contentTitle,
 					contentText, intent);
 
-			notificationID.add(Integer.parseInt(advertisements.get(i).getAdID()));
-			
+			notificationID.add(Integer
+					.parseInt(advertisements.get(i).getAdID()));
+
 			mNotificationManager.notify(
 					Integer.parseInt(advertisements.get(i).getAdID()),
 					notifyDetails);

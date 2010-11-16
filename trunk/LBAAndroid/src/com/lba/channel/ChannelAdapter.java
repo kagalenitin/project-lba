@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.lba.R;
 import com.lba.beans.ChannelBean;
-import com.lba.subscription.ChannelSubscription;
 
 /**
  * @author payal
@@ -27,7 +26,7 @@ public class ChannelAdapter extends BaseAdapter implements Filterable {
 	private Activity activity;
 	private ArrayList<ChannelBean> data;
 	private static LayoutInflater inflater = null;
-    private ArrayFilter mFilter;
+	private ArrayFilter mFilter;
 
 	public ChannelAdapter(Activity a, ArrayList<ChannelBean> channels) {
 		activity = a;
@@ -87,87 +86,90 @@ public class ChannelAdapter extends BaseAdapter implements Filterable {
 	@Override
 	public Filter getFilter() {
 		if (mFilter == null) {
-            mFilter = new ArrayFilter();
-            mFilter.mOriginalValues = new ArrayList();
-            for(int i=0;i<data.size();i++){
-                mFilter.mOriginalValues.add(data.get(i).getChannelname());
-            }
-        }
-        return mFilter;
+			mFilter = new ArrayFilter();
+			mFilter.mOriginalValues = new ArrayList();
+			for (int i = 0; i < data.size(); i++) {
+				mFilter.mOriginalValues.add(data.get(i).getChannelname());
+			}
+		}
+		return mFilter;
 	}
-	
-    /**
-     * <p>An array filter constrains the content of the array adapter with
-     * a prefix. Each item that does not start with the supplied prefix
-     * is removed from the list.</p>
-     */
-    private class ArrayFilter extends Filter {
-    	
-        private List mObjects;
-        private ArrayList mOriginalValues;
-        private final Object mLock = new Object();
-        @Override
-        protected FilterResults performFiltering(CharSequence prefix) {
-            FilterResults results = new FilterResults();
 
-            if (mOriginalValues == null) {
-                synchronized (mLock) {
-                    mOriginalValues = new ArrayList(mObjects);
-                }
-            }
+	/**
+	 * <p>
+	 * An array filter constrains the content of the array adapter with a
+	 * prefix. Each item that does not start with the supplied prefix is removed
+	 * from the list.
+	 * </p>
+	 */
+	private class ArrayFilter extends Filter {
 
-            if (prefix == null || prefix.length() == 0) {
-                synchronized (mLock) {
-                    ArrayList list = new ArrayList(mOriginalValues);
-                    results.values = list;
-                    results.count = list.size();
-                }
-            } else {
-                String prefixString = prefix.toString().toLowerCase();
+		private List mObjects;
+		private ArrayList mOriginalValues;
+		private final Object mLock = new Object();
 
-                final ArrayList values = mOriginalValues;
-                final int count = values.size();
+		@Override
+		protected FilterResults performFiltering(CharSequence prefix) {
+			FilterResults results = new FilterResults();
 
-                final ArrayList newValues = new ArrayList(count);
+			if (mOriginalValues == null) {
+				synchronized (mLock) {
+					mOriginalValues = new ArrayList(mObjects);
+				}
+			}
 
-                for (int i = 0; i < count; i++) {
-                    final Object value = values.get(i);
-                    final String valueText = value.toString().toLowerCase();
+			if (prefix == null || prefix.length() == 0) {
+				synchronized (mLock) {
+					ArrayList list = new ArrayList(mOriginalValues);
+					results.values = list;
+					results.count = list.size();
+				}
+			} else {
+				String prefixString = prefix.toString().toLowerCase();
 
-                    // First match against the whole, non-splitted value
-                    if (valueText.startsWith(prefixString)) {
-                        newValues.add(value);
-                    } else {
-                        final String[] words = valueText.split(" ");
-                        final int wordCount = words.length;
+				final ArrayList values = mOriginalValues;
+				final int count = values.size();
 
-                        for (int k = 0; k < wordCount; k++) {
-                            if (words[k].startsWith(prefixString)) {
-                                newValues.add(value);
-                                break;
-                            }
-                        }
-                    }
-                }
+				final ArrayList newValues = new ArrayList(count);
 
-                results.values = newValues;
-                results.count = newValues.size();
-            }
+				for (int i = 0; i < count; i++) {
+					final Object value = values.get(i);
+					final String valueText = value.toString().toLowerCase();
 
-            return results;
-        }
+					// First match against the whole, non-splitted value
+					if (valueText.startsWith(prefixString)) {
+						newValues.add(value);
+					} else {
+						final String[] words = valueText.split(" ");
+						final int wordCount = words.length;
 
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            //noinspection unchecked
-            mObjects = (List) results.values;
-            if (results.count > 0) {
-                notifyDataSetChanged();
-            } else {
-                notifyDataSetInvalidated();
-            }
-        }
-    }
+						for (int k = 0; k < wordCount; k++) {
+							if (words[k].startsWith(prefixString)) {
+								newValues.add(value);
+								break;
+							}
+						}
+					}
+				}
 
+				results.values = newValues;
+				results.count = newValues.size();
+			}
+
+			return results;
+		}
+
+		@Override
+		protected void publishResults(CharSequence constraint,
+				FilterResults results) {
+			// noinspection unchecked
+			mObjects = (List) results.values;
+			if (results.count > 0) {
+				notifyDataSetChanged();
+			} else {
+				notifyDataSetInvalidated();
+			}
+		}
+	}
 
 }
