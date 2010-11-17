@@ -101,6 +101,7 @@ public class AdDetail extends Activity {
 			if (imgView != null) {
 				imgView.setImageDrawable(drawable);
 			}
+
 			imgView.setClickable(true);
 			imgView.setOnClickListener(new OnClickListener() {
 				@Override
@@ -123,7 +124,8 @@ public class AdDetail extends Activity {
 			return d;
 		} catch (Exception e) {
 			System.out.println("Exc=" + e);
-			return null;
+			Drawable d = getResources().getDrawable(R.drawable.nopicture);
+			return d;
 		}
 	}
 

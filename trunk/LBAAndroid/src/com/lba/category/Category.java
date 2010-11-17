@@ -21,8 +21,10 @@ import java.util.ArrayList;
 
 import org.restlet.ext.xml.DomRepresentation;
 
+import android.R.color;
 import android.app.ExpandableListActivity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -242,6 +244,7 @@ public class Category extends ExpandableListActivity {
 			TextView textView = getGenericView();
 			textView.setText(getChild(groupPosition, childPosition).toString());
 			textView.setFocusable(true);
+			textView.setTypeface(Typeface.MONOSPACE);
 			textView.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -278,6 +281,7 @@ public class Category extends ExpandableListActivity {
 				View convertView, ViewGroup parent) {
 			TextView textView = getGenericView();
 			textView.setText(getGroup(groupPosition).toString());
+			textView.setTypeface(Typeface.MONOSPACE);
 			return textView;
 		}
 
@@ -288,7 +292,6 @@ public class Category extends ExpandableListActivity {
 		public boolean hasStableIds() {
 			return true;
 		}
-
 	}
 
 	@Override

@@ -130,7 +130,7 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 				this);
 
 		for (int i = 0; i < advertisements.size(); i++) {
-			this.setTitle("LBA:" + advertisements.get(i).getAdName());
+			this.setTitle("LBA - " + advertisements.get(i).getAdName());
 			latitude = advertisements.get(i).getLatitude();
 			longitude = advertisements.get(i).getLongitude();
 			String coordinates[] = { latitude + 50, longitude + 30 };
