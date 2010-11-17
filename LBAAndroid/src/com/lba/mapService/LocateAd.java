@@ -214,7 +214,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 		mapView.getProjection().toPixels(currentPoint, new Point());
 		// mc.setZoom(10);
 
-		// mc.animateTo(currentPoint);
+		mc.animateTo(currentPoint);
 		try {
 
 			// Set Click Listener
@@ -235,7 +235,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 					currentPoint = new GeoPoint((int) (Latitude * 1E6),
 							(int) (Longitude * 1E6));
 
-					// mc.animateTo(currentPoint);
+					mc.animateTo(currentPoint);
 
 					points = new ArrayList<GeoPoint>();
 					adName = elAdname.getText().toString();
@@ -412,7 +412,7 @@ public class LocateAd extends MapActivity implements LocationListener {
 			currLatitude = String.valueOf(lng);
 			currentPoint = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
 
-			// mc.animateTo(currentPoint);
+			mc.animateTo(currentPoint);
 
 			advertisements = getAdsByMerchantDistance(adName,
 					String.valueOf(lat), String.valueOf(lng));
