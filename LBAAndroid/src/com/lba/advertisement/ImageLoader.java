@@ -27,12 +27,13 @@ public class ImageLoader {
 	// the simplest in-memory cache implementation. This should be replaced with
 	// something like SoftReference or BitmapOptions.inPurgeable(since 1.6)
 	private HashMap<String, Bitmap> cache = new HashMap<String, Bitmap>();
-
+	private Context c = null;
 	private File cacheDir;
 
 	public ImageLoader(Context context) {
 		// Make the background thead low priority. This way it will not affect
 		// the UI performance
+		c = context;
 		photoLoaderThread.setPriority(Thread.NORM_PRIORITY - 1);
 
 		// Find the dir to save cached images
@@ -95,7 +96,9 @@ public class ImageLoader {
 			return bitmap;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			Bitmap bitmap = BitmapFactory.decodeResource(c.getResources(),
+					 R.drawable.nopicture);
+			return bitmap;
 		}
 	}
 
