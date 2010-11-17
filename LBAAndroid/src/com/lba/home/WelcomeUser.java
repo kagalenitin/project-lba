@@ -50,6 +50,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
 
 		GridView gridview = (GridView) findViewById(R.id.gridview);
+
 		gridview.setAdapter(new ImageAdapter(this, this));
 
 		lblUser = (TextView) findViewById(R.id.user);

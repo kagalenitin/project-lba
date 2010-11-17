@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 import org.restlet.ext.xml.DomRepresentation;
 
-import android.R.color;
 import android.app.ExpandableListActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
