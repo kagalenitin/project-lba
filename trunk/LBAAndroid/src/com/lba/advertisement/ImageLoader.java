@@ -97,7 +97,7 @@ public class ImageLoader {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			Bitmap bitmap = BitmapFactory.decodeResource(c.getResources(),
-					 R.drawable.nopicture);
+					R.drawable.nopicture);
 			return bitmap;
 		}
 	}
