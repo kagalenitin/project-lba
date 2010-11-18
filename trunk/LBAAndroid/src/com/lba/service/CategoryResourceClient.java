@@ -22,9 +22,8 @@ public class CategoryResourceClient {
 	public ClientResource categoriesResource;
 	public ClientResource categoryResource;
 
-	// String ipaddress = "10.185.3.16:8182";
-	String ipaddress = "192.168.1.72:8182";
-	String serviceAddress = "http://" + ipaddress + "/LBAResource/categories";
+	private String ipaddress = new ServiceUtil().getAddress();
+	String serviceAddress = "http://" + ipaddress + "/categories";
 
 	public CategoryResourceClient() {
 		categoriesResource = new ClientResource(serviceAddress);

@@ -27,7 +27,7 @@ public class MobileUserResourceClient {
 	public ClientResource mobileUserVerificationResource;
 
 	private String ipaddress = new ServiceUtil().getAddress();
-	String serviceAddress = "http://" + ipaddress + "/LBAResource/mobileusers";
+	String serviceAddress = "http://" + ipaddress + "/mobileusers";
 
 	public MobileUserResourceClient() {
 		mobleUsersResource = new ClientResource(serviceAddress);
