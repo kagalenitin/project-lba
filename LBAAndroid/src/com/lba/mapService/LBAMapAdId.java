@@ -86,10 +86,13 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 
 		this.resource = this.getResources();
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.mapad);
-		this.setTitle("Location Based Advertisement - Map");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Map");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.shopping_bag);
 
 		advertisements = new ArrayList<AdMerchantAdBean>();
 		Intent intent = getIntent();

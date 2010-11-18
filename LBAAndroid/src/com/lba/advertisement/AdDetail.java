@@ -70,10 +70,13 @@ public class AdDetail extends Activity {
 		this.adPath = this.getResources().getString(R.string.tomcatServer);
 
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.adimage);
-		this.setTitle("Location Based Advertisement - Ad Detail");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Ad Detail");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.shopping_bag);
 
 		lblAdId = (TextView) findViewById(R.id.ItemCode);
 		Intent intent = getIntent();

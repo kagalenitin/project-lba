@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">LBA Login</string>
-	<string name="app_name">LBA</string>
+	<string name="hello">AdSpot Login</string>
+	<string name="app_name">AdSpot</string>
 	<string name="regneg">regneg</string>
 	<string name="regpos">regpos</string>
 	<string name="regpositive">Account created successfully! Please login.
@@ -15,7 +15,7 @@
 	<string name="propositive">Profile updated succesfully.</string>
 	<string name="pronegative">Please enter all profile information!</string>
 
-	<string name="alert_dialog_text_entry">LBA Login</string>
+	<string name="alert_dialog_text_entry">AdSpot Login</string>
 	<string name="alert_dialog_username">Username:</string>
 	<string name="alert_dialog_password">Password:</string>
 

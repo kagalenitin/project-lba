@@ -137,10 +137,13 @@ public class LocateAd extends MapActivity implements LocationListener {
 
 		this.resource = this.getResources();
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.map);
-		this.setTitle("Location Based Advertisement - Map");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - LocateAd");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.ic_menu_mylocation);
 
 		elAdname = (EditText) findViewById(R.id.txtlocateAd);
 		btnMap = (Button) findViewById(R.id.map_button);

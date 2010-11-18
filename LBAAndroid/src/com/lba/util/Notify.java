@@ -49,10 +49,13 @@ public class Notify extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.notify);
-		this.setTitle("Location Based Advertisement - Notification");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Notification");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.ic_menu_info_details);
 
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
@@ -76,7 +79,7 @@ public class Notify extends Activity {
 
 		mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-		final Notification notifyDetails = new Notification(R.drawable.arrow,
+		final Notification notifyDetails = new Notification(R.drawable.logo,
 				"New Alert, LBA", System.currentTimeMillis());
 
 		long[] vibrate = { 100, 100, 200, 300 };
@@ -179,10 +182,10 @@ public class Notify extends Activity {
 			System.out.println("AD:" + advertisements.get(i).getAdID());
 
 			final Notification notifyDetails = new Notification(
-					R.drawable.arrow, "LBA!", System.currentTimeMillis());
+					R.drawable.logo, "AdSpot!", System.currentTimeMillis());
 
 			Context context = getApplicationContext();
-			CharSequence contentTitle = "LBA Notification";
+			CharSequence contentTitle = "AdSpot Notification";
 			CharSequence contentText = advertisements.get(i).getAdName();
 
 			Intent notifyIntent = new Intent(context, Notify.class);

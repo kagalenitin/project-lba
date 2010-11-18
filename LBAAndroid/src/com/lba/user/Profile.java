@@ -41,10 +41,13 @@ public class Profile extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.profile);
-		this.setTitle("Location Based Advertisement - Profile");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Profile");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.user_48);
 
 		Intent intent = getIntent();
 		Bundle b = new Bundle();

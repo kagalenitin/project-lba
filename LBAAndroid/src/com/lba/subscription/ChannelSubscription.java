@@ -110,10 +110,13 @@ public class ChannelSubscription extends Activity { // implements
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.channelsubscription);
-		this.setTitle("Location Based Advertisement - MyChannel");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - MyChannel");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.feed_icon_grey_48px);
 
 		channelListView = (ListView) findViewById(R.id.ListView01);
 		Intent intent = getIntent();
