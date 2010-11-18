@@ -5,7 +5,8 @@ import java.io.IOException;
 import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
-import org.restlet.resource.Post;
+import org.restlet.resource.Get;
+import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 
 import com.LBA.Advertiser.bean.ChannelSubscriptionBean;
@@ -47,14 +48,22 @@ public class UserSubscriptionResource extends BaseResource {
 	 * 
 	 * @throws IOException
 	 */
-	@Post
+	@Put
 	public void storeItem(Representation entity) throws IOException {
+		System.out.println("PUT");
 		// The PUT request updates or creates the resource.
 		if (count == 0) {
-			// userSubscription = new ChannelSubscriptionBean();
-			// Form form = new Form(entity);
-			// userSubscription.setUserId(form.getFirstValue("username"));
-			// userSubscription.setChanneld(form.getFirstValue("channelId"));
+			usersubscriptionModel.insertUserSubscription(userSubscription);
+		}
+		setStatus(Status.SUCCESS_CREATED);
+		setStatus(Status.SUCCESS_OK);
+	}
+
+	@Get
+	public void storeItemGet(Representation entity) throws IOException {
+		System.out.println("Get");
+		// The PUT request updates or creates the resource.
+		if (count == 0) {
 			usersubscriptionModel.insertUserSubscription(userSubscription);
 		}
 		setStatus(Status.SUCCESS_CREATED);

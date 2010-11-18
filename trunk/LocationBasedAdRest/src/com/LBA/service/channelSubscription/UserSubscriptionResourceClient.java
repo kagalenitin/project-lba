@@ -46,8 +46,7 @@ public class UserSubscriptionResourceClient {
 			UserSubscriptionResource = new ClientResource(serviceAddress + "/"
 					+ channelSubscriptionBean.getUserId() + "/"
 					+ channelSubscriptionBean.getChanneld());
-			Representation r = UserSubscriptionResource
-					.post(getRepresentation(channelSubscriptionBean));
+			Representation r = UserSubscriptionResource.get();
 			UserSubscriptionsResource = new ClientResource(r.getLocationRef());
 
 		} catch (ResourceException e) {
@@ -56,11 +55,10 @@ public class UserSubscriptionResourceClient {
 		}
 		// Consume the response's entity which releases the connection
 		try {
-			UserSubscriptionsResource.getResponseEntity().exhaust();
-		} catch (IOException e) {
-			e.printStackTrace();
+			// UserSubscriptionsResource.getResponseEntity().exhaust();
+		} catch (Exception e) {
+			// e.printStackTrace();
 		}
-
 	}
 
 	public void deleteSubscriptionByUser(String username, String channelId) {
@@ -81,6 +79,15 @@ public class UserSubscriptionResourceClient {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void main(String args[]) {
+		UserSubscriptionResourceClient client = new UserSubscriptionResourceClient(
+				"payal");
+		ChannelSubscriptionBean channelSubscriptionBean = new ChannelSubscriptionBean();
+		channelSubscriptionBean.setChanneld("3");
+		channelSubscriptionBean.setUserId("payal");
+		client.createSubscription(channelSubscriptionBean);
 	}
 
 	public ArrayList<ChannelBean> getChannelsFromXml(
