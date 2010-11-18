@@ -60,6 +60,7 @@ public class ChannelSubscriptionModel {
 			count = rsSet.getInt("cnt");
 			stmtView.close();
 			rsSet.close();
+			return count;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
