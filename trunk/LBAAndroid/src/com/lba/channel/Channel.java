@@ -24,7 +24,7 @@ public class Channel extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.channel);
-		this.setTitle("Location Based Advertisement");
+		this.setTitle("AdSpot");
 
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(new ImageAdapter(this));

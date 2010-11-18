@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/alert" android:title="Notification"
-		android:icon="@drawable/alert_dialog_icon" android:visible="true" />
+		android:icon="@drawable/ic_menu_info_details" android:visible="true" />
 	<item android:id="@+id/singout" android:title="Sign out"
 		android:icon="@drawable/gnome_session_logout" />
 	<item android:id="@+id/category" android:title="Category"
-		android:icon="@drawable/icon_documents2" android:visible="true" />
-	<item android:id="@+id/channels" android:icon="@drawable/searchiconsmall48"
+		android:icon="@drawable/category_forum_old" android:visible="true" />
+	<item android:id="@+id/channels" android:icon="@drawable/ic_menu_search"
 		android:title="Channels" />
-	<item android:id="@+id/products" android:icon="@drawable/searchiconsmall48"
+	<item android:id="@+id/products" android:icon="@drawable/ic_menu_search"
 		android:title="Products" />
 	<item android:id="@+id/ads" android:title="Advertisements"
-		android:icon="@drawable/searchiconsmall48" />
+		android:icon="@drawable/ic_menu_search" />
 </menu>

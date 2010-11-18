@@ -83,10 +83,18 @@ public class ImageAdapter extends BaseAdapter {
 
 	private Integer[] mThumbIds = {
 
-	R.drawable.largetiles48, R.drawable.black_pin, R.drawable.user_48,
-			R.drawable.topview48, R.drawable.icon_documents2,
-			R.drawable.im_directions_icon_48, R.drawable.button_add_to_cart,
-			R.drawable.settingsicon48, R.drawable.rss1, };
+			// R.drawable.largetiles48, R.drawable.black_pin,
+			// R.drawable.user_48,
+			// R.drawable.topview48, R.drawable.icon_documents2,
+			// R.drawable.im_directions_icon_48, R.drawable.button_add_to_cart,
+			// R.drawable.settingsicon48, R.drawable.rss1, };
+			//
+			R.drawable.largetiles48, R.drawable.ic_menu_mylocation,
+			R.drawable.user_48, R.drawable.topview48,
+			R.drawable.category_forum_old, R.drawable.ic_menu_directions,
+			R.drawable.shopping_bag, R.drawable.feed_icon_grey_48px,
+			R.drawable.forum_old_48 };
+
 	private String[] mTextIds = {
 
 	"Channel", "LocateAd", "Profile", "Products", "Category", "Direction",

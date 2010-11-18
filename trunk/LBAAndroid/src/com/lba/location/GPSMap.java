@@ -21,8 +21,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
@@ -42,19 +42,24 @@ import com.lba.search.SearchProduct;
 public class GPSMap extends MapActivity implements LocationListener {
 	/** Called when the activity is first created. */
 
-	EditText txted = null;
+	// EditText txted = null;
 	Button btnSimple = null;
 	MapView gMapView = null;
 	MapController mc = null;
 	Drawable defaultMarker = null;
 	GeoPoint p = null;
 	String uname = "";
-	double latitude = 18.9599990845, longitude = 72.819999694;
+	double latitude = 37.3348412, longitude = -121.8849198;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
+		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.location);
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.ic_menu_directions);
 
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
@@ -62,11 +67,6 @@ public class GPSMap extends MapActivity implements LocationListener {
 		if (b != null) {
 			uname = b.getString("uname");
 		}
-
-		// Creating TextBox displying Lat, Long
-		txted = (EditText) findViewById(R.id.id1);
-		String currentLocation = "Lat: " + latitude + " Lng: " + longitude;
-		txted.setText(currentLocation);
 
 		// Creating and initializing Map
 		gMapView = (MapView) findViewById(R.id.myGMap);
@@ -109,7 +109,7 @@ public class GPSMap extends MapActivity implements LocationListener {
 			double lat = location.getLatitude();
 			double lng = location.getLongitude();
 			String currentLocation = "Lat: " + lat + " Lng: " + lng;
-			txted.setText(currentLocation);
+			// txted.setText(currentLocation);
 			p = new GeoPoint((int) lat * 1000000, (int) lng * 1000000);
 			mc.animateTo(p);
 			this.startActivity(new Intent(Intent.ACTION_VIEW, Uri
@@ -176,8 +176,8 @@ public class GPSMap extends MapActivity implements LocationListener {
 					R.drawable.blackblank);
 
 			canvas.drawBitmap(bmp, myScreenCoords.x, myScreenCoords.y, paint);
-			canvas.drawText("My Location", myScreenCoords.x, myScreenCoords.y,
-					paint);
+			canvas.drawText("Current Location", myScreenCoords.x,
+					myScreenCoords.y, paint);
 			return true;
 		}
 	}

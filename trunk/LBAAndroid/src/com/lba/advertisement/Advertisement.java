@@ -54,10 +54,14 @@ public class Advertisement extends Activity {
 		adPath = this.getResources().getString(R.string.tomcatServer);
 
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.advertisementmain);
-		this.setTitle("Location Based Advertisement - Ads");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Ads");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.shopping_bag);
+
 		lblAdCode = (TextView) findViewById(R.id.AdCode);
 		itemListView = (ListView) findViewById(R.id.list);
 		Intent intent = getIntent();

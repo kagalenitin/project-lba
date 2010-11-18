@@ -32,8 +32,8 @@ public class Registration extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.registration);
-		this.setTitle("Location Based Advertisement - Registration");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Sign up");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
 
 		btnCancel = (Button) findViewById(R.id.btnCancel);
 		btnCancel.setOnClickListener(new OnClickListener() {

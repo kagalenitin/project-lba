@@ -63,10 +63,13 @@ public class Channelv2 extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
 		setContentView(R.layout.channelv2);
-		this.setTitle("Location Based Advertisement - Channel");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Channel");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.largetiles48);
 
 		// lblChannelCode = (TextView) findViewById(R.id.ChannelCode);
 		channelListView = (ListView) findViewById(android.R.id.list);

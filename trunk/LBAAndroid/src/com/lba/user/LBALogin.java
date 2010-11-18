@@ -132,10 +132,10 @@ public class LBALogin extends Activity {
 		super.onCreate(savedInstanceState);
 		Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
 		mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.main);
-		this.setTitle("Location Based Advertisement - Login");
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		this.setTitle("AdSpot - Login");
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
 
 		// Get the EditText and Button References
 		btnLogin = (Button) findViewById(R.id.signin_button);

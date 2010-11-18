@@ -23,6 +23,8 @@ import org.restlet.ext.xml.DomRepresentation;
 
 import android.app.ExpandableListActivity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,12 +108,15 @@ public class Category extends ExpandableListActivity {
 		super.onCreate(savedInstanceState);
 
 		// Set up our adapter
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
-		this.setTitle("Location Based Advertisement - Category");
+		this.setTitle("AdSpot - Category");
 		mAdapter = new MyExpandableListAdapter();
 		setListAdapter(mAdapter);
 		registerForContextMenu(getExpandableListView());
-		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);
+		setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,
+				R.drawable.category_forum_old);
 		Intent intent = getIntent();
 		Bundle b = new Bundle();
 		b = intent.getExtras();
@@ -233,6 +238,8 @@ public class Category extends ExpandableListActivity {
 			textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
 			// Set the text starting position
 			textView.setPadding(36, 0, 0, 0);
+			textView.setTextColor(ColorStateList.valueOf(Color.WHITE));
+			textView.setTypeface(Typeface.MONOSPACE);
 			return textView;
 		}
 
@@ -243,6 +250,7 @@ public class Category extends ExpandableListActivity {
 			TextView textView = getGenericView();
 			textView.setText(getChild(groupPosition, childPosition).toString());
 			textView.setFocusable(true);
+			textView.setTextSize(13);
 			textView.setTypeface(Typeface.MONOSPACE);
 			textView.setOnClickListener(new OnClickListener() {
 
@@ -280,7 +288,7 @@ public class Category extends ExpandableListActivity {
 				View convertView, ViewGroup parent) {
 			TextView textView = getGenericView();
 			textView.setText(getGroup(groupPosition).toString());
-			textView.setTypeface(Typeface.MONOSPACE);
+			textView.setTypeface(Typeface.DEFAULT_BOLD);
 			return textView;
 		}
 
