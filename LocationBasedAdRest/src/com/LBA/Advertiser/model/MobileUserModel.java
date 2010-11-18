@@ -6,6 +6,7 @@ import java.sql.Statement;
 
 import com.LBA.Advertiser.bean.MobileUserBean;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 /**
  * @author payalpatel
  * 
@@ -132,7 +133,7 @@ public class MobileUserModel {
 					+ "';";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
-			if(rsRead.next()){
+			if (rsRead.next()) {
 				mobileUserBean.setUsername(rsRead.getString("username"));
 				mobileUserBean.setPassword(rsRead.getString("password"));
 				mobileUserBean.setFirstName(rsRead.getString("firstname"));
@@ -141,7 +142,7 @@ public class MobileUserModel {
 				mobileUserBean.setPhone(rsRead.getString("phone"));
 				mobileUserBean.setEmail(rsRead.getString("email"));
 			}
-			
+
 			stmtView.close();
 			rsRead.close();
 		} catch (SQLException e) {

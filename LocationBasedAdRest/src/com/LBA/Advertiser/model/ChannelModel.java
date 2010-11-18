@@ -24,9 +24,9 @@ public class ChannelModel {
 		try {
 			stmtInsert = DBConnect.con.createStatement();
 			String qry = "INSERT into channel"
-				+ " (channelname,channeldescription)" + " values ('"
-				+ chBeanObject.getChannelname() + "','"
-				+ chBeanObject.getChanneldescription() + "');";
+					+ " (channelname,channeldescription)" + " values ('"
+					+ chBeanObject.getChannelname() + "','"
+					+ chBeanObject.getChanneldescription() + "');";
 			int res = stmtInsert.executeUpdate(qry);
 			if (res == 1) {
 				valueInserted = true;
@@ -150,7 +150,8 @@ public class ChannelModel {
 		try {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
-			String qry = "SELECT * from channel where channelid=" + channelId + " order by channelname";
+			String qry = "SELECT * from channel where channelid=" + channelId
+					+ " order by channelname";
 			rsSet = stmtView.executeQuery(qry);
 			rsSet.next();
 
@@ -181,8 +182,8 @@ public class ChannelModel {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
 			String qry = "SELECT * from channel where channelname like " + "'%"
-			+ channelName + "%' " + "or '%" + channelName + "' or '"
-			+ channelName + "%'  order by channelname;";
+					+ channelName + "%' " + "or '%" + channelName + "' or '"
+					+ channelName + "%'  order by channelname;";
 			System.out.println(qry);
 			rsSet = stmtView.executeQuery(qry);
 			while (rsSet.next()) {
@@ -215,7 +216,7 @@ public class ChannelModel {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
 			String qry = "SELECT * from channel where channelid not in (Select channelid from usersubscription where username ='"
-				+ userName + "')  order by channelname;";
+					+ userName + "')  order by channelname;";
 			System.out.println(qry);
 			rsSet = stmtView.executeQuery(qry);
 			while (rsSet.next()) {
@@ -235,10 +236,12 @@ public class ChannelModel {
 		}
 		return channels;
 	}
-	
-	public ArrayList<ChannelBean> getChannelByNameByUser(String channelName, String userName) {
+
+	public ArrayList<ChannelBean> getChannelByNameByUser(String channelName,
+			String userName) {
 		/*
-		 * This function will retrieve contract details based on channalName and NOTusername
+		 * This function will retrieve contract details based on channalName and
+		 * NOTusername
 		 */
 
 		// int count = getChannelCount();
@@ -247,10 +250,16 @@ public class ChannelModel {
 		try {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
-			String qry = "SELECT * from channel where (channelname like " + "'%"
-			+ channelName + "%' " + "or '%" + channelName + "' or '"
-			+ channelName + "%') and  channelid not in (Select channelid from usersubscription where username ='"
-				+ userName + "') order by channelname;";
+			String qry = "SELECT * from channel where (channelname like "
+					+ "'%"
+					+ channelName
+					+ "%' "
+					+ "or '%"
+					+ channelName
+					+ "' or '"
+					+ channelName
+					+ "%') and  channelid not in (Select channelid from usersubscription where username ='"
+					+ userName + "') order by channelname;";
 			System.out.println(qry);
 			rsSet = stmtView.executeQuery(qry);
 			while (rsSet.next()) {
@@ -270,7 +279,7 @@ public class ChannelModel {
 		}
 		return channels;
 	}
-	
+
 	public ArrayList<ChannelBean> getChannelByCategory(CategoryBean categoryBean) {
 		/*
 		 * This function will retrieve contract details based on category
@@ -282,8 +291,8 @@ public class ChannelModel {
 		try {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
-			String qry = "select * from channel c, cat_channel ca where c.channelId=ca .channelid and ca.categoryId='"+ 
-			categoryBean.getCategoryID() +"'";
+			String qry = "select * from channel c, cat_channel ca where c.channelId=ca .channelid and ca.categoryId='"
+					+ categoryBean.getCategoryID() + "'";
 
 			System.out.println(qry);
 			rsSet = stmtView.executeQuery(qry);
@@ -304,5 +313,5 @@ public class ChannelModel {
 		}
 		return channels;
 	}
-	
+
 }

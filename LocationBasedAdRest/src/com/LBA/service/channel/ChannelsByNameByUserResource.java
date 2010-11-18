@@ -17,6 +17,7 @@ import com.LBA.LBAResource.BaseResource;
 
 /**
  * Resource that manages a list of items.
+ * 
  * @author payalpatel
  */
 public class ChannelsByNameByUserResource extends BaseResource {
@@ -30,8 +31,7 @@ public class ChannelsByNameByUserResource extends BaseResource {
 
 		this.channelName = (String) getRequest().getAttributes().get(
 				"channelName");
-		this.userName = (String) getRequest().getAttributes().get(
-		"userName");
+		this.userName = (String) getRequest().getAttributes().get("userName");
 		try {
 			setExisting(this.channelName != null);
 		} catch (NullPointerException e) {

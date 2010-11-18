@@ -137,16 +137,17 @@ public class ChannelSubscriptionModel {
 		}
 		return null;
 	}
-	
-	public ArrayList<ChannelBean> getChannelBySubscriptionChannelName(String username,String channelName) {
+
+	public ArrayList<ChannelBean> getChannelBySubscriptionChannelName(
+			String username, String channelName) {
 
 		try {
 			DBConnect.connectDB();
 			ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
 			stmtView = DBConnect.con.createStatement();
-			String qry = "Select * FROM Channel where  (channelname like " + "'%"
-			+ channelName + "%' " + "or '%" + channelName + "' or '"
-			+ channelName + "%') and  channelId in ("
+			String qry = "Select * FROM Channel where  (channelname like "
+					+ "'%" + channelName + "%' " + "or '%" + channelName
+					+ "' or '" + channelName + "%') and  channelId in ("
 					+ "select channelId from usersubscription where username='"
 					+ username + "' )  order by channelname;";
 			System.out.println(qry);
@@ -169,6 +170,5 @@ public class ChannelSubscriptionModel {
 		}
 		return null;
 	}
-	
-	
+
 }

@@ -18,6 +18,10 @@ import com.LBA.Advertiser.bean.ProductBean;
 import com.LBA.Advertiser.model.ProductModel;
 import com.LBA.LBAResource.BaseResource;
 
+/**
+ * @author payalpatel
+ * 
+ */
 public class ProductResource extends BaseResource {
 
 	/** The underlying Item object. */

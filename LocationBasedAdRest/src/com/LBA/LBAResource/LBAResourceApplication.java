@@ -29,6 +29,7 @@ import com.LBA.service.product.ProductResource;
 import com.LBA.service.product.ProductsByChannelResource;
 import com.LBA.service.product.ProductsByNameResource;
 import com.LBA.service.product.ProductsResource;
+
 /**
  * @author payalpatel
  * 
@@ -67,7 +68,8 @@ public class LBAResourceApplication extends Application {
 		router.attach("/channels/username/{userName}",
 				ChannelsByUserNameResource.class);
 		// Defines a route for the resource "channelBy!UserName"
-		router.attach("/channels/channelname/{channelName}/username/{userName}",
+		router.attach(
+				"/channels/channelname/{channelName}/username/{userName}",
 				ChannelsByNameByUserResource.class);
 		// Defines a route for the resource "channelBy!UserName"
 		router.attach("/channels/category/{categoryName}",
@@ -92,7 +94,7 @@ public class LBAResourceApplication extends Application {
 		router.attach(
 				"/advertisements/merchant/{adName}/{latitude}/{longitude}",
 				AdvertisementsByMerchantByDistanceResource.class);
-		
+
 		// Defines a route for the resource "Advertisement by Subscription"
 		router.attach(
 				"/advertisements/subscription/{username}/{latitude}/{longitude}",
@@ -103,8 +105,9 @@ public class LBAResourceApplication extends Application {
 		// Defines a route for the resource "mobileuser"
 		router.attach("/mobileusers/{username}", MobileUserResource.class);
 		// Defines a route for the resource "mobileuser verification"
-		router.attach("/mobileusers/authenticate/{username}/{password}", MobileUserVerificationResource.class);
-		
+		router.attach("/mobileusers/authenticate/{username}/{password}",
+				MobileUserVerificationResource.class);
+
 		// Defines a route for the resource "usersubscriptions"
 		router.attach("/subscription/{username}/{channelId}",
 				UserSubscriptionResource.class);
@@ -114,7 +117,7 @@ public class LBAResourceApplication extends Application {
 		// Defines a route for the resource "usersubscriptions by channelName"
 		router.attach("/subscription/{username}/channelname/{channelname}",
 				UserSubscriptionsByChannelNameResource.class);
-		
+
 		// Defines a route for the resource "list of Categories"
 		router.attach("/categories", CategoriesResource.class);
 		// Defines a route for the resource "category"

@@ -32,7 +32,7 @@ public class ChannelsByCategoryResource extends BaseResource {
 	protected void doInit() throws ResourceException {
 
 		this.categoryName = (String) getRequest().getAttributes().get(
-		"categoryName");
+				"categoryName");
 		this.categoryBean = new CategoryModel().getCategoryByName(categoryName);
 		try {
 			setExisting(this.categoryName != null);
@@ -95,7 +95,7 @@ public class ChannelsByCategoryResource extends BaseResource {
 
 			if (categoryBean != null) {
 				ArrayList<ChannelBean> channels = channelModel
-				.getChannelByCategory(categoryBean);
+						.getChannelByCategory(categoryBean);
 				for (int i = 0; i < channels.size(); i++) {
 
 					// for (Item item : getItems().values()) {

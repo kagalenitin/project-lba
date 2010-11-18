@@ -2,6 +2,7 @@ package com.LBA.LBAResource;
 
 import org.restlet.Component;
 import org.restlet.data.Protocol;
+
 /**
  * @author payalpatel
  * 
@@ -9,7 +10,7 @@ import org.restlet.data.Protocol;
 public class LBAResourceServerMain {
 
 	public static void main(String[] args) throws Exception {
-		
+
 		// Create a new Component.
 		Component component = new Component();
 

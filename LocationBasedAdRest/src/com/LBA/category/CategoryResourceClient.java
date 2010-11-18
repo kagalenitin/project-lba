@@ -71,10 +71,10 @@ public class CategoryResourceClient {
 		}
 		return null;
 	}
-	
-	public static void main(String args[]){
+
+	public static void main(String args[]) {
 		CategoryResourceClient client = new CategoryResourceClient();
-		DomRepresentation representation =  client.getCategories();
+		DomRepresentation representation = client.getCategories();
 		try {
 			client.getCategoriesFromXml(representation);
 		} catch (IOException e) {
@@ -83,7 +83,7 @@ public class CategoryResourceClient {
 	}
 
 	public CategoryBean getCategoryFromXml(DomRepresentation representation)
-	throws IOException {
+			throws IOException {
 		CategoryBean category = new CategoryBean();
 		try {
 			Document doc = representation.getDocument();
@@ -100,9 +100,9 @@ public class CategoryResourceClient {
 					Element fstElmnt = (Element) fstNode;
 
 					NodeList categoryIdElmntLst = fstElmnt
-					.getElementsByTagName("categoryID");
+							.getElementsByTagName("categoryID");
 					Element categoryIdElmnt = (Element) categoryIdElmntLst
-					.item(0);
+							.item(0);
 					NodeList categoryId = categoryIdElmnt.getChildNodes();
 					System.out.println("categoryID : "
 							+ ((Node) categoryId.item(0)).getNodeValue());
@@ -110,9 +110,9 @@ public class CategoryResourceClient {
 							.getNodeValue().toString());
 
 					NodeList categoryNameElmntLst = fstElmnt
-					.getElementsByTagName("categoryName");
+							.getElementsByTagName("categoryName");
 					Element categoryNameElmnt = (Element) categoryNameElmntLst
-					.item(0);
+							.item(0);
 					NodeList categoryName = categoryNameElmnt.getChildNodes();
 					System.out.println("categoryName : "
 							+ ((Node) categoryName.item(0)).getNodeValue());
@@ -150,7 +150,7 @@ public class CategoryResourceClient {
 				Element fstElmnt = (Element) fstNode;
 
 				NodeList categoryIdElmntLst = fstElmnt
-				.getElementsByTagName("categoryID");
+						.getElementsByTagName("categoryID");
 				Element categoryIdElmnt = (Element) categoryIdElmntLst.item(0);
 				NodeList categoryId = categoryIdElmnt.getChildNodes();
 				System.out.println("categoryID : "
@@ -159,9 +159,9 @@ public class CategoryResourceClient {
 						.getNodeValue().toString());
 
 				NodeList categoryNameElmntLst = fstElmnt
-				.getElementsByTagName("categoryName");
+						.getElementsByTagName("categoryName");
 				Element categoryNameElmnt = (Element) categoryNameElmntLst
-				.item(0);
+						.item(0);
 				NodeList categoryName = categoryNameElmnt.getChildNodes();
 				System.out.println("categoryName : "
 						+ ((Node) categoryName.item(0)).getNodeValue());
@@ -185,7 +185,7 @@ public class CategoryResourceClient {
 	 * @throws ResourceException
 	 */
 	public static DomRepresentation get(ClientResource clientResource)
-	throws IOException, ResourceException {
+			throws IOException, ResourceException {
 		try {
 			clientResource.get().write(System.out);
 			System.out.println();
@@ -208,17 +208,17 @@ public class CategoryResourceClient {
 					Element fstElmnt = (Element) fstNode;
 
 					NodeList categoryIdElmntLst = fstElmnt
-					.getElementsByTagName("categoryID");
+							.getElementsByTagName("categoryID");
 					Element categoryIdElmnt = (Element) categoryIdElmntLst
-					.item(0);
+							.item(0);
 					NodeList categoryId = categoryIdElmnt.getChildNodes();
 					System.out.println("categoryID : "
 							+ ((Node) categoryId.item(0)).getNodeValue());
 
 					NodeList categoryNameElmntLst = fstElmnt
-					.getElementsByTagName("categoryName");
+							.getElementsByTagName("categoryName");
 					Element categoryNameElmnt = (Element) categoryNameElmntLst
-					.item(0);
+							.item(0);
 					NodeList categoryName = categoryNameElmnt.getChildNodes();
 					System.out.println("categoryName : "
 							+ ((Node) categoryName.item(0)).getNodeValue());

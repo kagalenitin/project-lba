@@ -20,10 +20,12 @@
 	<classpathentry kind="lib"
 		path="WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar" />
 	<classpathentry kind="lib"
-		path="WebContent/WEB-INF/lib/org.restlet.ext.servlet.jar" />
-	<classpathentry kind="lib"
 		path="WebContent/WEB-INF/lib/org.restlet.ext.xml.jar" />
 	<classpathentry kind="lib"
 		path="WebContent/WEB-INF/lib/org.restlet.jar" />
+	<classpathentry kind="lib"
+		path="WebContent/WEB-INF/lib/org.restlet.ext.servlet.jar" />
+	<classpathentry kind="lib"
+		path="src/com/LBA/LBAResource/LBAResourceApplication.java" />
 	<classpathentry kind="output" path="build/classes" />
 </classpath>

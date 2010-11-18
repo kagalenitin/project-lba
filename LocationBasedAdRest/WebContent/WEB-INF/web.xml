@@ -6,30 +6,22 @@
 	<display-name>LocationBasedAdRest</display-name>
 
 	<!-- Application class name -->
-	<!-- -->
-	<!-- <context-param> -->
-	<!-- <param-name>org.restlet.application</param-name> -->
-	<!-- <param-value>com.lba.LBAResource.LBAResourceApplication</param-value> -->
-	<!-- </context-param> -->
+	<context-param>
+		<param-name>org.restlet.application</param-name>
+		<param-value>  
+          com.LBA.LBAResource.LBAResourceApplication  
+       </param-value>
+	</context-param>
 
 	<!-- Restlet adapter -->
 	<servlet>
-		<servlet-name>Restlet1</servlet-name>
+		<servlet-name>RestletServlet</servlet-name>
 		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
-		<init-param>
-			<param-name>org.restlet.application</param-name>
-			<param-value>com.lba.LBAResource.LBAResourceApplication</param-value>
-		</init-param>
-		<init-param>
-			<param-name>org.restlet.autoWire</param-name>
-			<param-value>true</param-value>
-		</init-param>
-
 	</servlet>
 
 	<!-- Catch all requests -->
 	<servlet-mapping>
-		<servlet-name>Restlet1</servlet-name>
+		<servlet-name>RestletServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 </web-app>

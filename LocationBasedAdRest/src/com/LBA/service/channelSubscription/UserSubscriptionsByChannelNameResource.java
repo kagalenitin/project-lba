@@ -17,6 +17,7 @@ import com.LBA.LBAResource.BaseResource;
 
 /**
  * Resource that manages a list of items.
+ * 
  * @author payalpatel
  */
 public class UserSubscriptionsByChannelNameResource extends BaseResource {
@@ -31,7 +32,8 @@ public class UserSubscriptionsByChannelNameResource extends BaseResource {
 	@Override
 	protected void doInit() throws ResourceException {
 		this.username = (String) getRequest().getAttributes().get("username");
-		this.channelname = (String) getRequest().getAttributes().get("channelname");
+		this.channelname = (String) getRequest().getAttributes().get(
+				"channelname");
 
 		try {
 			setExisting(this.username != null);
@@ -58,7 +60,7 @@ public class UserSubscriptionsByChannelNameResource extends BaseResource {
 			d.appendChild(r);
 
 			ArrayList<ChannelBean> channelBean = usersubscriptionModel
-					.getChannelBySubscriptionChannelName(username,channelname);
+					.getChannelBySubscriptionChannelName(username, channelname);
 			for (int i = 0; i < channelBean.size(); i++) {
 
 				System.out.println(i + " check"

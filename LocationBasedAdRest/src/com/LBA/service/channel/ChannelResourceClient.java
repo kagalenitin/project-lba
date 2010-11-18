@@ -100,7 +100,7 @@ public class ChannelResourceClient {
 		}
 		return null;
 	}
-	
+
 	public DomRepresentation retrieveChannelsByCategory(String categoryName) {
 		channelsByCategoryResource = new ClientResource(serviceAddress
 				+ "/category/" + categoryName);
@@ -113,11 +113,12 @@ public class ChannelResourceClient {
 		}
 		return null;
 	}
-	
-	public DomRepresentation retrieveChannelsByNameByUser(String channelName, String user) {
+
+	public DomRepresentation retrieveChannelsByNameByUser(String channelName,
+			String user) {
 		channelsByNameByUserResource = new ClientResource(serviceAddress
-				+ "/channelname/"+ channelName +"/username/" + user);
-	
+				+ "/channelname/" + channelName + "/username/" + user);
+
 		try {
 			return get(channelsByNameByUserResource);
 		} catch (ResourceException e) {
@@ -140,6 +141,7 @@ public class ChannelResourceClient {
 		}
 		return null;
 	}
+
 	public DomRepresentation retrieveChannelsbyName(String channelName) {
 		channelsByNameResource = new ClientResource(serviceAddress
 				+ "/channelname/" + channelName);

@@ -141,13 +141,13 @@ public class AdvertisementResourceClient {
 		}
 		return null;
 	}
-	
+
 	public DomRepresentation retrieveAdvertisementsBySubscriptionDistance(
 			String username, String latitude, String longitude) {
 		try {
 			advertisementsByDistanceBySubscriptionResource = new ClientResource(
-					serviceAddress + "/subscription/" + username + "/" + latitude
-							+ "/" + longitude);
+					serviceAddress + "/subscription/" + username + "/"
+							+ latitude + "/" + longitude);
 			return get(advertisementsByDistanceBySubscriptionResource);
 		} catch (ResourceException e) {
 			e.printStackTrace();

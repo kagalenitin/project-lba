@@ -17,9 +17,11 @@ import com.LBA.LBAResource.BaseResource;
 
 /**
  * Resource that manages a list of items.
+ * 
  * @author payalpatel
  */
-public class AdvertisementsByDistanceBySubscriptionResource extends BaseResource {
+public class AdvertisementsByDistanceBySubscriptionResource extends
+		BaseResource {
 
 	AdvertisementBean advertisement;
 	AdvertisementModel advertisementModel = new AdvertisementModel();
@@ -61,7 +63,8 @@ public class AdvertisementsByDistanceBySubscriptionResource extends BaseResource
 			d.appendChild(r);
 
 			ArrayList<AdMerchantAdBean> advertisements = advertisementModel
-					.getAdsbyMerchantNearByUserSubscription(username, latitude, longitude);
+					.getAdsbyMerchantNearByUserSubscription(username, latitude,
+							longitude);
 
 			for (int i = 0; i < advertisements.size(); i++) {
 				Element eltItem = d.createElement("advertisement");
