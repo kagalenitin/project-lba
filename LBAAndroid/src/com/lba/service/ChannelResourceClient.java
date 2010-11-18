@@ -29,7 +29,7 @@ public class ChannelResourceClient {
 	public ClientResource channelsByCategoryResource;
 
 	private String ipaddress = new ServiceUtil().getAddress();
-	String serviceAddress = "http://" + ipaddress + "/LBAResource/channels";
+	String serviceAddress = "http://" + ipaddress + "/channels";
 
 	public ChannelResourceClient() {
 		channelsResource = new ClientResource(serviceAddress);

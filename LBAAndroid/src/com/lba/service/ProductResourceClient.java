@@ -28,7 +28,7 @@ public class ProductResourceClient {
 
 	private String ipaddress = new ServiceUtil().getAddress();
 
-	String serviceAddress = "http://" + ipaddress + "/LBAResource/products";
+	String serviceAddress = "http://" + ipaddress + "/products";
 
 	public ProductResourceClient() {
 		productsResource = new ClientResource(serviceAddress);

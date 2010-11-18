@@ -9,7 +9,9 @@ package com.lba.service;
  */
 public class ServiceUtil {
 
-	private String ipaddress = "192.168.1.72:8182";
+	// private String ipaddress = "192.168.1.72:8080/LocationBasedAdRest";
+
+	private String ipaddress = "192.168.1.72:8182/LBAResource";
 
 	/**
 	 * @param args

@@ -26,7 +26,7 @@ public class UserSubscriptionResourceClient {
 	public ClientResource UserSubscriptionResource;
 
 	private String ipaddress = new ServiceUtil().getAddress();
-	String serviceAddress = "http://" + ipaddress + "/LBAResource/subscription";
+	String serviceAddress = "http://" + ipaddress + "/subscription";
 
 	ChannelSubscriptionBean userSubscription = new ChannelSubscriptionBean();
 
@@ -45,8 +45,7 @@ public class UserSubscriptionResourceClient {
 			UserSubscriptionResource = new ClientResource(serviceAddress + "/"
 					+ channelSubscriptionBean.getUserId() + "/"
 					+ channelSubscriptionBean.getChanneld());
-			Representation r = UserSubscriptionResource
-					.post(getRepresentation(channelSubscriptionBean));
+			Representation r = UserSubscriptionResource.get();
 			UserSubscriptionsResource = new ClientResource(r.getLocationRef());
 
 		} catch (ResourceException e) {
@@ -54,8 +53,11 @@ public class UserSubscriptionResourceClient {
 			System.out.println("Error message:: " + e.getMessage());
 		}
 		// Consume the response's entity which releases the connection
-
-		// UserSubscriptionsResource.getResponseEntity().exhaust();
+		try {
+			// UserSubscriptionsResource.getResponseEntity().exhaust();
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
 	}
 
 	public void deleteSubscriptionByUser(

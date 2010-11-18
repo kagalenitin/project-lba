@@ -34,8 +34,9 @@ public class AdvertisementResourceClient {
 
 	private String ipaddress = new ServiceUtil().getAddress();
 
-	private String serviceAddress = "http://" + ipaddress
-			+ "/LBAResource/advertisements";
+	// private String serviceAddress = "http://" + ipaddress
+	// + "/LBAResource/advertisements";
+	private String serviceAddress = "http://" + ipaddress + "/advertisements";
 
 	public AdvertisementResourceClient() {
 		System.out.println(Log.VERBOSE + "ADDRESS: " + ipaddress);
