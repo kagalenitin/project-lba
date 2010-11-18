@@ -30,7 +30,7 @@ public class CategoryResource extends BaseResource {
 	@Override
 	protected void doInit() throws ResourceException {
 		this.categoryName = (String) getRequest().getAttributes().get(
-		"categoryName");
+				"categoryName");
 		// Get the item directly from the "persistence layer".
 		try {
 			this.category = categoryModel.getCategoryByName(categoryName);
@@ -50,7 +50,7 @@ public class CategoryResource extends BaseResource {
 
 			Element eltItem = d.createElement("category");
 			d.appendChild(eltItem);
-			
+
 			if (category != null) {
 
 				Element eltCategoryID = d.createElement("categroyID");

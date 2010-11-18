@@ -7,10 +7,10 @@ import java.io.Serializable;
 
 /**
  * @author payalpatel
- *
+ * 
  */
-public class CategoryBean implements Serializable{
-	
+public class CategoryBean implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -24,20 +24,25 @@ public class CategoryBean implements Serializable{
 	public String getCategoryID() {
 		return categoryID;
 	}
+
 	/**
-	 * @param categoryID the categoryID to set
+	 * @param categoryID
+	 *            the categoryID to set
 	 */
 	public void setCategoryID(String categoryID) {
 		this.categoryID = categoryID;
 	}
+
 	/**
 	 * @return the categoryName
 	 */
 	public String getCategoryName() {
 		return categoryName;
 	}
+
 	/**
-	 * @param categoryName the categoryName to set
+	 * @param categoryName
+	 *            the categoryName to set
 	 */
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;

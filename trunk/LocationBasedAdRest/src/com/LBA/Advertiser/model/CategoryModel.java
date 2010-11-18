@@ -12,10 +12,10 @@ import com.LBA.Advertiser.bean.CategoryBean;
 
 /**
  * @author payalpatel
- *
+ * 
  */
 public class CategoryModel {
-	
+
 	static Statement stmtView = null;
 	static ResultSet rsRead = null;
 
@@ -42,14 +42,15 @@ public class CategoryModel {
 		}
 		return null;
 	}
-	
+
 	public CategoryBean getCategoryByName(String categoryName) {
 
 		try {
 			DBConnect.connectDB();
 			CategoryBean categoryBean = new CategoryBean();
 			stmtView = DBConnect.con.createStatement();
-			String qry = "Select * FROM Category where categoryname='" + categoryName + "'";
+			String qry = "Select * FROM Category where categoryname='"
+					+ categoryName + "'";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
 			while (rsRead.next()) {

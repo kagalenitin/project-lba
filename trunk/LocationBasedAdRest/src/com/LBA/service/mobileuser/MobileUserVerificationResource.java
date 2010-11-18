@@ -2,14 +2,11 @@ package com.LBA.service.mobileuser;
 
 import java.io.IOException;
 
-import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Status;
 import org.restlet.ext.xml.DomRepresentation;
 import org.restlet.representation.Representation;
-import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
-import org.restlet.resource.Put;
 import org.restlet.resource.ResourceException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,6 +14,7 @@ import org.w3c.dom.Element;
 import com.LBA.Advertiser.bean.MobileUserBean;
 import com.LBA.Advertiser.model.MobileUserModel;
 import com.LBA.LBAResource.BaseResource;
+
 /**
  * @author payalpatel
  * 
@@ -30,7 +28,6 @@ public class MobileUserVerificationResource extends BaseResource {
 	/** The sequence of characters that identifies the resource. */
 	String username;
 	String password;
-
 
 	@Override
 	protected void doInit() throws ResourceException {
@@ -55,17 +52,18 @@ public class MobileUserVerificationResource extends BaseResource {
 				setStatus(Status.SUCCESS_OK);
 				return true;
 			} else {
-			//	setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+				// setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 				return false;
 			}
 		} else {
-		//	setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+			// setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return false;
 		}
 	}
-	
-	private boolean verifyMobileUser(){
-		if(username.equalsIgnoreCase(mobileuser.getUsername()) && password.equals(mobileuser.getPassword())) {
+
+	private boolean verifyMobileUser() {
+		if (username.equalsIgnoreCase(mobileuser.getUsername())
+				&& password.equals(mobileuser.getPassword())) {
 			return true;
 		} else {
 			return false;
@@ -91,7 +89,8 @@ public class MobileUserVerificationResource extends BaseResource {
 				eltItem.appendChild(eltUserName);
 
 				Element eltPassword = d.createElement("authenticate");
-				eltPassword.appendChild(d.createTextNode(String.valueOf(authenticateMobileUser())));
+				eltPassword.appendChild(d.createTextNode(String
+						.valueOf(authenticateMobileUser())));
 				eltItem.appendChild(eltPassword);
 
 				d.normalizeDocument();

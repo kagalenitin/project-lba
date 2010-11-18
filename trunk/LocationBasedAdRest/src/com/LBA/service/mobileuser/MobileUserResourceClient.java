@@ -125,18 +125,18 @@ public class MobileUserResourceClient {
 					Element fstElmnt = (Element) fstNode;
 
 					NodeList usernameElmntLst = fstElmnt
-					.getElementsByTagName("username");
+							.getElementsByTagName("username");
 					Element userNameElmnt = (Element) usernameElmntLst.item(0);
 					NodeList username = userNameElmnt.getChildNodes();
 					System.out.println("Username : "
 							+ ((Node) username.item(0)).getNodeValue());
 
 					NodeList authenticateElmntLst = fstElmnt
-					.getElementsByTagName("authenticate");
+							.getElementsByTagName("authenticate");
 					Element authenticateElmnt = (Element) authenticateElmntLst
-					.item(0);
+							.item(0);
 					NodeList authenticate = authenticateElmnt.getChildNodes();
-					System.out.println( "authenticate : "
+					System.out.println("authenticate : "
 							+ ((Node) authenticate.item(0)).getNodeValue());
 					result = Boolean.valueOf(((Node) authenticate.item(0))
 							.getNodeValue());
@@ -147,6 +147,7 @@ public class MobileUserResourceClient {
 		}
 		return result;
 	}
+
 	public static void main(String args[]) {
 
 		MobileUserResourceClient client = new MobileUserResourceClient();
@@ -160,13 +161,13 @@ public class MobileUserResourceClient {
 		mobileuser.setAddress("address");
 		mobileuser.setPhone("1234567890");
 		mobileuser.setEmail("payal");
-	//	client.createMobileUser(mobileuser);
+		// client.createMobileUser(mobileuser);
 		// }
 		// client.deleteMobileUser("payal");
 		mobileuser.setFirstName("Payal");
 
 		try {
-//			client.updateMobileUser("payal", mobileuser);
+			// client.updateMobileUser("payal", mobileuser);
 			client.verifyMobileUser("payal", "payal");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -305,12 +306,13 @@ public class MobileUserResourceClient {
 					NodeList prodNm = prodNmElmnt.getChildNodes();
 					System.out.println("Name : "
 							+ ((Node) prodNm.item(0)).getNodeValue());
-//					NodeList prodDescElmntLst = fstElmnt
-//							.getElementsByTagName("firstName");
-//					Element prodDescElmnt = (Element) prodDescElmntLst.item(0);
-//					NodeList prodDesc = prodDescElmnt.getChildNodes();
-//					System.out.println("first name : "
-//							+ ((Node) prodDesc.item(0)).getNodeValue());
+					// NodeList prodDescElmntLst = fstElmnt
+					// .getElementsByTagName("firstName");
+					// Element prodDescElmnt = (Element)
+					// prodDescElmntLst.item(0);
+					// NodeList prodDesc = prodDescElmnt.getChildNodes();
+					// System.out.println("first name : "
+					// + ((Node) prodDesc.item(0)).getNodeValue());
 				}
 
 			}

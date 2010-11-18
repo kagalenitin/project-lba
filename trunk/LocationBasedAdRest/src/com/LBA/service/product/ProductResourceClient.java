@@ -138,7 +138,7 @@ public class ProductResourceClient {
 			product.setProductdescription("testDesc" + i);
 			product.setPrice(12.56);
 			product.setAdvertiserName("testUser" + i);
-		//	client.createProduct(product);
+			// client.createProduct(product);
 		}
 		// product.setProductName("TestProd1");
 		// product.setProductdescription("testDesc");
@@ -148,7 +148,7 @@ public class ProductResourceClient {
 
 		// client.deleteProduct(68);
 
-	//	product.setProductName("NewTestedName2");
+		// product.setProductName("NewTestedName2");
 
 		try {
 			client.updateProduct(70, product);

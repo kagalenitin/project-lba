@@ -23,15 +23,15 @@ public class ProductModel {
 		try {
 			stmtInsert = DBConnect.con.createStatement();
 			String qry = "INSERT INTO Product (productname, productdescription, price, username) values "
-				+ "('"
-				+ beanObj.getProductName()
-				+ "', '"
-				+ beanObj.getProductdescription()
-				+ "', "
-				+ beanObj.getPrice()
-				+ ", '"
-				+ GlobalBean.getUsersession()
-				+ "')";
+					+ "('"
+					+ beanObj.getProductName()
+					+ "', '"
+					+ beanObj.getProductdescription()
+					+ "', "
+					+ beanObj.getPrice()
+					+ ", '"
+					+ GlobalBean.getUsersession()
+					+ "')";
 			System.out.println(qry);
 			int res = stmtInsert.executeUpdate(qry);
 
@@ -61,7 +61,7 @@ public class ProductModel {
 			stmtView = DBConnect.con.createStatement();
 
 			String qryCount = "SELECT COUNT(*) as cnt FROM Product where username='"
-				+ GlobalBean.getUsersession() + "';";
+					+ GlobalBean.getUsersession() + "';";
 			rsSet = stmtView.executeQuery(qryCount);
 			rsSet.next();
 			count = rsSet.getInt("cnt");
@@ -89,7 +89,7 @@ public class ProductModel {
 				// objBean = new ProductBean[count];
 				stmtView = DBConnect.con.createStatement();
 				String qry = "SELECT * FROM Product where username='"
-					+ GlobalBean.getUsersession() + "';";
+						+ GlobalBean.getUsersession() + "';";
 				rsRead = stmtView.executeQuery(qry);
 				while (rsRead.next()) {
 					objBean[i] = new ProductBean();
@@ -120,7 +120,7 @@ public class ProductModel {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
 			String qry = "SELECT * FROM Product where productID=" + productID
-			+ ";";
+					+ ";";
 			rsRead = stmtView.executeQuery(qry);
 			rsRead.next();
 
@@ -151,10 +151,10 @@ public class ProductModel {
 			DBConnect.connectDB();
 			stmtInsert = DBConnect.con.createStatement();
 			String qry = "UPDATE Product SET productname='"
-				+ beanObject.getProductName() + "', productdescription='"
-				+ beanObject.getProductdescription() + "'" + ", price="
-				+ beanObject.getPrice() + " WHERE productID="
-				+ beanObject.getCount() + ";";
+					+ beanObject.getProductName() + "', productdescription='"
+					+ beanObject.getProductdescription() + "'" + ", price="
+					+ beanObject.getPrice() + " WHERE productID="
+					+ beanObject.getCount() + ";";
 			int res = stmtInsert.executeUpdate(qry);
 			if (res == 1) {
 				valueInserted = true;
@@ -177,7 +177,7 @@ public class ProductModel {
 
 			stmtInsert = DBConnect.con.createStatement();
 			String qry = "DELETE FROM Product where productID="
-				+ beanObject.getCount() + ";";
+					+ beanObject.getCount() + ";";
 			int res = stmtInsert.executeUpdate(qry);
 			if (res == 1) {
 				valueDeleted = true;
@@ -228,7 +228,7 @@ public class ProductModel {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
 			String qry = "SELECT * FROM Product where productID=" + productID
-			+ " order by productname;";
+					+ " order by productname;";
 			rsRead = stmtView.executeQuery(qry);
 			rsRead.next();
 			productBean.setCount(rsRead.getInt("productID"));
@@ -279,7 +279,7 @@ public class ProductModel {
 				DBConnect.connectDB();
 				stmtView = DBConnect.con.createStatement();
 				String qry = " SELECT p.productID,productname,productdescription,price FROM channel_ad cad,ad_product adp, product p where cad.adid = adp.adid and adp.productid= p.productid and cad.channelid="
-					+ chobj.getChannelid() + " order by productname;";
+						+ chobj.getChannelid() + " order by productname;";
 				System.out.println(qry);
 				rsSet = stmtView.executeQuery(qry);
 				while (rsSet.next()) {
@@ -312,8 +312,8 @@ public class ProductModel {
 			try {
 				stmtView = DBConnect.con.createStatement();
 				String qry = "SELECT * FROM Product where productname like "
-					+ "'%" + productName + "%' " + "or '%" + productName
-					+ "' or '" + productName + "%' order by productname;";
+						+ "'%" + productName + "%' " + "or '%" + productName
+						+ "' or '" + productName + "%' order by productname;";
 				rsRead = stmtView.executeQuery(qry);
 				while (rsRead.next()) {
 					product = new ProductBean();

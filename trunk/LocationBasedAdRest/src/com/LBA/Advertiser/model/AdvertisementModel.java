@@ -381,7 +381,9 @@ public class AdvertisementModel {
 				stmtView = DBConnect.con.createStatement();
 				String qry = " SELECT a.adID,adname,addesc,adstartdate,adenddate from advertisement a,ad_product adp, product p "
 						+ "where a.adid = adp.adid and adp.productid= p.productid "
-						+ "and a.adID='" + prodobj.getCount() + "' order by adname;";
+						+ "and a.adID='"
+						+ prodobj.getCount()
+						+ "' order by adname;";
 				System.out.println(qry);
 				int i = 0;
 				rsSet = stmtView.executeQuery(qry);
@@ -556,7 +558,9 @@ public class AdvertisementModel {
 			stmtView = DBConnect.con.createStatement();
 			String qry = "select a.adid,adname,addesc,adstartdate,adenddate,longitude,latitude,address,city,state,zip "
 					+ "from merchantlocation ml,ad_merchant aml,advertisement a where ml.merchantlocationID = aml.merchantlocationID "
-					+ "and aml.adid = a.adid and a.adId='" + adID + "' order by adname;";
+					+ "and aml.adid = a.adid and a.adId='"
+					+ adID
+					+ "' order by adname;";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
 			while (rsRead.next()) {
@@ -656,18 +660,19 @@ public class AdvertisementModel {
 		}
 		return adMerchantList;
 	}
-	
-	public ArrayList<AdMerchantAdBean> getAdsbyMerchantNearByUserSubscription(String username,
-			String latitude, String longitude) {
+
+	public ArrayList<AdMerchantAdBean> getAdsbyMerchantNearByUserSubscription(
+			String username, String latitude, String longitude) {
 
 		DBConnect.connectDB();
 		ArrayList<AdMerchantAdBean> adMerchantList = new ArrayList<AdMerchantAdBean>();
 		try {
 			stmtView = DBConnect.con.createStatement();
 			String qry = "select a.adid,adname,addesc,adstartdate,adenddate,longitude,latitude,address,city,state,zip "
-					+ "from merchantlocation ml,ad_merchant aml,advertisement a , channel_ad ca, usersubscription u" +
-					   " where ml.merchantlocationID = aml.merchantlocationID "
-					+ "and aml.adid = a.adid and ca.channelid=u.channelid and ca.adid=a.adid and u.username='" + username + "'";
+					+ "from merchantlocation ml,ad_merchant aml,advertisement a , channel_ad ca, usersubscription u"
+					+ " where ml.merchantlocationID = aml.merchantlocationID "
+					+ "and aml.adid = a.adid and ca.channelid=u.channelid and ca.adid=a.adid and u.username='"
+					+ username + "'";
 			System.out.println(qry);
 			rsRead = stmtView.executeQuery(qry);
 			while (rsRead.next()) {
