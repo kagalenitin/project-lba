@@ -22,11 +22,14 @@ import java.util.ArrayList;
 import org.restlet.ext.xml.DomRepresentation;
 
 import android.app.ExpandableListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -60,10 +63,19 @@ import com.lba.service.ChannelResourceClient;
  * 
  */
 public class Category extends ExpandableListActivity {
+	
+//	protected void onDestroy() {
+//		group = null;
+//		child = null;
+//		childId=null;
+//	};
 
 	ExpandableListAdapter mAdapter;
 	static ArrayList<CategoryBean> categories = new ArrayList<CategoryBean>();
 	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
+	static ArrayList<String> group;
+	static ArrayList<String> child[];
+	static ArrayList<String> childId[];
 
 	public static ArrayList<CategoryBean> getCategories() {
 
@@ -72,7 +84,7 @@ public class Category extends ExpandableListActivity {
 			DomRepresentation representation = categoryResource.getCategories();
 			if (representation != null) {
 				categories = categoryResource
-						.getCategoriesFromXml(representation);
+				.getCategoriesFromXml(representation);
 			} else {
 				categories = new ArrayList<CategoryBean>();
 			}
@@ -88,7 +100,7 @@ public class Category extends ExpandableListActivity {
 		ChannelResourceClient channelResource = new ChannelResourceClient();
 		try {
 			DomRepresentation representation = channelResource
-					.retrieveChannelsByCategory(categoryName);
+			.retrieveChannelsByCategory(categoryName);
 			if (representation != null) {
 				channels = channelResource.getChannelsFromXml(representation);
 			} else {
@@ -106,6 +118,9 @@ public class Category extends ExpandableListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(group==null){
+			group = loadCategory();	
+		}
 
 		// Set up our adapter
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
@@ -136,31 +151,43 @@ public class Category extends ExpandableListActivity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item
-				.getMenuInfo();
+		.getMenuInfo();
 
 		String title = ((TextView) info.targetView).getText().toString();
 
 		int type = ExpandableListView
-				.getPackedPositionType(info.packedPosition);
+		.getPackedPositionType(info.packedPosition);
 		if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
 			int groupPos = ExpandableListView
-					.getPackedPositionGroup(info.packedPosition);
+			.getPackedPositionGroup(info.packedPosition);
 			int childPos = ExpandableListView
-					.getPackedPositionChild(info.packedPosition);
+			.getPackedPositionChild(info.packedPosition);
 			Toast.makeText(
 					this,
 					title + ": Child " + childPos + " clicked in group "
-							+ groupPos, Toast.LENGTH_SHORT).show();
+					+ groupPos, Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
 			int groupPos = ExpandableListView
-					.getPackedPositionGroup(info.packedPosition);
+			.getPackedPositionGroup(info.packedPosition);
 			Toast.makeText(this, title + ": Group " + groupPos + " clicked",
 					Toast.LENGTH_SHORT).show();
 			return true;
 		}
 
 		return false;
+	}
+
+	public static ArrayList<String> loadCategory() {
+		categories = getCategories();
+		ArrayList<String> g = new ArrayList<String>();
+		for (int i = 0; i < categories.size(); i++) {
+			System.out.println(Log.VERBOSE
+					+ "categories.get(i).getCategoryName();"
+					+ categories.get(i).getCategoryName());
+			g.add(categories.get(i).getCategoryName());
+		}
+		return g;
 	}
 
 	/**
@@ -170,44 +197,37 @@ public class Category extends ExpandableListActivity {
 	 */
 	public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
-		private ArrayList<String> group = loadCategory();
-		private ArrayList<String> child[] = loadChannelByCategory();
-		private ArrayList<String> childId[];
+		//	public ArrayList<String> group = loadCategory();
+		public ArrayList<String> childs[] = loadChannelByCategory();
 
-		public ArrayList<String> loadCategory() {
-			categories = getCategories();
-			ArrayList<String> g = new ArrayList<String>();
-			for (int i = 0; i < categories.size(); i++) {
-				System.out.println(Log.VERBOSE
-						+ "categories.get(i).getCategoryName();"
-						+ categories.get(i).getCategoryName());
-				g.add(categories.get(i).getCategoryName());
-			}
-			return g;
-		}
-
-		public ArrayList<String>[] loadChannelByCategory() {
-			ArrayList<String>[] lists = new ArrayList[categories.size()];
-			ArrayList<String> c[] = lists;
-			ArrayList<String>[] lists2 = new ArrayList[categories.size()];
-			ArrayList<String> cId[] = lists2;
-
-			for (int i = 0; i < categories.size(); i++) {
-				String categoryName = group.get(i);
-				c[i] = new ArrayList<String>();
-				cId[i] = new ArrayList<String>();
-				channels = getChannelsByUser(categoryName);
-				for (int j = 0; j < channels.size(); j++) {
-					System.out.println(Log.VERBOSE
-							+ "channels.get(i).getChannelname().toString()"
-							+ channels.get(j).getChannelname().toString());
-					c[i].add(channels.get(j).getChannelname().toString());
-					cId[i].add(channels.get(j).getChannelid().toString());
+		public 	ArrayList<String>[] loadChannelByCategory(){
+			ArrayList<String> c[] = null;
+			if(child==null){
+				ArrayList<String>[] lists = new ArrayList[categories.size()];
+				c = lists;
+				ArrayList<String>[] lists2 = new ArrayList[categories.size()];
+				ArrayList<String> cId[] = lists2;
+				fetchData(group);
+				for (int i = 0; i < categories.size(); i++) {
+					String categoryName = group.get(i);
+					c[i] = new ArrayList<String>();
+					cId[i] = new ArrayList<String>();
+					/*channels = getChannelsByUser(categoryName);
+					for (int j = 0; j < channels.size(); j++) {
+						System.out.println(Log.VERBOSE
+								+ "channels.get(i).getChannelname().toString()"
+								+ channels.get(j).getChannelname().toString());
+						c[i].add(channels.get(j).getChannelname().toString());
+						cId[i].add(channels.get(j).getChannelid().toString());
+					}*/
 				}
+				childId = cId;
+				child = c;
 			}
-			childId = cId;
 			return c;
-		}
+		};
+		//	private ArrayList<String> childId[];
+		private int gpos;
 
 		public Object getChildChannelId(int groupPosition, int childPosition) {
 			return childId[groupPosition].get(childPosition);
@@ -247,7 +267,8 @@ public class Category extends ExpandableListActivity {
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			final int position = childPosition;
 			final int gposition = groupPosition;
-			TextView textView = getGenericView();
+
+			TextView textView = getGenericView();			
 			textView.setText(getChild(groupPosition, childPosition).toString());
 			textView.setFocusable(true);
 			textView.setTextSize(13);
@@ -284,8 +305,9 @@ public class Category extends ExpandableListActivity {
 			return groupPosition;
 		}
 
-		public View getGroupView(int groupPosition, boolean isExpanded,
+		public View getGroupView(final int groupPosition, boolean isExpanded,
 				View convertView, ViewGroup parent) {
+			gpos = groupPosition;
 			TextView textView = getGenericView();
 			textView.setText(getGroup(groupPosition).toString());
 			textView.setTypeface(Typeface.DEFAULT_BOLD);
@@ -300,6 +322,50 @@ public class Category extends ExpandableListActivity {
 			return true;
 		}
 	}
+	private ProgressDialog progressDialog;
+
+	public void fetchData(final ArrayList<String> group) {
+		progressDialog = ProgressDialog.show(this, "", "Loading...");
+		new Thread() {
+			public void run() {
+				try {
+					Thread.sleep(800);
+					ArrayList<String>[] lists = new ArrayList[categories.size()];
+					ArrayList<String> c[] = lists;
+					ArrayList<String>[] lists2 = new ArrayList[categories.size()];
+					ArrayList<String> cId[] = lists2;
+					for (int i = 0; i < categories.size(); i++) {
+						String categoryName = group.get(i);
+						c[i] = new ArrayList<String>();
+						cId[i] = new ArrayList<String>();
+						channels = getChannelsByUser(categoryName);
+						for (int j = 0; j < channels.size(); j++) {
+							System.out.println(Log.VERBOSE
+									+ "channels.get(i).getChannelname().toString()"
+									+ channels.get(j).getChannelname().toString());
+							c[i].add(channels.get(j).getChannelname().toString());
+							cId[i].add(channels.get(j).getChannelid().toString());
+						}
+					}
+					child = c;
+					childId = cId;
+				} catch (InterruptedException e) {
+
+				}
+				messageHandler.sendEmptyMessage(0);
+			}
+
+		}.start();
+	}
+
+	private Handler messageHandler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			progressDialog.dismiss();
+		}
+	};
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -330,4 +396,5 @@ public class Category extends ExpandableListActivity {
 		}
 		return true;
 	}
+	
 }
