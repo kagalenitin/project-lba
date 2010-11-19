@@ -126,6 +126,7 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 							Toast.LENGTH_SHORT).show();
 					intent = new Intent(WelcomeUser.this, Category.class);
 					b.putString("uname", uname);
+					startActivityForResult(intent, 1);
 				} else {
 					intent = new Intent(WelcomeUser.this, Channelv2.class);
 					b.putString("uname", uname);
@@ -177,9 +178,11 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			Toast.makeText(this, "Exit", Toast.LENGTH_SHORT).show();
 			intent = new Intent(WelcomeUser.this, LBALogin.class);
 			b = new Bundle();
-			b.putString("uname", uname);
+			//b.putString("uname", uname);
 			intent.putExtras(b);
-			startActivity(intent);
+			onDestroy();
+			this.finish();
+			//startActivity(intent);
 			break;
 
 		case R.id.alert:
@@ -196,9 +199,16 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			b = new Bundle();
 			b.putString("uname", uname);
 			intent.putExtras(b);
-			startActivity(intent);
+			startActivityForResult(intent, 1);
+		//	startActivity(intent);
 			break;
 		}
 		return true;
 	}
+	
+	@Override
+		protected void onDestroy() {
+			super.onDestroy();
+			this.finishActivity(1);
+		}
 }
