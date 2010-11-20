@@ -4,7 +4,7 @@
 	android:layout_height="fill_parent">
 	<Button android:id="@+id/btn_showsample" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:text="Pull Notification"
-		android:drawableLeft="@drawable/arrow" android:drawableRight="@drawable/close" />
+		android:drawableLeft="@drawable/info" />
 	<Button android:id="@+id/btn_clear" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:text="Clear Notification." />
 </LinearLayout>

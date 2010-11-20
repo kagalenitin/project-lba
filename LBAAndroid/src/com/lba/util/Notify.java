@@ -79,7 +79,7 @@ public class Notify extends Activity {
 
 		mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-		final Notification notifyDetails = new Notification(R.drawable.logo,
+		final Notification notifyDetails = new Notification(R.drawable.info,
 				"New Alert, LBA", System.currentTimeMillis());
 
 		long[] vibrate = { 100, 100, 200, 300 };
@@ -182,7 +182,7 @@ public class Notify extends Activity {
 			System.out.println("AD:" + advertisements.get(i).getAdID());
 
 			final Notification notifyDetails = new Notification(
-					R.drawable.logo, "AdSpot!", System.currentTimeMillis());
+					R.drawable.info, "AdSpot!", System.currentTimeMillis());
 
 			Context context = getApplicationContext();
 			CharSequence contentTitle = "AdSpot Notification";
