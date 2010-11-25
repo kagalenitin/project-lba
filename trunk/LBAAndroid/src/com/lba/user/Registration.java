@@ -30,7 +30,7 @@ public class Registration extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
+		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		setContentView(R.layout.registration);
 		this.setTitle("AdSpot - Sign up");
 		setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.logo);

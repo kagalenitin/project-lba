@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="tomcatServer">http://192.168.1.72:8080</string>
+
 	<string name="hello">AdSpot Login</string>
 	<string name="app_name">AdSpot</string>
 	<string name="regneg">regneg</string>
@@ -21,8 +23,6 @@
 
 	<string name="alert_dialog_ok">OK</string>
 	<string name="alert_dialog_cancel">Cancel</string>
-
-	<string name="tomcatServer">http://192.168.1.72:8080</string>
 
 	<string name="regFirstNameNeg">"Please enter valid first name For example: John"
 	</string>
