@@ -18,6 +18,8 @@ import com.lba.R;
 import com.lba.beans.ChannelBean;
 
 /**
+ * This class handles the channelview for application.
+ * 
  * @author payal
  * 
  */

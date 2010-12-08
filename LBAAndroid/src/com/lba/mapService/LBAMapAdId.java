@@ -211,10 +211,10 @@ public class LBAMapAdId extends MapActivity implements LocationListener {
 			if (event.getAction() == 1) {
 				GeoPoint p = mapView.getProjection().fromPixels(
 						(int) event.getX(), (int) event.getY());
-				Toast.makeText(
-						getBaseContext(),
-						p.getLatitudeE6() / 1E6 + "," + p.getLongitudeE6()
-								/ 1E6, Toast.LENGTH_SHORT).show();
+				// Toast.makeText(
+				// getBaseContext(),
+				// p.getLatitudeE6() / 1E6 + "," + p.getLongitudeE6()
+				// / 1E6, Toast.LENGTH_SHORT).show();
 			}
 
 			if (advertisements.size() == 0) {

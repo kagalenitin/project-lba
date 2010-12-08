@@ -30,6 +30,8 @@ import com.lba.search.SearchProduct;
 import com.lba.service.AdvertisementResourceClient;
 
 /**
+ * This class mainly represents the advertisement of the AdSpot.
+ * 
  * @author payal
  * 
  */
@@ -121,19 +123,6 @@ public class Advertisement extends Activity {
 		}
 	};
 
-	// private String[] mStrings = {
-	// // "http://www.whofish.org/DevImages/imgActive/original_47944.jpg",
-	// // "http://i28.tinypic.com/2n1g9oo.jpg",
-	// // "http://smartcanucks.ca/wp-content/uploads/2010/03/shoecompany1.jpg",
-	// //
-	// "http://www.way2offer.com/images/offers/Chennai/449/offerpamphlet_small/Offers-On-fastrack-Watches.jpg",
-	// //
-	// "http://www.upto75.com/images/uploadimages/sales_offer_mainpic_20100623133409Fastrack.png",
-	// "http://192.168.1.72:8080/AdvertiserLBA/images/userUploadedImages/logo417.jpg"
-	// };
-	// //"http://www.everyday.com.my/photo/2010/04/Samsung-2010-Monte-Mobile-Phone-Promotion.jpg"
-	// };
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -164,6 +153,11 @@ public class Advertisement extends Activity {
 		return true;
 	}
 
+	/**
+	 * This method gets all the advertisement from the rest service.
+	 * 
+	 * @return List of advertisement in arrayList.
+	 */
 	public ArrayList<AdvertisementBean> getAdvertisements() {
 
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
@@ -184,6 +178,12 @@ public class Advertisement extends Activity {
 		return advertisements;
 	}
 
+	/**
+	 * This method gets all the ads by products.
+	 * 
+	 * @param productId
+	 * @return List of Advertisements
+	 */
 	public ArrayList<AdvertisementBean> getAdsByProduct(String productId) {
 
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();

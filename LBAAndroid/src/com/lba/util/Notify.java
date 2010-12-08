@@ -70,8 +70,8 @@ public class Notify extends Activity {
 		currentLocation = locationManager
 				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (currentLocation == null) {
-			Latitude = 37.3348412;
-			Longitude = -121.8849198;
+			Latitude = 37.3387589;
+			Longitude = -121.8850902;
 		} else {
 			Latitude = currentLocation.getLatitude();
 			Longitude = currentLocation.getLongitude();
@@ -102,8 +102,8 @@ public class Notify extends Activity {
 				currentLocation = locationManager
 						.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 				if (currentLocation == null) {
-					Latitude = 37.3348412;
-					Longitude = -121.8849198;
+					Latitude = 37.3387589;
+					Longitude = -121.8850902;
 				} else {
 					Latitude = currentLocation.getLatitude();
 					Longitude = currentLocation.getLongitude();

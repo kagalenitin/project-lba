@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import com.lba.R;
 
 /**
+ * This class manages the image.
+ * 
  * @author payal
  * 
  */

@@ -55,7 +55,7 @@ public class ValidateUser {
 	 * isPhoneNumberValid: Validate phone number using Java reg ex. This method
 	 * checks if the input string is a valid phone number.
 	 * 
-	 * @param email
+	 * @param phoneNumber
 	 *            String. Phone number to validate
 	 * @return boolean: true if phone number is valid, false otherwise.
 	 */

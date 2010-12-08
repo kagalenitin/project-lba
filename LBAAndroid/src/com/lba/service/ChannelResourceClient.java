@@ -369,7 +369,7 @@ public class ChannelResourceClient {
 	/**
 	 * Returns the Representation of an item.
 	 * 
-	 * @param item
+	 * @param channel
 	 *            the item.
 	 * 
 	 * @return The Representation of the item.

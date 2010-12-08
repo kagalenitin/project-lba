@@ -29,6 +29,8 @@ import com.lba.search.SearchProduct;
 import com.lba.service.ChannelResourceClient;
 
 /**
+ * This class manages the channel for the application.
+ * 
  * @author payal
  * 
  */
@@ -40,6 +42,11 @@ public class Channelv2 extends ListActivity {
 	ChannelAdapter adapter;
 	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
 
+	/**
+	 * This method gets the list of chanenl from the server.
+	 * 
+	 * @return list of channel object.
+	 */
 	public static ArrayList<ChannelBean> getChannels() {
 
 		ChannelResourceClient channelResource = new ChannelResourceClient();

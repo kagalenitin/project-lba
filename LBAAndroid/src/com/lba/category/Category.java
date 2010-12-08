@@ -59,24 +59,24 @@ import com.lba.service.CategoryResourceClient;
 import com.lba.service.ChannelResourceClient;
 
 /**
- * @author payalpatel
+ * This class manages the cateogry of the channels.
  * 
+ * @author payalpatel
  */
 public class Category extends ExpandableListActivity {
-	
-//	protected void onDestroy() {
-//		group = null;
-//		child = null;
-//		childId=null;
-//	};
 
 	ExpandableListAdapter mAdapter;
 	static ArrayList<CategoryBean> categories = new ArrayList<CategoryBean>();
-	static ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
-	static ArrayList<String> group;
-	static ArrayList<String> child[];
-	static ArrayList<String> childId[];
+	ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
+	ArrayList<String> group;
+	ArrayList<String> child[];
+	ArrayList<String> childId[];
 
+	/**
+	 * This method gets the category from the server.
+	 * 
+	 * @return list of category object.
+	 */
 	public static ArrayList<CategoryBean> getCategories() {
 
 		CategoryResourceClient categoryResource = new CategoryResourceClient();
@@ -84,7 +84,7 @@ public class Category extends ExpandableListActivity {
 			DomRepresentation representation = categoryResource.getCategories();
 			if (representation != null) {
 				categories = categoryResource
-				.getCategoriesFromXml(representation);
+						.getCategoriesFromXml(representation);
 			} else {
 				categories = new ArrayList<CategoryBean>();
 			}
@@ -95,12 +95,18 @@ public class Category extends ExpandableListActivity {
 		return categories;
 	}
 
-	public static ArrayList<ChannelBean> getChannelsByUser(String categoryName) {
+	/**
+	 * This method gets the channel by category name
+	 * 
+	 * @param categoryName
+	 * @return list of channel objects.
+	 */
+	public ArrayList<ChannelBean> getChannelsByUser(String categoryName) {
 
 		ChannelResourceClient channelResource = new ChannelResourceClient();
 		try {
 			DomRepresentation representation = channelResource
-			.retrieveChannelsByCategory(categoryName);
+					.retrieveChannelsByCategory(categoryName);
 			if (representation != null) {
 				channels = channelResource.getChannelsFromXml(representation);
 			} else {
@@ -118,8 +124,8 @@ public class Category extends ExpandableListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(group==null){
-			group = loadCategory();	
+		if (group == null) {
+			group = loadCategory();
 		}
 
 		// Set up our adapter
@@ -151,25 +157,25 @@ public class Category extends ExpandableListActivity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item
-		.getMenuInfo();
+				.getMenuInfo();
 
 		String title = ((TextView) info.targetView).getText().toString();
 
 		int type = ExpandableListView
-		.getPackedPositionType(info.packedPosition);
+				.getPackedPositionType(info.packedPosition);
 		if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
 			int groupPos = ExpandableListView
-			.getPackedPositionGroup(info.packedPosition);
+					.getPackedPositionGroup(info.packedPosition);
 			int childPos = ExpandableListView
-			.getPackedPositionChild(info.packedPosition);
+					.getPackedPositionChild(info.packedPosition);
 			Toast.makeText(
 					this,
 					title + ": Child " + childPos + " clicked in group "
-					+ groupPos, Toast.LENGTH_SHORT).show();
+							+ groupPos, Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
 			int groupPos = ExpandableListView
-			.getPackedPositionGroup(info.packedPosition);
+					.getPackedPositionGroup(info.packedPosition);
 			Toast.makeText(this, title + ": Group " + groupPos + " clicked",
 					Toast.LENGTH_SHORT).show();
 			return true;
@@ -178,6 +184,11 @@ public class Category extends ExpandableListActivity {
 		return false;
 	}
 
+	/**
+	 * This method loads the category on stating the activity.
+	 * 
+	 * @return list of strings of category names
+	 */
 	public static ArrayList<String> loadCategory() {
 		categories = getCategories();
 		ArrayList<String> g = new ArrayList<String>();
@@ -197,12 +208,12 @@ public class Category extends ExpandableListActivity {
 	 */
 	public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
-		//	public ArrayList<String> group = loadCategory();
+		// public ArrayList<String> group = loadCategory();
 		public ArrayList<String> childs[] = loadChannelByCategory();
 
-		public 	ArrayList<String>[] loadChannelByCategory(){
+		public ArrayList<String>[] loadChannelByCategory() {
 			ArrayList<String> c[] = null;
-			if(child==null){
+			if (child == null) {
 				ArrayList<String>[] lists = new ArrayList[categories.size()];
 				c = lists;
 				ArrayList<String>[] lists2 = new ArrayList[categories.size()];
@@ -212,21 +223,23 @@ public class Category extends ExpandableListActivity {
 					String categoryName = group.get(i);
 					c[i] = new ArrayList<String>();
 					cId[i] = new ArrayList<String>();
-					/*channels = getChannelsByUser(categoryName);
-					for (int j = 0; j < channels.size(); j++) {
-						System.out.println(Log.VERBOSE
-								+ "channels.get(i).getChannelname().toString()"
-								+ channels.get(j).getChannelname().toString());
-						c[i].add(channels.get(j).getChannelname().toString());
-						cId[i].add(channels.get(j).getChannelid().toString());
-					}*/
+					/*
+					 * channels = getChannelsByUser(categoryName); for (int j =
+					 * 0; j < channels.size(); j++) {
+					 * System.out.println(Log.VERBOSE +
+					 * "channels.get(i).getChannelname().toString()" +
+					 * channels.get(j).getChannelname().toString());
+					 * c[i].add(channels.get(j).getChannelname().toString());
+					 * cId[i].add(channels.get(j).getChannelid().toString()); }
+					 */
 				}
 				childId = cId;
 				child = c;
 			}
 			return c;
 		};
-		//	private ArrayList<String> childId[];
+
+		// private ArrayList<String> childId[];
 		private int gpos;
 
 		public Object getChildChannelId(int groupPosition, int childPosition) {
@@ -268,7 +281,7 @@ public class Category extends ExpandableListActivity {
 			final int position = childPosition;
 			final int gposition = groupPosition;
 
-			TextView textView = getGenericView();			
+			TextView textView = getGenericView();
 			textView.setText(getChild(groupPosition, childPosition).toString());
 			textView.setFocusable(true);
 			textView.setTextSize(13);
@@ -322,6 +335,7 @@ public class Category extends ExpandableListActivity {
 			return true;
 		}
 	}
+
 	private ProgressDialog progressDialog;
 
 	public void fetchData(final ArrayList<String> group) {
@@ -332,7 +346,8 @@ public class Category extends ExpandableListActivity {
 					Thread.sleep(800);
 					ArrayList<String>[] lists = new ArrayList[categories.size()];
 					ArrayList<String> c[] = lists;
-					ArrayList<String>[] lists2 = new ArrayList[categories.size()];
+					ArrayList<String>[] lists2 = new ArrayList[categories
+							.size()];
 					ArrayList<String> cId[] = lists2;
 					for (int i = 0; i < categories.size(); i++) {
 						String categoryName = group.get(i);
@@ -340,11 +355,15 @@ public class Category extends ExpandableListActivity {
 						cId[i] = new ArrayList<String>();
 						channels = getChannelsByUser(categoryName);
 						for (int j = 0; j < channels.size(); j++) {
-							System.out.println(Log.VERBOSE
-									+ "channels.get(i).getChannelname().toString()"
-									+ channels.get(j).getChannelname().toString());
-							c[i].add(channels.get(j).getChannelname().toString());
-							cId[i].add(channels.get(j).getChannelid().toString());
+							System.out
+									.println(Log.VERBOSE
+											+ "channels.get(i).getChannelname().toString()"
+											+ channels.get(j).getChannelname()
+													.toString());
+							c[i].add(channels.get(j).getChannelname()
+									.toString());
+							cId[i].add(channels.get(j).getChannelid()
+									.toString());
 						}
 					}
 					child = c;
@@ -365,7 +384,6 @@ public class Category extends ExpandableListActivity {
 			progressDialog.dismiss();
 		}
 	};
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -396,5 +414,5 @@ public class Category extends ExpandableListActivity {
 		}
 		return true;
 	}
-	
+
 }

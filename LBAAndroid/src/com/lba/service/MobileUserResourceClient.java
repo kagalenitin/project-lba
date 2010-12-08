@@ -336,7 +336,7 @@ public class MobileUserResourceClient {
 	/**
 	 * Returns the Representation of an item.
 	 * 
-	 * @param item
+	 * @param mobileuser
 	 *            the item.
 	 * 
 	 * @return The Representation of the item.

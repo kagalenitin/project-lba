@@ -31,8 +31,9 @@ import com.lba.search.SearchProduct;
 import com.lba.service.AdvertisementResourceClient;
 
 /**
- * @author payalpatel
+ * This class is used for displaying ad image or banner.
  * 
+ * @author payalpatel
  */
 public class AdDetail extends Activity {
 
@@ -42,6 +43,12 @@ public class AdDetail extends Activity {
 	private String adPath = "";
 	private AdvertisementBean advertisement = null;
 
+	/**
+	 * 
+	 * @param adId
+	 *            Advertisement ID.
+	 * @return AdvertisementBean Advertisement object instance
+	 */
 	public AdvertisementBean getAdsByID(String adId) {
 
 		AdvertisementResourceClient advertisementResource = new AdvertisementResourceClient();
@@ -120,6 +127,12 @@ public class AdDetail extends Activity {
 		}
 	}
 
+	/**
+	 * 
+	 * @param url
+	 *            URL of the image to load.
+	 * @return Drawable Drawable object of the image.
+	 */
 	private Drawable LoadImageFromWebOperations(String url) {
 		try {
 			InputStream is = (InputStream) new URL(url).getContent();
@@ -161,5 +174,4 @@ public class AdDetail extends Activity {
 		}
 		return true;
 	}
-
 }

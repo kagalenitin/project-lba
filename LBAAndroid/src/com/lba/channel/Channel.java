@@ -13,6 +13,8 @@ import com.lba.R;
 import com.lba.product.Product;
 
 /**
+ * This class managese the channel.
+ * 
  * @author payalpatel
  * 
  */
