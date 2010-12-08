@@ -483,7 +483,7 @@ public class AdvertisementResourceClient {
 	/**
 	 * Returns the Representation of an item.
 	 * 
-	 * @param item
+	 * @param advertisement
 	 *            the item.
 	 * 
 	 * @return The Representation of the item.

@@ -31,8 +31,9 @@ import com.lba.user.Profile;
 import com.lba.util.Notify;
 
 /**
- * @author payal
+ * This class manages the home page activity.
  * 
+ * @author payal
  */
 public class WelcomeUser extends Activity { // implements OnClickListener{
 
@@ -42,7 +43,6 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
 		requestWindowFeature(Window.FEATURE_RIGHT_ICON);
@@ -178,11 +178,11 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			Toast.makeText(this, "Exit", Toast.LENGTH_SHORT).show();
 			intent = new Intent(WelcomeUser.this, LBALogin.class);
 			b = new Bundle();
-			//b.putString("uname", uname);
+			// b.putString("uname", uname);
 			intent.putExtras(b);
 			onDestroy();
-			this.finish();
-			//startActivity(intent);
+			// this.finish();
+			startActivity(intent);
 			break;
 
 		case R.id.alert:
@@ -200,15 +200,15 @@ public class WelcomeUser extends Activity { // implements OnClickListener{
 			b.putString("uname", uname);
 			intent.putExtras(b);
 			startActivityForResult(intent, 1);
-		//	startActivity(intent);
+			// startActivity(intent);
 			break;
 		}
 		return true;
 	}
-	
+
 	@Override
-		protected void onDestroy() {
-			super.onDestroy();
-			this.finishActivity(1);
-		}
+	protected void onDestroy() {
+		super.onDestroy();
+		this.finishActivity(1);
+	}
 }

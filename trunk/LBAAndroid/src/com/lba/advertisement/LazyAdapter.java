@@ -15,6 +15,9 @@ import com.lba.R;
 import com.lba.beans.AdvertisementBean;
 
 /**
+ * This class helps to load the image on demand depends on the request from the
+ * user.
+ * 
  * @author payal
  * 
  */

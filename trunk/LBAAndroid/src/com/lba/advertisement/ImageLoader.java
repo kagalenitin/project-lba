@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import com.lba.R;
 
 /**
+ * This class Loads the image from cache or loads from the server.
+ * 
  * @author payal
  * 
  */
@@ -74,6 +76,13 @@ public class ImageLoader {
 			photoLoaderThread.start();
 	}
 
+	/**
+	 * This method converts the image into BitMap object.
+	 * 
+	 * @param url
+	 *            URL of the image.
+	 * @return Bitmap object of the image.
+	 */
 	private Bitmap getBitmap(String url) {
 		// I identify images by hashcode. Not a perfect solution, good for the
 		// demo.
@@ -103,6 +112,9 @@ public class ImageLoader {
 	}
 
 	// decodes image and scales it to reduce memory consumption
+	/**
+	 * This method decodes the image file.
+	 */
 	private Bitmap decodeFile(File f) {
 		try {
 			// decode image size
@@ -133,6 +145,9 @@ public class ImageLoader {
 	}
 
 	// Task for the queue
+	/**
+	 * This method handles the image to to loaded.
+	 */
 	private class PhotoToLoad {
 		public String url;
 		public ImageView imageView;
@@ -150,6 +165,9 @@ public class ImageLoader {
 	}
 
 	// stores list of photos to download
+	/**
+	 * This method queue the image for loading.
+	 */
 	class PhotosQueue {
 		private Stack<PhotoToLoad> photosToLoad = new Stack<PhotoToLoad>();
 
@@ -164,6 +182,12 @@ public class ImageLoader {
 		}
 	}
 
+	/**
+	 * This class handles the image loading by thread.
+	 * 
+	 * @author payalpatel
+	 * 
+	 */
 	class PhotosLoader extends Thread {
 		public void run() {
 			try {
@@ -219,6 +243,9 @@ public class ImageLoader {
 		}
 	}
 
+	/**
+	 * This method clears the cache.
+	 */
 	public void clearCache() {
 		// clear memory cache
 		cache.clear();

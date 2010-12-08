@@ -361,7 +361,7 @@ public class ProductResourceClient {
 	/**
 	 * Returns the Representation of an item.
 	 * 
-	 * @param item
+	 * @param product
 	 *            the item.
 	 * 
 	 * @return The Representation of the item.

@@ -36,8 +36,9 @@ import com.lba.home.WelcomeUser;
 import com.lba.search.SearchProduct;
 
 /**
- * @author payal
+ * This class manages the GPS Direction service for the application.
  * 
+ * @author payal
  */
 public class GPSMap extends MapActivity implements LocationListener {
 	/** Called when the activity is first created. */
@@ -49,7 +50,7 @@ public class GPSMap extends MapActivity implements LocationListener {
 	Drawable defaultMarker = null;
 	GeoPoint p = null;
 	String uname = "";
-	double latitude = 37.3348412, longitude = -121.8849198;
+	double latitude = 37.3387589, longitude = -121.8850902;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

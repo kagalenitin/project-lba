@@ -14,8 +14,9 @@ import com.lba.R;
 import com.lba.beans.AdMerchantAdBean;
 
 /**
- * @author payal
+ * This class manages the Adview for the Ad.
  * 
+ * @author payal
  */
 public class AdAdapter extends BaseAdapter {
 
