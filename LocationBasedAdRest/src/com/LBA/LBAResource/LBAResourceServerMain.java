@@ -17,7 +17,7 @@ public class LBAResourceServerMain {
 		// Add a new HTTP server listening on port 8182.
 		component.getServers().add(Protocol.HTTP, 8182);
 
-		component.getDefaultHost().attach("/LBAResource",
+		component.getDefaultHost().attach("/LocationBasedAdRest",
 				new LBAResourceApplication());
 
 		// Start the component.

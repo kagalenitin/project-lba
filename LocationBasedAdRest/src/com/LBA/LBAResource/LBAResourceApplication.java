@@ -100,13 +100,13 @@ public class LBAResourceApplication extends Application {
 				"/advertisements/subscription/{username}/{latitude}/{longitude}",
 				AdvertisementsByDistanceBySubscriptionResource.class);
 
-		// Defines a route for the resource "list of mobileusers"
-		router.attach("/mobileusers", MobileUsersResource.class);
-		// Defines a route for the resource "mobileuser"
-		router.attach("/mobileusers/{username}", MobileUserResource.class);
-		// Defines a route for the resource "mobileuser verification"
-		router.attach("/mobileusers/authenticate/{username}/{password}",
-				MobileUserVerificationResource.class);
+		 // Defines a route for the resource "list of mobileusers"
+        router.attach("/mobileusers", MobileUsersResource.class);
+        // Defines a route for the resource "mobileuser"
+        router.attach("/mobileusers/{username}", MobileUserResource.class);
+        // Defines a route for the resource "mobileuser verification"
+        router.attach("/mobileusers/authenticate/{username}/{password}",
+                        MobileUserVerificationResource.class);
 
 		// Defines a route for the resource "usersubscriptions"
 		router.attach("/subscription/{username}/{channelId}",

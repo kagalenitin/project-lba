@@ -174,7 +174,10 @@ public class ChannelModel {
 		/*
 		 * This function will retrieve contract details based on channalName
 		 */
-
+		if(channelName!=null){
+			System.out.println("Replace");
+			channelName = channelName.replace("+", " ");
+		}
 		// int count = getChannelCount();
 		ArrayList<ChannelBean> channels = new ArrayList<ChannelBean>();
 		// if (count != 0)

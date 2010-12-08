@@ -614,6 +614,11 @@ public class AdvertisementModel {
 
 	public ArrayList<AdMerchantAdBean> getAdsbyMerchantNearBy(String adName,
 			String latitude, String longitude) {
+		
+		if(adName!=null){
+			System.out.println("Replace");
+			adName = adName.replace("+", " ");
+		}
 
 		DBConnect.connectDB();
 		ArrayList<AdMerchantAdBean> adMerchantList = new ArrayList<AdMerchantAdBean>();
