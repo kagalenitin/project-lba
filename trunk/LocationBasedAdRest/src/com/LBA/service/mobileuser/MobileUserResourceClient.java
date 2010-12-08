@@ -26,7 +26,7 @@ public class MobileUserResourceClient {
 
 	// String ipaddress = "10.185.3.16:8182";
 	String ipaddress = "192.168.1.72:8182";
-	String serviceAddress = "http://" + ipaddress + "/LBAResource/mobileusers";
+	String serviceAddress = "http://" + ipaddress + "/LocationBasedAdRest/mobileusers";
 
 	public MobileUserResourceClient() {
 		mobleUsersResource = new ClientResource(serviceAddress);
@@ -42,15 +42,15 @@ public class MobileUserResourceClient {
 			mobileUserResource = new ClientResource(r.getLocationRef());
 
 		} catch (ResourceException e) {
-			System.out.println("Error  status:: " + e.getStatus());
+			System.out.println("Error  status: " + e.getStatus());
 			System.out.println("Error message:: " + e.getMessage());
 		}
 		// Consume the response's entity which releases the connection
-		try {
-			mobleUsersResource.getResponseEntity().exhaust();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	//	try {
+		//	mobleUsersResource.getResponseEntity().exhaust();
+		//} catch (IOException e) {
+		//	e.printStackTrace();
+		//}
 
 	}
 
@@ -154,21 +154,21 @@ public class MobileUserResourceClient {
 		MobileUserBean mobileuser = new MobileUserBean();
 		// for (int i = 1; i <= 10; i++) {
 
-		mobileuser.setUsername("payal");
-		mobileuser.setPassword("payal");
+		mobileuser.setUsername("payal1");
+		mobileuser.setPassword("payal1");
 		mobileuser.setFirstName("fname");
 		mobileuser.setLastName("lname");
 		mobileuser.setAddress("address");
 		mobileuser.setPhone("1234567890");
 		mobileuser.setEmail("payal");
-		// client.createMobileUser(mobileuser);
+		client.createMobileUser(mobileuser);
 		// }
 		// client.deleteMobileUser("payal");
-		mobileuser.setFirstName("Payal");
+	//	mobileuser.setFirstName("Payal");
 
 		try {
 			// client.updateMobileUser("payal", mobileuser);
-			client.verifyMobileUser("payal", "payal");
+		//	client.verifyMobileUser("payal", "payal");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

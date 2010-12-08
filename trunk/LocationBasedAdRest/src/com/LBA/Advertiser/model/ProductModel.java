@@ -303,6 +303,10 @@ public class ProductModel {
 
 	public ArrayList<ProductBean> SearchProducts(String productName) {
 
+		if(productName!=null){
+			System.out.println("Replace");
+			productName = productName.replace("+", " ");
+		}
 		DBConnect.connectDB();
 		ProductModel productmodel = new ProductModel();
 		int count = productmodel.getProductsCount();

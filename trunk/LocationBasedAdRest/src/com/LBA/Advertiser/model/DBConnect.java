@@ -13,7 +13,7 @@ public class DBConnect {
 		try {
 			String username = "root";
 			String password = "";
-			String url = "jdbc:mysql://localhost/locateAd";
+			String url = "jdbc:mysql://localhost/adspotdb";
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			con = DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException e) {

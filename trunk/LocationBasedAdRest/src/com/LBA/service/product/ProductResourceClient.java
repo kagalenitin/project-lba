@@ -27,8 +27,8 @@ public class ProductResourceClient {
 	public ClientResource productByNameResource;
 
 	// String ipaddress = "10.185.3.16:8182";
-	String ipaddress = "10.185.3.193:8182";
-	String serviceAddress = "http://" + ipaddress + "/LBAResource/products";
+	String ipaddress = "192.168.1.72:8182";
+	String serviceAddress = "http://" + ipaddress + "/LocationBasedAdRest/products";
 
 	public ProductResourceClient() {
 		productsResource = new ClientResource(serviceAddress);
@@ -48,11 +48,11 @@ public class ProductResourceClient {
 			System.out.println("Error message:: " + e.getMessage());
 		}
 		// Consume the response's entity which releases the connection
-		try {
+	/*	try {
 			productsResource.getResponseEntity().exhaust();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
@@ -133,13 +133,13 @@ public class ProductResourceClient {
 
 		ProductBean product = new ProductBean();
 		System.out.println("IN SIDE");
-		for (int i = 1; i <= 10; i++) {
-			product.setProductName("TestProd1" + i);
-			product.setProductdescription("testDesc" + i);
+	//	for (int i = 1; i <= 10; i++) {
+			product.setProductName("TestProd1" );
+			product.setProductdescription("testDesc" );
 			product.setPrice(12.56);
-			product.setAdvertiserName("testUser" + i);
-			// client.createProduct(product);
-		}
+			product.setAdvertiserName("testUser");
+			client.createProduct(product);
+	//	}
 		// product.setProductName("TestProd1");
 		// product.setProductdescription("testDesc");
 		// product.setPrice(12.56);
@@ -150,28 +150,28 @@ public class ProductResourceClient {
 
 		// product.setProductName("NewTestedName2");
 
-		try {
+	/*	try {
 			client.updateProduct(70, product);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
-		client.retrieveProduct("5");
+	//	client.retrieveProduct("5");
 
-		ArrayList<ProductBean> products = null;
+/*		ArrayList<ProductBean> products = null;
 		DomRepresentation representation = client.retrieveProducts();
 		try {
 			products = client.getProductsFromXml(representation);
-			System.out.println(products.size());
+		//	System.out.println(products.size());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		for (int i = 0; i < products.size(); i++) {
-			System.out.println(products.get(i).getCount());
-		}
+		//	System.out.println(products.get(i).getCount());
+		}*/
 
 		// client.retrieveProducts();
 

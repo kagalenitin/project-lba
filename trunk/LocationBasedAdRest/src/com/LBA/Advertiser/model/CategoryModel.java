@@ -45,6 +45,10 @@ public class CategoryModel {
 
 	public CategoryBean getCategoryByName(String categoryName) {
 
+		if(categoryName!=null){
+			System.out.println("Replace");
+			categoryName = categoryName.replace("+", " ");
+		}
 		try {
 			DBConnect.connectDB();
 			CategoryBean categoryBean = new CategoryBean();

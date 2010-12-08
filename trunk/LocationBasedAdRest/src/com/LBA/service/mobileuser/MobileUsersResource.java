@@ -8,6 +8,7 @@ import org.restlet.data.Status;
 import org.restlet.ext.xml.DomRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
+import org.restlet.resource.ClientResource;
 import org.restlet.resource.Post;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -34,6 +35,7 @@ public class MobileUsersResource extends BaseResource {
 	public Representation acceptItem(Representation entity) {
 
 		Representation result = null;
+		System.out.println("POST");
 		// Parse the given representation and retrieve pairs of
 		// "name=value" tokens.
 		try {

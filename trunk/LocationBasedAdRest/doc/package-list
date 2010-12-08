@@ -1,0 +1,9 @@
+com.LBA.Advertiser.bean
+com.LBA.Advertiser.model
+com.LBA.LBAResource
+com.LBA.category
+com.LBA.service.advertisement
+com.LBA.service.channel
+com.LBA.service.channelSubscription
+com.LBA.service.mobileuser
+com.LBA.service.product
