@@ -374,12 +374,11 @@ public class AdvertisementModel {
 		 */
 		ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
 		int count = new ProductModel().getProductsCount();
-		AdvertisementBean advertisment = new AdvertisementBean();
 		if (count != 0) {
 			try {
 				DBConnect.connectDB();
 				stmtView = DBConnect.con.createStatement();
-				String qry = " SELECT a.adID,adname,addesc,adstartdate,adenddate from advertisement a,ad_product adp, product p "
+				String qry = " SELECT DISTINCT a.adID,adname,addesc,adstartdate,adenddate from advertisement a,ad_product adp, product p "
 						+ "where a.adid = adp.adid and adp.productid= p.productid "
 						+ "and a.adID='"
 						+ prodobj.getCount()
@@ -388,6 +387,7 @@ public class AdvertisementModel {
 				int i = 0;
 				rsSet = stmtView.executeQuery(qry);
 				while (rsSet.next()) {
+					AdvertisementBean advertisment = new AdvertisementBean();
 					advertisment.setAdName(rsSet.getString("adname"));
 					advertisment.setAdDesc(rsSet.getString("addesc"));
 					// advertisment.setAdsize(rsSet.getString("adsize"));
@@ -448,17 +448,17 @@ public class AdvertisementModel {
 			ProductBean product) {
 
 		ArrayList<AdvertisementBean> advertisements = new ArrayList<AdvertisementBean>();
-		AdvertisementBean advertisement = new AdvertisementBean();
 		try {
 			DBConnect.connectDB();
 			stmtView = DBConnect.con.createStatement();
-			String qry = "SELECT ad.adID as adv, ad.adfilelocation as loc, ad.adSize as size,"
+			String qry = "SELECT DISTINCT ad.adID as adv, ad.adfilelocation as loc, ad.adSize as size,"
 					+ " a.adstartdate as stdt, a.adenddate as eddt, a.adname as name, a.addesc as descrp "
 					+ "from advertisement a, ad_product ad, product p where a.adID=ad.adID and ad.productID=p.productID and p.productID="
 					+ product.getCount() + " order by name;";
 			rsSet = stmtView.executeQuery(qry);
 
 			while (rsSet.next()) {
+				AdvertisementBean advertisement = new AdvertisementBean();
 				advertisement.setAdId(rsSet.getString("adv"));
 				advertisement.setFileLocation(rsSet.getString("loc"));
 				advertisement.setAdsize(rsSet.getString("size"));

@@ -278,7 +278,7 @@ public class ProductModel {
 			try {
 				DBConnect.connectDB();
 				stmtView = DBConnect.con.createStatement();
-				String qry = " SELECT p.productID,productname,productdescription,price FROM channel_ad cad,ad_product adp, product p where cad.adid = adp.adid and adp.productid= p.productid and cad.channelid="
+				String qry = " SELECT DISTINCT p.productID,productname,productdescription,price FROM channel_ad cad,ad_product adp, product p where cad.adid = adp.adid and adp.productid= p.productid and cad.channelid="
 						+ chobj.getChannelid() + " order by productname;";
 				System.out.println(qry);
 				rsSet = stmtView.executeQuery(qry);
