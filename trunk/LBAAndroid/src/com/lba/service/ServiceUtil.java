@@ -11,10 +11,10 @@ package com.lba.service;
 public class ServiceUtil {
 
 	// use below if you are running REST service on tomcat, otherwise comment it.
-	 private String ipaddress = "192.168.1.72:8080/LocationBasedAdRest";
+	// private String ipaddress = "10.185.3.113:8080/LocationBasedAdRest";
 
 	// use below if you are running REST service on restlet engine, otherwise comment it.
-	//private String ipaddress = "192.168.1.72:8182/LocationBasedAdRest";
+	private String ipaddress = "10.185.19.62:8182/LocationBasedAdRest";
 
 	/**
 	 * @param args
